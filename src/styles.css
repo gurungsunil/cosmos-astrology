@@ -1,0 +1,5 @@
+@import "assets/css/bootstrap.min.css";
+@import "assets/css/now-ui-dashboard.css";
+#toast-container>div {
+    opacity: 1;
+}

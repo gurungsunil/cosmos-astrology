@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <button class="btn btn-primary" (click)="openModal(modalForm)">Add moderator</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title"> Moderators List</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table datatable class="table" *ngIf="this.temp">
+                                <thead class="text-primary">
+                                    <tr>
+                                        <th>UserId</th>
+                                        <th>Subject</th>
+                                        <th>Message</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let emp of this.empData">
+                                        <td>{{emp.userId}}</td>
+                                        <td>{{emp.title}}</td>
+                                        <td>{{emp.body}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalForm>
+    <app-add-edit-moderator [currentlyEditingItem]="currentlyEditingItem"></app-add-edit-moderator>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="this.bsModalRef.hide();">
+                                  Close
+                                </button>
+    </div>
+</ng-template>

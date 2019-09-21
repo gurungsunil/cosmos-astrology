@@ -1,0 +1,42 @@
+<div class="sidebar" data-color="orange">
+    <!--
+        Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+    -->
+    <div class="logo">
+        <a class="simple-text logo-normal">
+               Online Astro
+            </a>
+    </div>
+    <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_ADMIN'">
+        <ul class="nav">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="['homepage']">
+                    <i class="now-ui-icons design_app"></i>
+                    <p>Homepage</p>
+                </a>
+            </li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="['admin/manage-astrologers']">
+                    <i class="now-ui-icons design_app"></i>
+                    <p>Astrologers</p>
+                </a>
+            </li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="['admin/manage-moderators']">
+                    <i class="now-ui-icons education_atom"></i>
+                    <p>Moderators</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_MODERATOR'">
+        <ul class="nav">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="['moderators/tasks']">
+                    <i class="now-ui-icons education_atom"></i>
+                    <p>Tasks</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
