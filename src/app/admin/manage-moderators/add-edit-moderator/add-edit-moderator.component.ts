@@ -29,12 +29,12 @@ export class AddEditModeratorComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       email: [''],
+      password:[''],
       phoneNumber: [''],
       gender: [''],
       city: [''],
       state: [''],
-      country: [''],
-      role: ['ROLE_MODERATOR']
+      country: ['']
     });
   }
 

@@ -10,12 +10,21 @@
     <div class="content">
         <div class="row">
             <div class="col-md-12">
-                <div class="card">
+                <h3 *ngIf="moderatorsTaskModel===null" style="color: white;">You have no new tasks assigned to you, yet.</h3>
+                <div class="card" *ngIf="moderatorsTaskModel!==null">
                     <div class="card-header">
-                        <h3 *ngIf="moderatorsTaskModel===null">You have no new tasks assigned to you, yet.</h3>
-                        <h4 *ngIf="moderatorsTaskModel!==null" class="card-title">New Task</h4>
+                        <h4 class="card-title"> {{moderatorsTaskModel.engQuestion}} </h4>
                     </div>
                     <div class="card-body">
+                        <textarea class="moderator-answer"></textarea>
+                    </div>
+                    <div class="card-footer">
+                        <div class="row">
+                            <div class="col-md-4"><button class="btn btn-secondary" (click)="skipThisQuestion(moderatorsTaskModel.engQuesId)">Skip</button></div>
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4"><button class="btn btn-primary" (click)="submitThisQuestion()">Submit</button></div>
+                        </div>
+
                     </div>
                 </div>
             </div>

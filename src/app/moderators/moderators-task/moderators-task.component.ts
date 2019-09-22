@@ -19,6 +19,13 @@ export class ModeratorsTaskComponent implements OnInit {
   getEngQuestionForModerator() {
     this._moderatorsService.getEngQuestionForModerator().subscribe(response=> {
       console.log(response);
+      this.moderatorsTaskModel = response;
+    })
+  }
+
+  skipThisQuestion(engQuesId) {
+    this._moderatorsService.skipEngQuestionForModerator(engQuesId).subscribe(response=>{
+      console.log(response);
     })
   }
 

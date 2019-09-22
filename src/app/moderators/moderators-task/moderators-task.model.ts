@@ -1,6 +1,6 @@
 export interface ModeratorsTaskModel {
     engQuesId: number;
-    endQuestion: string;
+    engQuestion: string;
     modAssigned: boolean;
     assignedMode: number;
     finishFlag: false;

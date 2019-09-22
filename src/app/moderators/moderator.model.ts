@@ -3,12 +3,12 @@ export interface ModeratorModel {
     firstName: string;
     lastName: string;
     email: string;
+    password: string;
     phoneNumber: string;
     gender: string;
     city: string;
     state: string;
     country: string;
-    role: string;
 }
 
 export const DEFAULT_MODERATOR_MODEL = {
@@ -16,10 +16,10 @@ export const DEFAULT_MODERATOR_MODEL = {
     firstName: '',
     lastName: '',
     email: '',
+    password: '',
     phoneNumber: '',
     gender: '',
     city: '',
     state: '',
-    country: '',
-    role: 'ROLE_MODERATOR'
+    country: ''
 }

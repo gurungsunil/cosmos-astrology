@@ -13,6 +13,7 @@ export class ModeratorsService {
   private ROOT_URL = environment.baseUrl;
   private MODERATORS = `${this.ROOT_URL}/admin/manage/moderators`;
   private GET_ENG_QUESTION_FOR_MODERATOR = `${this.ROOT_URL}/eng-question/pool`;
+  private SKIP_ENG_QUESTION_FOR_MODERATOR =  `${this.ROOT_URL}/eng-question/skip/`;
 
   constructor(private httpClient: HttpClient) { }
 
@@ -38,6 +39,12 @@ export class ModeratorsService {
   getEngQuestionForModerator(): Observable<any> {
     return this.httpClient.get<ModeratorsTaskComponent>(
       this.GET_ENG_QUESTION_FOR_MODERATOR
+    );
+  }
+
+  skipEngQuestionForModerator(engQuesId): Observable<any> {
+    return this.httpClient.put<any>(
+      this.SKIP_ENG_QUESTION_FOR_MODERATOR + engQuesId, null
     );
   }
 

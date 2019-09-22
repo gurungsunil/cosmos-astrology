@@ -1,0 +1,7 @@
+.moderator-answer {
+    width: 100%;
+    border-radius: 12px;
+    min-height: 10em;
+    overflow: hidden;
+    outline: none;
+}

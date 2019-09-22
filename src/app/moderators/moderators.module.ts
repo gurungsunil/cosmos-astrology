@@ -12,6 +12,7 @@ import { ModeratorsTaskComponent } from './moderators-task/moderators-task.compo
 import { AuthGuard } from '../auth/auth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthModule } from '../auth/auth.module';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 const moderatorsRoutes: Routes = [
   {
@@ -49,7 +50,8 @@ const moderatorsRoutes: Routes = [
     FormsModule,
     MaterialModule,
     HttpClientModule,
-    AuthModule
+    AuthModule,
+    NgxSpinnerModule
   ]
 })
 export class ModeratorsModule { }
