@@ -2,6 +2,7 @@ import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModeratorsService } from 'src/app/moderators/moderators.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-manage-moderators',
@@ -13,19 +14,19 @@ export class ManageModeratorsComponent implements OnInit {
   contentForm: FormGroup;
   currentlyEditingItem = null;
   bsModalRef: BsModalRef;
-  public empData: Object;
-  public temp: Object = false;
+  public moderatorsList = null;
 
   constructor(private modalService: BsModalService,
     private _moderatorsService: ModeratorsService,
-    private _fb: FormBuilder
+    private _fb: FormBuilder,
+    private spinner: NgxSpinnerService
   ) { }
 
   ngOnInit() {
-    
+    this.spinner.show();
     this._moderatorsService.getAllModerators().subscribe(response => {
-      this.empData = response;
-      this.temp = true;
+      this.moderatorsList = response;
+     this.spinner.hide();
     })
   }
 
@@ -34,4 +35,16 @@ export class ManageModeratorsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(template);
   }
 
+  viewModerator(moderator, viewModeratorModal: TemplateRef<any>) {
+    this.currentlyEditingItem = moderator;
+    this.bsModalRef = this.modalService.show(viewModeratorModal);
+  }
+
+  editModerator() {
+
+  }
+
+  deleteModerator() {
+
+  }
 }

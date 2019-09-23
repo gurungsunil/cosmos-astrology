@@ -28,5 +28,9 @@ export class ModeratorsTaskComponent implements OnInit {
       console.log(response);
     })
   }
+  
+  submitThisQuestion() {
+    
+  }
 
 }

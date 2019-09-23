@@ -5119,3 +5119,15 @@ Created using IcoMoon - icomoon.io
 
 
 /*# sourceMappingURL=now-ui-dashboard.css.map */
+
+
+/* CSS BY PRAVEEN */
+
+.action-buttons {
+    color: #1a385b !important;
+    cursor: pointer;
+}
+
+.action-buttons:hover {
+    color: #f96332 !important;
+}

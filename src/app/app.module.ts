@@ -44,7 +44,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
-          '10.6.1.47:8080',
+          '10.6.1.47:8081',
           'https://online-astro.azurewebsites.net'
         ],
         blacklistedRoutes: []

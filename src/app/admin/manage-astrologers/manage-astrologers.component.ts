@@ -9,6 +9,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 export class ManageAstrologersComponent implements OnInit {
 
   bsModalRef: BsModalRef;
+  currentlyEditingItem;
 
   constructor(private modalService: BsModalService) { }
 

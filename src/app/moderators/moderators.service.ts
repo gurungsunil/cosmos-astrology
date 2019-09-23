@@ -19,7 +19,7 @@ export class ModeratorsService {
 
   getAllModerators(): Observable<any> {
     return this.httpClient.get<any>(
-      'https://jsonplaceholder.typicode.com/posts'
+      this.MODERATORS
     );
   }
 

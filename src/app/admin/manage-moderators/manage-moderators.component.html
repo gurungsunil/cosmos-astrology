@@ -11,24 +11,34 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
+                    <ngx-spinner [fullScreen]="false" bdOpacity=0.9 bdColor="#929292b5" size="large" color="#fff" type="ball-beat"></ngx-spinner>
+
                     <div class="card-header">
                         <h4 class="card-title"> Moderators List</h4>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table datatable class="table" *ngIf="this.temp">
+                            <table datatable class="table" *ngIf="this.moderatorsList">
                                 <thead class="text-primary">
                                     <tr>
-                                        <th>UserId</th>
-                                        <th>Subject</th>
-                                        <th>Message</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Country</th>
+                                        <th>Phone number</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr *ngFor="let emp of this.empData">
-                                        <td>{{emp.userId}}</td>
-                                        <td>{{emp.title}}</td>
-                                        <td>{{emp.body}}</td>
+                                    <tr *ngFor="let moderator of this.moderatorsList">
+                                        <td>{{moderator.firstName | titlecase}} &nbsp;{{ moderator.lastName | titlecase}}</td>
+                                        <td>{{moderator.email}}</td>
+                                        <td>{{moderator.country | titlecase}}</td>
+                                        <td>{{moderator.phoneNumber}}</td>
+                                        <td>
+                                            <a class="action-buttons" (click)="viewModerator(moderator, viewModeratorModal)"><i class="fas fa-eye"></i></a> &nbsp;&nbsp;
+                                            <a class="action-buttons" (click)="editModerator(moderator)"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                            <a class="action-buttons" (click)="deleteModerator(moderator)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -42,6 +52,79 @@
 
 <ng-template #modalForm>
     <app-add-edit-moderator [currentlyEditingItem]="currentlyEditingItem"></app-add-edit-moderator>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="this.bsModalRef.hide();">
+                                  Close
+                                </button>
+    </div>
+</ng-template>
+
+<ng-template #viewModeratorModal>
+    <div class="card">
+        <div class="card-header">
+            <h5 class="title">{{currentlyEditingItem.firstName}}&nbsp;{{currentlyEditingItem.lastName}}</h5>
+        </div>
+        <div class="card-body">
+            <form>
+                <div class="row">
+                    <div class="col-md-6 pr-1">
+                        <div class="form-group">
+                            <label>First Name</label><br>
+                            <strong>{{currentlyEditingItem.firstName}}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-6 pl-1">
+                        <div class="form-group">
+                            <label>Last Name</label><br>
+                            <strong>{{currentlyEditingItem.lastName}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email address</label><br>
+                            <strong>{{currentlyEditingItem.email}}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone number</label><br>
+                            <strong>{{currentlyEditingItem.phoneNumber}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="gender">Gender</label><br>
+                            <strong>{{currentlyEditingItem.gender}}</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 pr-1">
+                        <div class="form-group">
+                            <label>City</label><br>
+                            <strong>{{currentlyEditingItem.city}}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 px-1">
+                        <div class="form-group">
+                            <label>State</label><br>
+                            <strong>{{currentlyEditingItem.state}}</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 pl-1">
+                        <div class="form-group">
+                            <label>Country</label><br>
+                            <strong>{{currentlyEditingItem.country}}</strong>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="this.bsModalRef.hide();">
                                   Close

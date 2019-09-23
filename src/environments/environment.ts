@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // baseUrl: 'https://online-astro.azurewebsites.net/api',
-  baseUrl: 'http://10.6.1.47:8080/api'
+  baseUrl: 'http://10.6.1.47:8081/api'
 };
 
 /*
