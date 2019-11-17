@@ -4,7 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { ModeratorsComponent } from './moderators.component';
 import { RoleGuard } from '../auth/role-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -49,7 +48,6 @@ const moderatorsRoutes: Routes = [
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule,
     AuthModule,
     NgxSpinnerModule
   ]

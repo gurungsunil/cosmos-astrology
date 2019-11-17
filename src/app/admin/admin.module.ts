@@ -8,10 +8,14 @@ import { RoleGuard } from '../auth/role-guard.service';
 import { AddEditModeratorComponent } from './manage-moderators/add-edit-moderator/add-edit-moderator.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '../shared/material.module';
 import { AuthGuard } from '../auth/auth.guard';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { AdminSettingsComponent } from './admin-settings/admin-settings.component';
+import { AddEditAstrologerComponent } from './manage-astrologers/add-edit-astrologer/add-edit-astrologer.component';
+import { AdminMessagesComponent } from './admin-settings/admin-messages/admin-messages.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AuthModule } from '../auth/auth.module';
 
 const adminRoutes: Routes = [
   {
@@ -31,6 +35,10 @@ const adminRoutes: Routes = [
           {
             path: 'manage-astrologers',
             component: ManageAstrologersComponent
+          },
+          {
+            path: 'settings',
+            component: AdminSettingsComponent
           }
         ]
       }]
@@ -39,14 +47,16 @@ const adminRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [AdminComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent],
+  declarations: [AdminComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent],
   imports: [
     CommonModule,
+    RouterModule.forChild(adminRoutes),
+    BrowserAnimationsModule,
+    BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,
-    HttpClientModule,
-    RouterModule.forChild(adminRoutes),
+    AuthModule,
     NgxSpinnerModule
   ]
 })

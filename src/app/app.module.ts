@@ -34,6 +34,7 @@ export function tokenGetter() {
   ],
   imports: [
     AuthModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 10000,
@@ -44,8 +45,10 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
+          // '10.6.1.47:8081',
+          'online-astro.azurewebsites.net',
           '10.6.1.47:8081',
-          'https://online-astro.azurewebsites.net'
+          '4b438f15.ngrok.io'
         ],
         blacklistedRoutes: []
       }

@@ -1,0 +1,18 @@
+/deep/ .mat-expansion-panel {
+    box-shadow: 0px 10px 16px -2px #cccccc42;
+}
+
+.mat-expansion-panel-header-title {
+    font-weight: 600;
+}
+
+textarea {
+    width: 65%;
+    border-radius: 6px;
+    min-height: 10em;
+    overflow: hidden;
+    outline: none;
+    resize: none;
+    padding: 1em;
+    box-sizing: border-box;
+}

@@ -52,11 +52,6 @@
 
 <ng-template #modalForm>
     <app-add-edit-moderator [currentlyEditingItem]="currentlyEditingItem"></app-add-edit-moderator>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="this.bsModalRef.hide();">
-                                  Close
-                                </button>
-    </div>
 </ng-template>
 
 <ng-template #viewModeratorModal>
@@ -124,10 +119,5 @@
                 </div>
             </form>
         </div>
-    </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark" (click)="this.bsModalRef.hide();">
-                                  Close
-                                </button>
     </div>
 </ng-template>

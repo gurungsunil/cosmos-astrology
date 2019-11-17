@@ -1,23 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { ModeratorsService } from '../../../moderators/moderators.service';
-import { ModeratorModel } from 'src/app/moderators/moderator.model';
-import { NgxSpinnerService } from 'ngx-spinner';
+import { AstrologersService } from 'src/app/astrologers/astrologers.service';
 import { AdminService } from '../../admin.service';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AstrologerModel } from 'src/app/astrologers/astrologer.model';
 
 @Component({
-  selector: 'app-add-edit-moderator',
-  templateUrl: './add-edit-moderator.component.html',
-  styleUrls: ['./add-edit-moderator.component.css']
+  selector: 'app-add-edit-astrologer',
+  templateUrl: './add-edit-astrologer.component.html',
+  styleUrls: ['./add-edit-astrologer.component.css']
 })
-export class AddEditModeratorComponent implements OnInit {
+export class AddEditAstrologerComponent implements OnInit {
 
   @Input() currentlyEditingItem;
 
   public reactiveForm: FormGroup;
 
   constructor(private _fb: FormBuilder, 
-    private _moderatorsService: ModeratorsService,
+    private _astrologersService: AstrologersService,
     private _adminService: AdminService,
     private spinner: NgxSpinnerService) { }
 
@@ -50,9 +50,9 @@ export class AddEditModeratorComponent implements OnInit {
 
   saveForm(reactiveForm) {
     this.spinner.show();
-    let moderatorModel : ModeratorModel = reactiveForm.value;
-    this._moderatorsService.saveOrUpdateModerator(moderatorModel).subscribe(response=>{
-      this._adminService.addModeratorResponse.next(response);
+    let astrologerModel : AstrologerModel = reactiveForm.value;
+    this._astrologersService.saveOrUpdateAstrologers(astrologerModel).subscribe(response=>{
+      this._adminService.addAstrologerResponse.next(response);
       this.spinner.hide();
     },
     error=>{
@@ -63,5 +63,4 @@ export class AddEditModeratorComponent implements OnInit {
   updateForm(reactiveForm) {
 
   }
-
 }

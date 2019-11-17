@@ -3,6 +3,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModeratorsService } from 'src/app/moderators/moderators.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-manage-moderators',
@@ -18,6 +19,7 @@ export class ManageModeratorsComponent implements OnInit {
 
   constructor(private modalService: BsModalService,
     private _moderatorsService: ModeratorsService,
+    private _adminService: AdminService,
     private _fb: FormBuilder,
     private spinner: NgxSpinnerService
   ) { }
@@ -27,12 +29,26 @@ export class ManageModeratorsComponent implements OnInit {
     this._moderatorsService.getAllModerators().subscribe(response => {
       this.moderatorsList = response;
      this.spinner.hide();
-    })
+    },
+    error=>{
+      this.spinner.hide();
+      console.log(error);
+    });
+    this.closeModalFunc();
   }
 
   openModal(template: TemplateRef<any>) {
     this.currentlyEditingItem = 'new';
     this.bsModalRef = this.modalService.show(template);
+  }
+
+  closeModalFunc() {
+    this._adminService.addModeratorResponse.subscribe(moderator=>{
+      if (moderator !== null){
+        this.moderatorsList.push(moderator);
+        this.bsModalRef.hide();
+      }
+    })
   }
 
   viewModerator(moderator, viewModeratorModal: TemplateRef<any>) {

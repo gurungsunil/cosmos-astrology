@@ -1,0 +1,20 @@
+.content {
+    margin: 4px;
+    padding: 4px;
+    border-radius: 4px;
+    background-color: #ebecf1;
+}
+
+/deep/ .mat-tab-label .mat-tab-label-content {
+    font-weight: 600;
+    color: #133051;
+}
+
+/deep/ .mat-tab-label .mat-tab-label-content {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+/deep/ mat-panel-description {
+    text-align: right;
+}

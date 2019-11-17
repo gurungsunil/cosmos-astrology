@@ -11,7 +11,7 @@
         <ul class="nav">
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a [routerLink]="['homepage']">
-                    <i class="now-ui-icons design_app"></i>
+                    <i class="now-ui-icons business_bank"></i>
                     <p>Homepage</p>
                 </a>
             </li>
@@ -27,12 +27,18 @@
                     <p>Moderators</p>
                 </a>
             </li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="['admin/settings']">
+                    <i class="now-ui-icons loader_gear"></i>
+                    <p>Settings</p>
+                </a>
+            </li>
         </ul>
     </div>
     <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_MODERATOR'">
         <ul class="nav">
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['moderators/tasks']">
+                <a [routerLink]="['moderators/moderators-task']">
                     <i class="now-ui-icons education_atom"></i>
                     <p>Tasks</p>
                 </a>
