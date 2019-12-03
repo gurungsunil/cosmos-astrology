@@ -16,6 +16,7 @@ import { AddEditAstrologerComponent } from './manage-astrologers/add-edit-astrol
 import { AdminMessagesComponent } from './admin-settings/admin-messages/admin-messages.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from '../auth/auth.module';
+import { SharedModule } from '../shared/shared.module';
 
 const adminRoutes: Routes = [
   {
@@ -50,9 +51,10 @@ const adminRoutes: Routes = [
   declarations: [AdminComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(adminRoutes),
-    BrowserAnimationsModule,
-    BrowserModule,
+    // BrowserAnimationsModule,
+    // BrowserModule,
     ReactiveFormsModule,
     FormsModule,
     MaterialModule,

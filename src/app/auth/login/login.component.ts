@@ -28,6 +28,8 @@ export class LoginComponent {
           this.router.navigate(['admin']);
         } else if (this.authService.currentUser.auth === 'ROLE_MODERATOR') {
           this.router.navigate(['moderators'])
+        } else if (this.authService.currentUser.auth === 'ROLE_ASTROLOGER') {
+          this.router.navigate(['astrologers'])
         }
       },
       err => {

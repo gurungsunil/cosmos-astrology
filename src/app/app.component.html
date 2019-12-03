@@ -1,7 +1,10 @@
-<div [ngClass]="selectNavbar == 1?'wrapper':''">
+<!-- <div [ngClass]="selectNavbar == 1?'wrapper':''">
     <app-sidebar *ngIf="selectNavbar == 1"></app-sidebar>
     <div [ngClass]="selectNavbar == 1?'main-panel':''">
         <app-navbar *ngIf="selectNavbar == 1"></app-navbar>
-        <router-outlet></router-outlet>
+      
     </div>
+</div> -->
+<div class="wrapper" [ngStyle]="userRole == 'ROLE_ADMIN' && {'height': '100vh'}">
+    <router-outlet></router-outlet>
 </div>

@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ModeratorsTaskModel, QuestionUnclearModel, TranslatedQuestionRequest } from './moderators-task.model';
+import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
+import { ModeratorsTaskModel, QuestionUnclearModel, TranslatedQuestionRequest, TranslatedNepaliAnswer, TranslatedEnglishQuestion } from './moderators-task.model';
 import { ModeratorsService } from '../moderators.service';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AuthenticationService } from 'src/app/auth/authentication.service';
 
 @Component({
   selector: 'app-moderators-task',
@@ -11,24 +13,31 @@ import { ToastrService } from 'ngx-toastr';
 export class ModeratorsTaskComponent implements OnInit {
 
   moderatorsTaskModel: ModeratorsTaskModel = null;
-  taskObject = { questionUnclear: false, descriptionForUnclear: '' , translatedQuestion: ''}
+  taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
 
   constructor(private _moderatorsService: ModeratorsService,
-    private _toastr: ToastrService) { }
+    private _toastr: ToastrService,
+    private spinner: NgxSpinnerService,
+    private _authService: AuthenticationService) { }
 
   ngOnInit() {
   }
 
-  getEngQuestionForModerator() {
-    this._moderatorsService.getEngQuestionForModerator().subscribe(response => {
+  getCurrentJob() {
+    this.spinner.show();
+    this._moderatorsService.getCurrentJob().subscribe(response => {
       console.log(response);
       this.moderatorsTaskModel = response;
+      this.spinner.hide();
     })
   }
 
   skipThisQuestion(engQuesId) {
+    this.spinner.show();
     this._moderatorsService.skipEngQuestionForModerator(engQuesId).subscribe(response => {
       console.log(response);
+      this.moderatorsTaskModel = null;
+      this.spinner.hide();
     })
   }
 
@@ -37,29 +46,71 @@ export class ModeratorsTaskComponent implements OnInit {
   }
 
   submitUnclearQuestionWithDescription(moderatorsTaskModel: ModeratorsTaskModel) {
-    let questionUnclearModel : QuestionUnclearModel = {
-      engQuestionId: moderatorsTaskModel.engQuesId,
-      assignedModId: moderatorsTaskModel.assignedModId,
-      description: this.taskObject.descriptionForUnclear,
-      userId: moderatorsTaskModel.userId
-    }
+    // this.spinner.show();
+    // let questionUnclearModel : QuestionUnclearModel = {
+    //   engQuestionId: moderatorsTaskModel.engQuesId,
+    //   assignedModId: moderatorsTaskModel.assignedModId,
+    //   description: this.taskObject.descriptionForUnclear,
+    //   userId: moderatorsTaskModel.userId
+    // }
 
-    this._moderatorsService.markQuestionAsUnclear(questionUnclearModel).subscribe(response=> {
-      this._toastr.info("The question has been sent back to the user.")
-    });
+    // this._moderatorsService.markQuestionAsUnclear(questionUnclearModel).subscribe(response=> {
+    //   this.spinner.hide();
+    //   this._toastr.success("The question has been sent back to the user.");
+    //   this.moderatorsTaskModel = null;
+    // });
   }
 
-  submitThisQuestion(moderatorsTaskModel: ModeratorsTaskModel) {
-    let translatedQuestionRequest : TranslatedQuestionRequest = {
-      engQsnId: moderatorsTaskModel.engQuesId,
-      convertedQsn: this.taskObject.translatedQuestion,
-      userId: moderatorsTaskModel.userId
+  submitThisQuestion() {
+    if (this.moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer') {
+      this.submitTranslatedNepaliAnswer();
+    } else if (this.moderatorsTaskModel.currentJob.currentJobType == 'english-question') {
+      this.submitTranslatedEnglishQuestion();
+    } else {
+      this._toastr.error("Job type not recognized.")
     }
 
-    this._moderatorsService.saveTranslatedQuestion(translatedQuestionRequest).subscribe(response=>{
-      this._toastr.success("Your translation has been submitted.")
-    });
+  }
 
+  submitTranslatedNepaliAnswer() {
+    this.spinner.show();
+    let translatedNepaliAnswer : TranslatedNepaliAnswer;
+    translatedNepaliAnswer = {
+      nepQuestionId: this.moderatorsTaskModel.currentJob.nepaliAnswer.nepQuestionId,
+      userId:this.moderatorsTaskModel.currentJob.nepaliAnswer.userId,
+      translatedAns: this.taskObject.translation,
+      moderatorId: this._authService.currentUser.appUserId
+    }
+    this._moderatorsService.saveTranslatedNepaliAnswer(translatedNepaliAnswer).subscribe(response=>{
+      this.spinner.hide();
+      this._toastr.success("Task submitted successfully!");
+      this.moderatorsTaskModel = null;
+      this.taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
+    },
+    error=>{
+      this.spinner.hide();
+      this._toastr.error("Failed to submit task!")
+    })
+  }
+
+  submitTranslatedEnglishQuestion() {
+    this.spinner.show();
+    let translatedEnglishQuestion: TranslatedEnglishQuestion;
+    translatedEnglishQuestion = {
+      engQsnId: this.moderatorsTaskModel.currentJob.englishQuestion.engQuesId,
+      convertedQsn: this.taskObject.translation,
+      userId: this.moderatorsTaskModel.currentJob.englishQuestion.userId
+    }
+    this._moderatorsService.saveTranslatedEnglishQuestion(translatedEnglishQuestion).subscribe(response=>{
+      this.spinner.hide();
+      this._toastr.success("Task submitted successfully!");
+      this.moderatorsTaskModel = null;
+      this.taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
+    },
+    error=>{
+      this.spinner.hide();
+      this._toastr.error("Failed to submit task!")
+    })
   }
 
 }

@@ -12,6 +12,8 @@ import { AuthGuard } from '../auth/auth.guard';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AuthModule } from '../auth/auth.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
+import { SharedModule } from '../shared/shared.module';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const moderatorsRoutes: Routes = [
   {
@@ -42,8 +44,10 @@ const moderatorsRoutes: Routes = [
   declarations: [ModeratorsComponent, ModeratorsTaskComponent],
   imports: [
     CommonModule,
+    SharedModule,
     RouterModule.forChild(moderatorsRoutes),
     BrowserAnimationsModule,
+    DragDropModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,

@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ModeratorModel } from './moderator.model';
 import { ModeratorsTaskComponent } from './moderators-task/moderators-task.component';
-import { QuestionUnclearModel, TranslatedQuestionRequest } from './moderators-task/moderators-task.model';
+import { QuestionUnclearModel, TranslatedQuestionRequest, TranslatedNepaliAnswer, TranslatedEnglishQuestion } from './moderators-task/moderators-task.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,10 @@ export class ModeratorsService {
 
   private ROOT_URL = environment.baseUrl;
   private MODERATORS = `${this.ROOT_URL}/admin/manage/moderators`;
+  private GET_CURRENT_JOB = `${this.ROOT_URL}/moderator/current-job`;
+  private TRANSLATED_NEPALI_ANSWER = `${this.ROOT_URL}/moderator/ua-astrologerReply/post`;
+  private TRANSLATED_ENGLISH_QUESTION = `${this.ROOT_URL}/nep-question/translatedQuestion/post`;
+
   private GET_ENG_QUESTION_FOR_MODERATOR = `${this.ROOT_URL}/eng-question/pool`;
   private SAVE_TRANSLATED_QUESTION  = `${this.ROOT_URL}/nep-question/translatedQuestion/post`;
   private SKIP_ENG_QUESTION_FOR_MODERATOR = `${this.ROOT_URL}/eng-question/skip/`;
@@ -39,6 +43,12 @@ export class ModeratorsService {
     );
   }
 
+  getCurrentJob(): Observable<any> {
+    return this.httpClient.get<ModeratorsTaskComponent>(
+      this.GET_CURRENT_JOB
+    );
+  }
+
   getEngQuestionForModerator(): Observable<any> {
     return this.httpClient.get<ModeratorsTaskComponent>(
       this.GET_ENG_QUESTION_FOR_MODERATOR
@@ -62,5 +72,18 @@ export class ModeratorsService {
       this.SAVE_TRANSLATED_QUESTION, translatedQuestionRequest
     )
   }
+
+  saveTranslatedNepaliAnswer(translatedNepaliAnswer: TranslatedNepaliAnswer)  : Observable<any> {
+    return this.httpClient.post<TranslatedQuestionRequest>(
+      this.TRANSLATED_NEPALI_ANSWER, translatedNepaliAnswer
+    )
+  }
+
+  saveTranslatedEnglishQuestion(translatedEnglishQuestion: TranslatedEnglishQuestion)  : Observable<any> {
+    return this.httpClient.post<TranslatedQuestionRequest>(
+      this.TRANSLATED_ENGLISH_QUESTION, translatedEnglishQuestion
+    )
+  }
+
 
 }

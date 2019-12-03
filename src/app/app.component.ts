@@ -12,6 +12,7 @@ import { hammerjs } from 'node_modules/hammerjs';
 export class AppComponent {
   title = "EventusEventRegistrationV1-frontend";
   hammerjs = hammerjs;
+  userRole;
 
   _authService: AuthenticationService;
   selectNavbar = 0;
@@ -37,9 +38,11 @@ export class AppComponent {
       }
     });
 
-    this._appService.reloginOverlay$.subscribe(reloginOverlay => {
-      this.reloginOverlay = reloginOverlay;
-    });
+    // this._appService.reloginOverlay$.subscribe(reloginOverlay => {
+    //   this.reloginOverlay = reloginOverlay;
+    // });
+
+    this.userRole = this._authService.currentUser.auth;
   }
 
   selectNavbarFunc() {

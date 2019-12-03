@@ -4,9 +4,11 @@
 
 export const environment = {
   production: false,
-  // baseUrl: 'https://online-astro.azurewebsites.net/api',
-  // baseUrl: 'http://4b438f15.ngrok.io/api'
-  baseUrl: 'http://10.6.1.47:8081/api'
+  // baseUrl: 'https://cosmos-api.azurewebsites.net/api'
+  baseUrl: 'http://d9eac8a7.ngrok.io/api'
+  // baseUrl: 'http://10.6.1.47:8081/api'
+  // baseUrl: 'http://192.168.1.105:8081/api'
+  // baseUrl: 'http://localhost:8080/api'
   // baseUrl: 'http://192.168.1.81:8080/api'
 };
 

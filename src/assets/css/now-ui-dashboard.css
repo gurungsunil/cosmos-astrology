@@ -380,7 +380,7 @@ Copyright (c) 2015 Daniel Eden
     margin: 5px 1px;
     border: none;
     margin: 10px 1px;
-    border-radius: 0.1875rem;
+    border-radius: 1.1875rem;
     padding: 11px 22px;
     cursor: pointer;
     background-color: #888;
@@ -1970,6 +1970,11 @@ a.text-gray:hover {
     color: rgba(255, 255, 255, 0.8);
 }
 
+html,
+body {
+    height: 100%;
+}
+
 body {
     color: #2c2c2c;
     font-size: 14px;
@@ -2410,7 +2415,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar.navbar-transparent {
-    background-color: transparent !important;
+    background-color: #111111 !important;
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #FFFFFF;
@@ -3681,8 +3686,9 @@ Created using IcoMoon - icomoon.io
 .wrapper {
     position: relative;
     top: 0;
-    height: 100vh;
-    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+    min-height: 100%;
+    background: #4f4f4f;
+    background: linear-gradient(#3e1508 0%, #000 100%);
 }
 
 .wrapper.wrapper-full-page {
@@ -3800,7 +3806,7 @@ Created using IcoMoon - icomoon.io
 
 .sidebar .nav li.active>a,
 .off-canvas-sidebar .nav li.active>a {
-    background-color: #FFFFFF;
+    background-color: #4f4f4f;
     -webkit-box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
 }
@@ -3946,9 +3952,13 @@ Created using IcoMoon - icomoon.io
 .sidebar:after,
 .off-canvas-sidebar:after {
     background: #888;
-    background: -webkit-gradient(linear, left top, left bottom, from(#888), color-stop(80%, #000));
-    background: linear-gradient(#888 0%, #000 80%);
+    background: linear-gradient(#3e1508 0%, #000 100%);
     z-index: 3;
+}
+
+.sidebar[data-color="grey"]:after,
+.off-canvas-sidebar[data-color="blue"]:after {
+    background: #2CA8FF;
 }
 
 .sidebar[data-color="blue"]:after,
@@ -5130,4 +5140,144 @@ Created using IcoMoon - icomoon.io
 
 .action-buttons:hover {
     color: #f96332 !important;
+}
+
+.centered-div {
+    margin: 3em auto;
+}
+
+.no-task-assigned-div {
+    padding: 32vh 0vh;
+}
+
+.chat-box-history-container {
+    padding: 2%;
+    background: whitesmoke;
+    border: 7px solid black;
+    height: 20.7em;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.chat-box-user {
+    background: #ed5f31;
+    color: white;
+    padding: 3%;
+    width: fit-content;
+    float: left;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.chat-box-details {
+    opacity: 0;
+}
+
+.chat-box-user-wrapper .chat-box-details {
+    color: white;
+}
+
+.chat-box-user-reply-wrapper .chat-box-details {
+    color: black;
+}
+
+.chat-box-user-wrapper:hover .chat-box-details,
+.chat-box-user-reply-wrapper:hover .chat-box-details {
+    opacity: 1;
+}
+
+.chat-box-user-reply {
+    background: #11111121;
+    color: black;
+    padding: 3%;
+    width: fit-content;
+    float: right;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top-right-radius: 20px;
+    cursor: pointer;
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+}
+
+.chat-box-user-reply-wrapper:hover .chat-box-details {
+    opacity: 1;
+}
+
+.chat-box-user:active,
+.chat-box-user-reply:active {
+    box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.chat-box-user p,
+.chat-box-user-reply p {
+    margin: 0;
+}
+
+.user-details {
+    font-size: 11px;
+    height: 20em;
+}
+
+.user-details p {
+    color: white;
+}
+
+.user-details p:hover {
+    color: #ed5f31;
+}
+
+.user-details .user-details-title {
+    font-weight: 600;
+    padding: 0% 4%;
+}
+
+.user-details .user-details-icon {
+    padding: 7px 10px;
+    background: black;
+    border-radius: 15px;
+    color: white;
+}
+
+.user-details span i {
+    color: #ed5f31;
+}
+
+.user-details img {
+    background-color: #d8d8d8;
+    height: 8em;
+    width: 8em;
+    border-radius: 52%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0.8em;
+}
+
+.answer {
+    height: 10em;
+    margin: 1% 0% 0% 0%;
+    font-size: 14px;
+    overflow: hidden;
+    outline: none;
+    width: 100%;
+    border: 1px solid transparent;
+    transition: height 0.25s ease-out, width 0.25s ease-out 0.25s;
+}
+
+.answer:focus,
+.answer:active {
+    border: 1px solid #ed5f31;
+}
+
+.answer-submit-button {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    margin: 0;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
 }

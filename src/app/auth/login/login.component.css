@@ -4,15 +4,14 @@
     justify-content: center;
     align-items: center;
     padding: 15px;
-    background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
     min-height: 100vh;
     width: 100%;
 }
 
 .login-form-wrapper {
     color: black;
-    background: #fff;
-    border: 1px solid whitesmoke;
+    background: #111111;
+    /* border: 1px solid whitesmoke; */
     border-radius: 10px;
     width: 390px;
     padding: 77px 55px 33px 55px;
@@ -21,6 +20,11 @@
 
 .logo-wrapper {
     padding-bottom: 4em;
+}
+
+.logo-wrapper h1 {
+    margin: 0 auto;
+    color: #ea9e24;
 }
 
 input {
@@ -43,6 +47,7 @@ button {
     padding: 1em 3em;
     font-weight: bolder;
     border: none;
+    cursor: pointer;
 }
 
 button:hover {

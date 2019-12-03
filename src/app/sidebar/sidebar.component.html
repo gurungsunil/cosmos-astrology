@@ -1,4 +1,4 @@
-<div class="sidebar" data-color="orange">
+<div class="sidebar">
     <!--
         Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
     -->
@@ -7,35 +7,35 @@
                Online Astro
             </a>
     </div>
-    <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_ADMIN'">
+    <div class="sidebar-wrapper">
         <ul class="nav">
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['homepage']">
+                <a [routerLink]="['./homepage']">
                     <i class="now-ui-icons business_bank"></i>
                     <p>Homepage</p>
                 </a>
             </li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['admin/manage-astrologers']">
+                <a [routerLink]="['./manage-astrologers']">
                     <i class="now-ui-icons design_app"></i>
                     <p>Astrologers</p>
                 </a>
             </li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['admin/manage-moderators']">
+                <a [routerLink]="['./manage-moderators']">
                     <i class="now-ui-icons education_atom"></i>
                     <p>Moderators</p>
                 </a>
             </li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['admin/settings']">
+                <a [routerLink]="['./settings']">
                     <i class="now-ui-icons loader_gear"></i>
                     <p>Settings</p>
                 </a>
             </li>
         </ul>
     </div>
-    <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_MODERATOR'">
+    <!-- <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_MODERATOR'">
         <ul class="nav">
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
                 <a [routerLink]="['moderators/moderators-task']">
@@ -44,5 +44,5 @@
                 </a>
             </li>
         </ul>
-    </div>
+    </div> -->
 </div>

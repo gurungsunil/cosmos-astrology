@@ -1,3 +1,5 @@
+import { UserDetails } from '../moderators/moderators-task/moderators-task.model';
+
 export interface AstrologerModel {
     userId: number;
     firstName: string;
@@ -22,4 +24,28 @@ export const DEFAULT_ASTROLOGER_MODEL = {
     city: '',
     state: '',
     country: ''
+}
+
+export interface QueryModel {
+    nepQuestionId: number;
+    answer: string;
+    userId: number;
+    moderatorId?: number;
+}
+
+export const DEFAULT_QUERY_MODEL : QueryModel = {
+    nepQuestionId: 0,
+    answer: '',
+    userId: 0
+}
+
+export interface AstrologersTaskModel {
+    success: boolean;
+    questionerDetails: {
+        questionId: number;
+        question: string;
+        user: UserDetails,
+        possibleDuplicateUsers?: Array<UserDetails>,
+        previousQueries: Array<QueryModel>
+    };
 }

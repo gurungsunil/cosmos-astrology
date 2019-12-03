@@ -1,24 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { ModalModule } from 'ngx-bootstrap/modal';
-
 import { appRoutes } from './routes';
 import { AppService } from './app.service';
 import { AppComponent } from './app.component';
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
-import { FooterComponent } from './footer/footer.component';
 import { AdminModule } from './admin/admin.module';
 import { ModeratorsModule } from './moderators/moderators.module';
+import { SharedModule } from './shared/shared.module';
+import { AstrologersModule } from './astrologers/astrologers.module';
 
 
 export function tokenGetter() {
@@ -27,13 +22,11 @@ export function tokenGetter() {
 
 @NgModule({
   declarations: [
-    AppComponent,
-    NavbarComponent,
-    SidebarComponent,
-    FooterComponent
+    AppComponent
   ],
   imports: [
     AuthModule,
+    SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
@@ -45,10 +38,9 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
-          // '10.6.1.47:8081',
-          'online-astro.azurewebsites.net',
+          'cosmos-api.azurewebsites.net',
           '10.6.1.47:8081',
-          '4b438f15.ngrok.io'
+          'd9eac8a7.ngrok.io'
         ],
         blacklistedRoutes: []
       }
@@ -59,7 +51,8 @@ export function tokenGetter() {
 
     // CUSTOM MODULES 
     AdminModule,
-    ModeratorsModule
+    ModeratorsModule,
+    AstrologersModule
     // END OF CUSTOM MODULES 
   ],
   providers: [AppService],
