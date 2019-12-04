@@ -5165,53 +5165,59 @@ Created using IcoMoon - icomoon.io
     overflow-x: hidden;
 }
 
+.chat-box-user-wrapper {
+    padding-right: 40%;
+}
+
 .chat-box-user {
-    background: #ed5f31;
+    background: #f8b134;
     color: white;
-    padding: 3%;
+    padding: 2% 5% 0% 5%;
     width: fit-content;
     float: left;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
     border-bottom-left-radius: 20px;
-    margin-bottom: 1em;
-    cursor: pointer;
+    /* margin-bottom: 1em; */
+    cursor: move;
+    text-align: right;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
+
+/* .chat-box-user.chat-unclear {} */
+
 .chat-box-details {
-    opacity: 0;
+    font-size: 9px;
+    font-weight: 400;
+    color: #111111;
+    padding-left: 3em;
 }
 
-.chat-box-user-wrapper .chat-box-details {
-    color: white;
+.padding-none {
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
-.chat-box-user-reply-wrapper .chat-box-details {
-    color: black;
-}
-
-.chat-box-user-wrapper:hover .chat-box-details,
-.chat-box-user-reply-wrapper:hover .chat-box-details {
-    opacity: 1;
+.chat-box-user-reply-wrapper {
+    padding-left: 40%;
 }
 
 .chat-box-user-reply {
     background: #11111121;
     color: black;
-    padding: 3%;
+    padding: 2% 5% 0% 5%;
     width: fit-content;
     float: right;
     border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
     border-top-right-radius: 20px;
     margin-bottom: 1em;
-    cursor: pointer;
+    cursor: move;
+    text-align: left;
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
-}
-
-.chat-box-user-reply-wrapper:hover .chat-box-details {
-    opacity: 1;
 }
 
 .chat-box-user:active,
@@ -5219,9 +5225,12 @@ Created using IcoMoon - icomoon.io
     box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
 }
 
-.chat-box-user p,
-.chat-box-user-reply p {
+.chat-box-user .chat-text,
+.chat-box-user-reply .chat-text {
     margin: 0;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: left;
 }
 
 .user-details {
@@ -5265,10 +5274,9 @@ Created using IcoMoon - icomoon.io
 
 .qa-icons {
     color: grey;
-    margin-right: 10px;
     border: 1px solid grey;
-    border-radius: 23px;
-    padding: 1% 3%;
+    border-radius: 3px;
+    padding: 0% 1%;
     font-size: 11px;
     width: fit-content;
 }
