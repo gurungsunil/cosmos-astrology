@@ -43,6 +43,7 @@ export class AstrologersTaskComponent implements OnInit {
     this.spinner.show();
    this._astrologersServive.postAstrologerAnswer(this.taskObject).subscribe(response=>{
      this.astrologersTaskModel = null;
+     this.taskObject = DEFAULT_QUERY_MODEL;
      this.spinner.hide();
      this._toastr.success("Reply sent to user.");
    }, 

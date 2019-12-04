@@ -39,7 +39,7 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
           'cosmos-api.azurewebsites.net',
-          '10.6.1.47:8081',
+          '10.6.1.47:8082',
           'd9eac8a7.ngrok.io'
         ],
         blacklistedRoutes: []

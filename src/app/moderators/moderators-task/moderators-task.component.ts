@@ -14,6 +14,7 @@ export class ModeratorsTaskComponent implements OnInit {
 
   moderatorsTaskModel: ModeratorsTaskModel = null;
   taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
+  seeTranslation = false;
 
   constructor(private _moderatorsService: ModeratorsService,
     private _toastr: ToastrService,
@@ -41,24 +42,25 @@ export class ModeratorsTaskComponent implements OnInit {
     })
   }
 
-  markThisQuestionAsUnclear(moderatorsTaskModel: ModeratorsTaskModel) {
+  markThisQuestionAsUnclear() {
     this.taskObject.questionUnclear = true;
   }
 
-  submitUnclearQuestionWithDescription(moderatorsTaskModel: ModeratorsTaskModel) {
-    // this.spinner.show();
-    // let questionUnclearModel : QuestionUnclearModel = {
-    //   engQuestionId: moderatorsTaskModel.engQuesId,
-    //   assignedModId: moderatorsTaskModel.assignedModId,
-    //   description: this.taskObject.descriptionForUnclear,
-    //   userId: moderatorsTaskModel.userId
-    // }
+  submitUnclearQuestionWithDescription() {
+    this.spinner.show();
+    let questionUnclearModel : QuestionUnclearModel = {
+      engQuestionId: this.moderatorsTaskModel.currentJob.englishQuestion.engQuesId,
+      assignedModId: this.moderatorsTaskModel.currentJob.englishQuestion.assignedModId,
+      description: this.taskObject.descriptionForUnclear,
+      userId: this.moderatorsTaskModel.currentJob.englishQuestion.userId
+    }
 
-    // this._moderatorsService.markQuestionAsUnclear(questionUnclearModel).subscribe(response=> {
-    //   this.spinner.hide();
-    //   this._toastr.success("The question has been sent back to the user.");
-    //   this.moderatorsTaskModel = null;
-    // });
+    this._moderatorsService.markQuestionAsUnclear(questionUnclearModel).subscribe(response=> {
+      this.moderatorsTaskModel = null;
+      this.taskObject =  { questionUnclear: false, descriptionForUnclear: '', translation: '' };
+      this.spinner.hide();
+      this._toastr.success("The question has been sent back to the user.");
+    });
   }
 
   submitThisQuestion() {
@@ -111,6 +113,14 @@ export class ModeratorsTaskComponent implements OnInit {
       this.spinner.hide();
       this._toastr.error("Failed to submit task!")
     })
+  }
+
+  get validForTranslationSubmit(){
+    if (this.taskObject.translation == '' || this.taskObject.questionUnclear){
+      return false;
+    } else {
+      return true;
+    }
   }
 
 }

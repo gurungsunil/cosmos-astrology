@@ -19,7 +19,7 @@ export class RoleGuard implements CanActivate {
        } else {
         const user_role = this._authService.currentUser.auth;
 
-        if (user_role === next.data.role) {
+        if (user_role == next.data.role) {
             return true;
         }
         // navigate to not found page

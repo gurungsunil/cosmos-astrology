@@ -23,7 +23,6 @@ export class LoginComponent {
     };
     this.authService.login(appuser).subscribe(
       res => {
-        console.log(this.authService.currentUser);
         if (this.authService.currentUser.auth === 'ROLE_ADMIN') {
           this.router.navigate(['admin']);
         } else if (this.authService.currentUser.auth === 'ROLE_MODERATOR') {
