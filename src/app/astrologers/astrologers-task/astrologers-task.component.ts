@@ -26,6 +26,7 @@ export class AstrologersTaskComponent implements OnInit {
   getUaQuestions() {
     this.spinner.show();
     this._astrologersServive.getUaQuestions().subscribe(response=>{
+      console.log(response)
       if (response.success) {
         this.astrologersTaskModel = response;
         this.taskObject.userId = this.astrologersTaskModel.questionerDetails.user.userId;

@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  baseUrl: 'https://online-astro.azurewebsites.net/api'
+  baseUrl: 'http://193.37.152.233:8080/api'
 };

@@ -15,7 +15,7 @@ export class ManageModeratorsComponent implements OnInit {
   contentForm: FormGroup;
   currentlyEditingItem = null;
   bsModalRef: BsModalRef;
-  public moderatorsList = null;
+  public moderatorsList = [];
 
   constructor(private modalService: BsModalService,
     private _moderatorsService: ModeratorsService,

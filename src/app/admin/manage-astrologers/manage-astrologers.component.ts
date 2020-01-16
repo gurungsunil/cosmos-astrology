@@ -15,7 +15,7 @@ export class ManageAstrologersComponent implements OnInit {
   contentForm: FormGroup;
   currentlyEditingItem = null;
   bsModalRef: BsModalRef;
-  public astrologersList = null;
+  public astrologersList = [];
 
   constructor(private modalService: BsModalService,
     private _astrologersService: AstrologersService,
