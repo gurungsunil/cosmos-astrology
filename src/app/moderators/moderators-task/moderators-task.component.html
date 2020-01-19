@@ -5,9 +5,10 @@
         </ngx-spinner>
         <div class="row text-center">
             <div class="col-md-12">
-                <div [hidden]="moderatorsTaskModel!==null" class="no-task-assigned-div">
-                    <h3 style="    color: white;">You have no new tasks assigned to you, yet.</h3>
-                    <div class="row">
+                <div class="no-task-assigned-div">
+                    <h3 [hidden]="moderatorsTaskModel!==null || this.taskError!==null" style="    color: white;">You have no new tasks assigned to you, yet.</h3>
+                    <h3 [hidden]="this.taskError==null" style="    color: white;">{{this.taskError}}</h3>
+                    <div [hidden]="moderatorsTaskModel!==null" class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
                             <button class="btn btn-primary" (click)="  getCurrentJob() ">Get new task</button>
                         </div>

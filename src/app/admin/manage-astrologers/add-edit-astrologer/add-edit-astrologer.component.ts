@@ -23,8 +23,24 @@ export class AddEditAstrologerComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
+    if (this.currentlyEditingItem !== 'new') {
+      this.patchFormForEdit();
+    }
   }
 
+  patchFormForEdit() {
+    this.reactiveForm.patchValue({
+      userId: this.currentlyEditingItem.userId,
+      firstName: this.currentlyEditingItem.firstName,
+      lastName: this.currentlyEditingItem.lastName,
+      email: this.currentlyEditingItem.email,
+      phoneNumber: this.currentlyEditingItem.phoneNumber,
+      gender: this.currentlyEditingItem.gender,
+      city: this.currentlyEditingItem.city,
+      state: this.currentlyEditingItem.state,
+      country: this.currentlyEditingItem.country
+    })
+  }
   initializeForm() {
     this.reactiveForm = this._fb.group({
       userId: [null],
@@ -41,7 +57,7 @@ export class AddEditAstrologerComponent implements OnInit {
   }
 
   saveOrUpdateForm(reactiveForm) {
-  if (this.currentlyEditingItem === 'new'){
+  if (this.currentlyEditingItem == 'new'){
     this.saveForm(reactiveForm);
   } else {
     this.updateForm(reactiveForm);
@@ -51,7 +67,7 @@ export class AddEditAstrologerComponent implements OnInit {
   saveForm(reactiveForm) {
     this.spinner.show();
     let astrologerModel : AstrologerModel = reactiveForm.value;
-    this._astrologersService.saveOrUpdateAstrologers(astrologerModel).subscribe(response=>{
+    this._astrologersService.saveAstrologer(astrologerModel).subscribe(response=>{
       this._adminService.addAstrologerResponse.next(response);
       this.spinner.hide();
     },
@@ -61,6 +77,16 @@ export class AddEditAstrologerComponent implements OnInit {
   }
 
   updateForm(reactiveForm) {
-
+    this.spinner.show();
+    let astrologerModel : AstrologerModel = reactiveForm.value;
+    delete astrologerModel.password;
+    this._astrologersService.updateAstrologer(astrologerModel.userId, astrologerModel).subscribe(response=>{
+      this._adminService.addAstrologerResponse.next(response);
+      this.spinner.hide();
+    }
+    ,
+    error=>{
+      this.spinner.hide();
+    });
   }
 }

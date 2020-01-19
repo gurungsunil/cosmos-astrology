@@ -4,6 +4,7 @@ import { ModeratorsService } from 'src/app/moderators/moderators.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../admin.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-moderators',
@@ -14,6 +15,7 @@ export class ManageModeratorsComponent implements OnInit {
 
   contentForm: FormGroup;
   currentlyEditingItem = null;
+  currentlyDeletingItem = null;
   bsModalRef: BsModalRef;
   public moderatorsList = [];
 
@@ -21,6 +23,7 @@ export class ManageModeratorsComponent implements OnInit {
     private _moderatorsService: ModeratorsService,
     private _adminService: AdminService,
     private _fb: FormBuilder,
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -44,7 +47,12 @@ export class ManageModeratorsComponent implements OnInit {
 
   closeModalFunc() {
     this._adminService.addModeratorResponse.subscribe(moderator=>{
-      if (moderator !== null){
+      if (moderator !== null && this.currentlyEditingItem == 'new'){
+        this.moderatorsList.push(moderator);
+        this.bsModalRef.hide();
+      } else if  (moderator !== null && this.currentlyEditingItem !== 'new'){
+        const moderatorIndex = this.moderatorsList.indexOf(this.currentlyEditingItem);
+        this.moderatorsList.splice(moderatorIndex, 1);
         this.moderatorsList.push(moderator);
         this.bsModalRef.hide();
       }
@@ -56,11 +64,29 @@ export class ManageModeratorsComponent implements OnInit {
     this.bsModalRef = this.modalService.show(viewModeratorModal);
   }
 
-  editModerator() {
-
+  editModerator(moderator, editModeratorModal: TemplateRef<any>) {
+    this.currentlyEditingItem = moderator;
+    this.bsModalRef = this.modalService.show(editModeratorModal);
   }
 
-  deleteModerator() {
+  deleteModerator(row, template: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(template, { class: 'modal-md' });
+    this.currentlyDeletingItem = row;
+  }
 
+  confirmDelete(confirmed: boolean) {
+    if (confirmed) {
+      this._moderatorsService.deleteModerator(this.currentlyDeletingItem.userId).subscribe(response => {
+        console.log(response)
+        const moderatorIndex = this.moderatorsList.indexOf(this.currentlyDeletingItem);
+        this.moderatorsList.splice(moderatorIndex, 1);
+        this.bsModalRef.hide();
+        this.toastr.success("Successfully deleted moderator!");
+      }, error => {
+        this.toastr.error("Failed to delete moderator!");
+      })
+    } else {
+      this.bsModalRef.hide();
+    }
   }
 }

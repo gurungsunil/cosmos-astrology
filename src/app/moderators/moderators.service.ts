@@ -30,9 +30,16 @@ export class ModeratorsService {
     );
   }
 
-  saveOrUpdateModerator(moderatorModel: ModeratorModel): Observable<ModeratorModel> {
+  saveModerator(moderatorModel: ModeratorModel): Observable<ModeratorModel> {
     return this.httpClient.post<ModeratorModel>(
       this.MODERATORS,
+      moderatorModel
+    );
+  }
+
+  updateModerator(moderatorId, moderatorModel): Observable<ModeratorModel> {
+    return this.httpClient.put<any>(
+      this.MODERATORS + '/'+ moderatorId,
       moderatorModel
     );
   }

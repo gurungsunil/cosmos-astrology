@@ -3,7 +3,7 @@
         <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
         </div>
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <button class="btn btn-primary" (click)="openModal(modalForm)">Add moderator</button>
+            <button class="btn btn-primary" (click)="openModal(addModalForm)">Add moderator</button>
         </div>
     </div>
 
@@ -37,8 +37,8 @@
                                         <td>{{moderator.phoneNumber}}</td>
                                         <td>
                                             <a class="action-buttons" (click)="viewModerator(moderator, viewModeratorModal)"><i class="fas fa-eye"></i></a> &nbsp;&nbsp;
-                                            <a class="action-buttons" (click)="editModerator(moderator)"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
-                                            <a class="action-buttons" (click)="deleteModerator(moderator)"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                            <a class="action-buttons" (click)="editModerator(moderator, addModalForm)"><i class="fas fa-edit"></i></a>&nbsp;&nbsp;
+                                            <a class="action-buttons" (click)="deleteModerator(moderator,  confirmDeleteModal)"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -51,7 +51,7 @@
     </div>
 </div>
 
-<ng-template #modalForm>
+<ng-template #addModalForm>
     <app-add-edit-moderator [currentlyEditingItem]="currentlyEditingItem"></app-add-edit-moderator>
 </ng-template>
 
@@ -119,6 +119,31 @@
                     </div>
                 </div>
             </form>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #confirmDeleteModal>
+    <div class="modal-body">
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <h1><i class="fa fa-warning" style="font-size:48px;color:#d9534f;"></i></h1>
+                <h1>Remove moderator</h1>
+                <h3 style="    font-weight: 200;        ">{{this.currentlyDeletingItem.firstName}}{{this.currentlyDeletingItem.lastName}}</h3>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                This action will permanently remove the moderator "{{this.currentlyDeletingItem.firstName}}".
+            </div>
+        </div><br>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                <button class="btn btn-danger" (click)="confirmDelete(true)">Yes, remove moderator</button> &nbsp;
+                <button class="btn" (click)="confirmDelete(false)">No, keep moderator</button>
+            </div>
         </div>
     </div>
 </ng-template>

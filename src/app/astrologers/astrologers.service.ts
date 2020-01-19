@@ -22,9 +22,16 @@ export class AstrologersService {
     );
   }
 
-  saveOrUpdateAstrologers(astrologerModel: AstrologerModel): Observable<AstrologerModel> {
+  saveAstrologer(astrologerModel: AstrologerModel): Observable<AstrologerModel> {
     return this.httpClient.post<AstrologerModel>(
       this.ASTROLOGERS,
+      astrologerModel
+    );
+  }
+
+  updateAstrologer(astrologerId, astrologerModel): Observable<AstrologerModel> {
+    return this.httpClient.put<any>(
+      this.ASTROLOGERS + '/'+ astrologerId,
       astrologerModel
     );
   }

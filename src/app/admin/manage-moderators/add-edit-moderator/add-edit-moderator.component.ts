@@ -23,6 +23,23 @@ export class AddEditModeratorComponent implements OnInit {
 
   ngOnInit() {
     this.initializeForm();
+    if (this.currentlyEditingItem !== 'new') {
+      this.patchFormForEdit();
+    }
+  }
+
+  patchFormForEdit() {
+    this.reactiveForm.patchValue({
+      userId: this.currentlyEditingItem.userId,
+      firstName: this.currentlyEditingItem.firstName,
+      lastName: this.currentlyEditingItem.lastName,
+      email: this.currentlyEditingItem.email,
+      phoneNumber: this.currentlyEditingItem.phoneNumber,
+      gender: this.currentlyEditingItem.gender,
+      city: this.currentlyEditingItem.city,
+      state: this.currentlyEditingItem.state,
+      country: this.currentlyEditingItem.country
+    })
   }
 
   initializeForm() {
@@ -51,7 +68,7 @@ export class AddEditModeratorComponent implements OnInit {
   saveForm(reactiveForm) {
     this.spinner.show();
     let moderatorModel : ModeratorModel = reactiveForm.value;
-    this._moderatorsService.saveOrUpdateModerator(moderatorModel).subscribe(response=>{
+    this._moderatorsService.saveModerator(moderatorModel).subscribe(response=>{
       this._adminService.addModeratorResponse.next(response);
       this.spinner.hide();
     },
@@ -61,7 +78,17 @@ export class AddEditModeratorComponent implements OnInit {
   }
 
   updateForm(reactiveForm) {
-
+    this.spinner.show();
+    let moderatorModel : ModeratorModel = reactiveForm.value;
+    delete moderatorModel.password;
+    this._moderatorsService.updateModerator(moderatorModel.userId, moderatorModel).subscribe(response=>{
+      this._adminService.addModeratorResponse.next(response);
+      this.spinner.hide();
+    }
+    ,
+    error=>{
+      this.spinner.hide();
+    });
   }
 
 }

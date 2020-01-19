@@ -14,6 +14,7 @@ export class AstrologersTaskComponent implements OnInit {
 
   astrologersTaskModel: AstrologersTaskModel = null;
   taskObject : QueryModel = DEFAULT_QUERY_MODEL;
+  taskError = null;
 
   constructor(private _astrologersServive: AstrologersService,
     private _toastr: ToastrService,
@@ -27,15 +28,21 @@ export class AstrologersTaskComponent implements OnInit {
     this.spinner.show();
     this._astrologersServive.getUaQuestions().subscribe(response=>{
       console.log(response)
-      if (response.success) {
+      if (response.success == true && response.questionerDetails !== null) {
         this.astrologersTaskModel = response;
         this.taskObject.userId = this.astrologersTaskModel.questionerDetails.user.userId;
         this.taskObject.nepQuestionId = this.astrologersTaskModel.questionerDetails.questionId;
+        this.taskError = null;
+      }  else if (response.success == false){
+        this.taskError = "An error occured. Please try again later."
       }
       this.spinner.hide();
     },
     error=>{
-      this._toastr.error("Failed to fetch task. Try again, later");
+      // this._toastr.error("Failed to fetch task. Try again, later");
+      if (error.status == 404) {
+        this.taskError = "There are no tasks in the system. Please try again later."
+      }
       this.spinner.hide();
     })
   }

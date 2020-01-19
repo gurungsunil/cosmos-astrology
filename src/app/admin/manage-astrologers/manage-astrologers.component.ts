@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { AstrologersService } from 'src/app/astrologers/astrologers.service';
 import { AdminService } from '../admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-manage-astrologers',
@@ -16,11 +17,13 @@ export class ManageAstrologersComponent implements OnInit {
   currentlyEditingItem = null;
   bsModalRef: BsModalRef;
   public astrologersList = [];
+  currentlyDeletingItem = null;
 
   constructor(private modalService: BsModalService,
     private _astrologersService: AstrologersService,
     private _adminService: AdminService,
     private _fb: FormBuilder,
+    private toastr: ToastrService,
     private spinner: NgxSpinnerService
   ) { }
 
@@ -44,7 +47,12 @@ export class ManageAstrologersComponent implements OnInit {
 
   closeModalFunc() {
     this._adminService.addAstrologerResponse.subscribe(astrologer=>{
-      if (astrologer !== null){
+      if (astrologer !== null && this.currentlyEditingItem == 'new'){
+        this.astrologersList.push(astrologer);
+        this.bsModalRef.hide();
+      } else if  (astrologer !== null && this.currentlyEditingItem !== 'new'){
+        const moderatorIndex = this.astrologersList.indexOf(this.currentlyEditingItem);
+        this.astrologersList.splice(moderatorIndex, 1);
         this.astrologersList.push(astrologer);
         this.bsModalRef.hide();
       }
@@ -56,12 +64,30 @@ export class ManageAstrologersComponent implements OnInit {
     this.bsModalRef = this.modalService.show(viewAstrologerModal);
   }
 
-  editAstrologer() {
-
+  editAstrologer(astrologer, editAstrologerModal: TemplateRef<any>) {
+    this.currentlyEditingItem = astrologer;
+    this.bsModalRef = this.modalService.show(editAstrologerModal);
   }
 
-  deleteAstrologer() {
+  deleteAstrologer(row, template: TemplateRef<any>) {
+    this.bsModalRef = this.modalService.show(template, { class: 'modal-md' });
+    this.currentlyDeletingItem = row;
+  }
 
+  confirmDelete(confirmed: boolean) {
+    if (confirmed) {
+      this._astrologersService.deleteAstrologers(this.currentlyDeletingItem.userId).subscribe(response => {
+        console.log(response)
+        const astrologerIndex = this.astrologersList.indexOf(this.currentlyDeletingItem);
+        this.astrologersList.splice(astrologerIndex, 1);
+        this.bsModalRef.hide();
+        this.toastr.success("Successfully deleted astrologer!");
+      }, error => {
+        this.toastr.error("Failed to delete astrologer!");
+      })
+    } else {
+      this.bsModalRef.hide();
+    }
   }
 
 }
