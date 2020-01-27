@@ -22,7 +22,7 @@ export class AdminService {
 
   getMessage(messageType): Observable<AdminMessage> {
     return this.http.get<AdminMessage>(
-      this.ADMIN_MESSAGES + '/?type=' + messageType
+      this.ADMIN_MESSAGES + '?type=' + messageType
     );
   }
 
