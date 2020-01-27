@@ -17,6 +17,7 @@ import { AdminMessagesComponent } from './admin-settings/admin-messages/admin-me
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from '../auth/auth.module';
 import { SharedModule } from '../shared/shared.module';
+import { PricingComponent } from './admin-settings/pricing/pricing.component';
 
 const adminRoutes: Routes = [
   {
@@ -48,7 +49,7 @@ const adminRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [AdminComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent],
+  declarations: [AdminComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent, PricingComponent],
   imports: [
     CommonModule,
     SharedModule,

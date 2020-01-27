@@ -10,7 +10,8 @@
 
 .login-form-wrapper {
     color: black;
-    background: #111111;
+    /* background: #111111; */
+    background: #ffffff;
     /* border: 1px solid whitesmoke; */
     border-radius: 10px;
     width: 390px;
@@ -20,6 +21,11 @@
 
 .logo-wrapper {
     padding-bottom: 4em;
+}
+
+.logo-wrapper img {
+    max-width: 50%;
+    margin: 0 auto;
 }
 
 .logo-wrapper h1 {
@@ -41,16 +47,16 @@ input {
 }
 
 button {
-    background: #ea9e24;
+    background: #5ec6b6;
     color: white;
     font-size: smaller;
     padding: 1em 3em;
     font-weight: bolder;
-    border: none;
+    border: 1px solid #5ec6b6;
     cursor: pointer;
 }
 
 button:hover {
-    background: whitesmoke;
-    color: #ea9e24;
+    background: white;
+    color: #5ec6b6;
 }

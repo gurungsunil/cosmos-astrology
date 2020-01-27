@@ -1,0 +1,39 @@
+<mat-accordion>
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                User Pricing
+            </mat-panel-title>
+            <mat-panel-description>
+                Set the pricing for the users to ask questions.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="text-align: right;">
+                <textarea [(ngModel)]="this.welcomeMessage.text" #welcomeMessageCtrl="ngModel" placeholder="Welcome to our site."></textarea><br>
+                <button class="btn btn-primary" (click)="saveWelcomeMessage()">Edit & save</button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                System message
+            </mat-panel-title>
+            <mat-panel-description>
+                Set a message for errors.
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="text-align: right;">
+                <textarea [(ngModel)]="this.systemMessage.text" #systemMessageCtrl="ngModel" placeholder="Unfortunately, we're currently down."></textarea><br>
+                <button class="btn btn-primary" (click)="saveSystemMessage()">Edit & save</button>
+            </div>
+        </div>
+    </mat-expansion-panel>
+
+
+</mat-accordion>

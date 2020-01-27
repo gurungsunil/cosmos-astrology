@@ -12,6 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { RoleGuard } from '../auth/role-guard.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { AstrologersTaskComponent } from './astrologers-task/astrologers-task.component';
+import { AstProfileComponent } from './ast-profile/ast-profile.component';
 
 const astrologersRoutes: Routes = [
   {
@@ -32,6 +33,10 @@ const astrologersRoutes: Routes = [
             path: '',
             pathMatch: 'full',
             redirectTo: 'astrologers-task'
+          },
+          {
+            path: 'profile',
+            component: AstProfileComponent
           }
         ]
       }]
@@ -40,7 +45,7 @@ const astrologersRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [AstrologersComponent, AstrologersTaskComponent],
+  declarations: [AstrologersComponent, AstrologersTaskComponent, AstProfileComponent],
   imports: [
     CommonModule,
     SharedModule,

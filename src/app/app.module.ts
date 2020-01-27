@@ -39,7 +39,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
           'localhost:8080',
-          '193.37.152.233:8080'
+          '193.37.152.233:8080',
+          'cosmos.southeastasia.cloudapp.azure.com'
         ],
         blacklistedRoutes: []
       }

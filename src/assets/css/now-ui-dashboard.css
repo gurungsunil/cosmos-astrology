@@ -600,7 +600,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-    background-color: #f96332;
+    background-color: #5ec6b6;
     color: #FFFFFF;
 }
 
@@ -615,7 +615,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
-    background-color: #fa7a50;
+    background-color: #42AB9E;
     color: #FFFFFF;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -650,8 +650,8 @@ fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary.focus,
 fieldset[disabled] .btn-primary:active,
 fieldset[disabled] .btn-primary.active {
-    background-color: #f96332;
-    border-color: #f96332;
+    background-color: #42AB9E;
+    border-color: #42AB9E;
 }
 
 .btn-primary.btn-simple {
@@ -1349,7 +1349,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .form-control:focus {
-    border: 1px solid #f96332;
+    border: 1px solid #5ec6b6;
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important;
@@ -1358,7 +1358,7 @@ fieldset[disabled] .btn-link.active {
 
 .form-control:focus+.input-group-addon,
 .form-control:focus~.input-group-addon {
-    border: 1px solid #f96332;
+    border: 1px solid #5ec6b6;
     border-left: none;
     background-color: transparent;
 }
@@ -3688,8 +3688,8 @@ Created using IcoMoon - icomoon.io
     position: relative;
     top: 0;
     min-height: 100%;
-    background: #4f4f4f;
-    background: linear-gradient(#3e1508 0%, #000 100%);
+    background: #e8f0fe;
+    /* background: linear-gradient(#3e1508 0%, #000 100%); */
 }
 
 .wrapper.wrapper-full-page {
@@ -5134,6 +5134,12 @@ Created using IcoMoon - icomoon.io
 
 /* CSS BY PRAVEEN */
 
+@media (min-width: 1200px) {
+    .container {
+        max-width: 100%;
+    }
+}
+
 .action-buttons {
     color: #1a385b !important;
     cursor: pointer;
@@ -5159,8 +5165,8 @@ Created using IcoMoon - icomoon.io
 .chat-box-history-container {
     padding: 2%;
     background: whitesmoke;
-    border: 7px solid black;
-    height: 20.7em;
+    /* border: 7px solid black; */
+    height: 90vh;
     overflow-y: scroll;
     overflow-x: hidden;
 }
@@ -5175,9 +5181,10 @@ Created using IcoMoon - icomoon.io
     padding: 2% 5% 0% 5%;
     width: fit-content;
     float: left;
-    border-top-right-radius: 20px;
+    border-radius: 8px;
+    /* border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-    border-bottom-left-radius: 20px;
+    border-bottom-left-radius: 20px; */
     /* margin-bottom: 1em; */
     cursor: move;
     text-align: right;
@@ -5211,9 +5218,10 @@ Created using IcoMoon - icomoon.io
     padding: 2% 5% 0% 5%;
     width: fit-content;
     float: right;
-    border-top-left-radius: 20px;
+    border-radius: 8px;
+    /* border-top-left-radius: 20px;
     border-bottom-left-radius: 20px;
-    border-top-right-radius: 20px;
+    border-top-right-radius: 20px; */
     margin-bottom: 1em;
     cursor: move;
     text-align: left;
@@ -5235,11 +5243,11 @@ Created using IcoMoon - icomoon.io
 
 .user-details {
     font-size: 11px;
-    height: 20em;
+    /* height: 20em; */
 }
 
 .user-details p {
-    color: white;
+    color: black;
 }
 
 .user-details p:hover {
@@ -5300,7 +5308,7 @@ Created using IcoMoon - icomoon.io
 
 .answer:focus,
 .answer:active {
-    border: 1px solid #ed5f31;
+    border: 1px solid #5ec6b6;
 }
 
 .answer-submit-button {
@@ -5312,4 +5320,41 @@ Created using IcoMoon - icomoon.io
     font-weight: 600;
     letter-spacing: 2px;
     text-transform: uppercase;
+}
+
+
+/* MARGINS AND PADDINGS  */
+
+@media (min-width: 768px) {
+    .no-margin-bottom-res {
+        margin-bottom: 0px;
+    }
+}
+
+.no-left-padding {
+    padding-left: 0px;
+}
+
+.no-right-padding {
+    padding-right: 0px;
+}
+
+@media (min-width: 768px) {
+    .no-left-right-padding-res {
+        padding-right: 0px;
+        padding-left: 0px;
+    }
+    .no-left-padding-res {
+        padding-left: 0px;
+    }
+}
+
+.no-left-right-padding {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.no-left-right-margin {
+    margin-left: 0px;
+    margin-right: 0px;
 }
