@@ -20,6 +20,10 @@
     color: #f1f1f1;
 }
 
+.logo-normal img {
+    max-width: 15%;
+}
+
 @media screen and (max-height: 450px) {
     .sidenav {
         padding-top: 15px;

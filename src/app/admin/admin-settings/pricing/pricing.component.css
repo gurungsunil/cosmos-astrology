@@ -1,0 +1,21 @@
+.card {
+    background-color: #f4fbfa;
+}
+
+.form-inline .form-group {
+    padding-right: 2%;
+}
+
+.form-control {
+    background: white;
+    width: auto;
+}
+
+form {
+    margin-bottom: 4%;
+}
+
+.save-price-button {
+    padding: .5rem .75rem;
+    margin: 1.7rem 0rem;
+}

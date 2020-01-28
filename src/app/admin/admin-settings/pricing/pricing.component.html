@@ -3,37 +3,73 @@
     <mat-expansion-panel>
         <mat-expansion-panel-header>
             <mat-panel-title>
-                User Pricing
+                Question Pricing
             </mat-panel-title>
             <mat-panel-description>
-                Set the pricing for the users to ask questions.
+                View and set the pricing for the users to ask questions.
             </mat-panel-description>
         </mat-expansion-panel-header>
-        <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="text-align: right;">
-                <textarea [(ngModel)]="this.welcomeMessage.text" #welcomeMessageCtrl="ngModel" placeholder="Welcome to our site."></textarea><br>
-                <button class="btn btn-primary" (click)="saveWelcomeMessage()">Edit & save</button>
+        <div class="content">
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <ngx-spinner [fullScreen]="false" bdOpacity="1" bdColor="none" size="large" color="#ffffff" type="ball-atom">
+                        </ngx-spinner>
+                        <div class="card-header">
+                            <h4 class="card-title"> Set new price</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="container">
+                                <form #questionPriceForm="ngForm" (ngSubmit)="saveQuestionPrice(questionPriceForm)" novalidate>
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                            <label for="questionPrice">Question Price:</label>
+                                            <input type="number" class="form-control" ngModel #questionPrice="ngModel" required name="questionPrice">
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                            <label for="discountInPercentage">Discount(%):</label>
+                                            <input type="number" class="form-control" ngModel #discountInPercentage="ngModel" name="discountInPercentage">
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                                            <button class="btn btn-primary save-price-button" type="submit" [disabled]="!questionPriceForm.valid">Edit & save</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title"> Previous pricing</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <div *ngIf="this.questionPriceHistory.length == 0">No prices have been set as of yet.</div>
+                                <table datatable class="table" *ngIf="this.questionPriceHistory.length > 0">
+                                    <thead class="text-primary">
+                                        <tr>
+                                            <th>Question Price</th>
+                                            <th>Discount (%)</th>
+                                            <th>Created at</th>
+                                            <th>Updated at</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let questionPriceHistoryOne of this.questionPriceHistory">
+                                            <td>{{questionPriceHistoryOne.questionPrice}}</td>
+                                            <td>{{questionPriceHistoryOne.discountInPercentage}}</td>
+                                            <td>{{questionPriceHistoryOne.createdAt | date:'medium'}}</td>
+                                            <td>{{questionPriceHistoryOne.updatedAt | date:'medium'}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </mat-expansion-panel>
-
-
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
-            <mat-panel-title>
-                System message
-            </mat-panel-title>
-            <mat-panel-description>
-                Set a message for errors.
-            </mat-panel-description>
-        </mat-expansion-panel-header>
-        <div class="row">
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12" style="text-align: right;">
-                <textarea [(ngModel)]="this.systemMessage.text" #systemMessageCtrl="ngModel" placeholder="Unfortunately, we're currently down."></textarea><br>
-                <button class="btn btn-primary" (click)="saveSystemMessage()">Edit & save</button>
-            </div>
-        </div>
-    </mat-expansion-panel>
-
 
 </mat-accordion>
