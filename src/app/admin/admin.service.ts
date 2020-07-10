@@ -13,6 +13,8 @@ export class AdminService {
   private ROOT_URL = environment.baseUrl;
   private ADMIN_MESSAGES = `${this.ROOT_URL}/admin/messages`;
   private QUESTION_PRICE = `${this.ROOT_URL}/admin/question-price`;
+  private MOD_ANSWERS_ALL = `${this.ROOT_URL}/admin/modAnswers/all`;
+  private DASHBOARD_REPORT = `${this.ROOT_URL}/admin/dashboard`;
 
   public addModeratorResponse = new BehaviorSubject(null);
   addModeratorResponse$ = this.addModeratorResponse.asObservable();
@@ -47,13 +49,13 @@ export class AdminService {
 
   // MESSAGE END 
 
+
   // PRICING START 
   getQuestionPrice(): Observable<QuestionPrice[]> {
     return this.http.get<QuestionPrice[]>(
       this.QUESTION_PRICE
     );
   }
-  // PRICING END 
 
   saveQuestionPrice(questionPriceModel: QuestionPrice): Observable<QuestionPrice> {
     return this.http.post<QuestionPrice>(
@@ -61,5 +63,21 @@ export class AdminService {
       questionPriceModel
     );
   }
+  // PRICING END 
+
+  //DASHBOARD START 
+
+  getDashboardReport() : Observable<any> {
+    return this.http.get<any>(
+      this.DASHBOARD_REPORT
+    );
+  }
+
+  getModAnswersAll(): Observable<any> {
+    return this.http.get<any>(
+      this.MOD_ANSWERS_ALL
+    );
+  }
+  //DASHBOARD END
 
 }

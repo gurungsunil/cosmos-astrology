@@ -1,0 +1,26 @@
+.db-box {
+    color: white;
+    border-radius: 4px;
+}
+
+.db-box .db-box-icon {
+    float: right;
+    opacity: 0.3;
+    font-size: 4.2rem;
+}
+
+.db-box#question-count {
+    background: #17a2b8;
+}
+
+.db-box#ast-task-count {
+    background-color: #28a745;
+}
+
+.db-box#mod-task-count {
+    background-color: #dc3545;
+}
+
+.db-box#unclear-question-count {
+    background: #b1a93f;
+}

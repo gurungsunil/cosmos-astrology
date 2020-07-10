@@ -2,6 +2,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    background: #111111;
     align-items: center;
     padding: 15px;
     min-height: 100vh;
@@ -9,28 +10,34 @@
 }
 
 .login-form-wrapper {
-    color: black;
+    color: #111111;
     /* background: #111111; */
     background: #ffffff;
     /* border: 1px solid whitesmoke; */
     border-radius: 10px;
     width: 390px;
-    padding: 77px 55px 33px 55px;
+    padding: 2em;
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-.logo-wrapper {
-    padding-bottom: 4em;
-}
-
 .logo-wrapper img {
-    max-width: 50%;
+    max-width: 30%;
     margin: 0 auto;
 }
 
 .logo-wrapper h1 {
     margin: 0 auto;
     color: #ea9e24;
+}
+
+.form-signin {
+    background: #e8f0fe59;
+    padding: 6%;
+    border-radius: 5px;
+}
+
+.form-group {
+    margin-bottom: 20px;
 }
 
 input {
@@ -46,6 +53,10 @@ input {
     box-shadow: none;
 }
 
+.form-control {
+    border-radius: 4px;
+}
+
 button {
     background: #5ec6b6;
     color: white;
@@ -59,4 +70,17 @@ button {
 button:hover {
     background: white;
     color: #5ec6b6;
+}
+
+.invalid-user {
+    background: #f9dbdf;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px 18px 10px 18px;
+    font-size: 15px;
+    line-height: 1.2;
+}
+
+.invalid-user .form-control {
+    color: darkred;
 }

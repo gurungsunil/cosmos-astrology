@@ -1,0 +1,59 @@
+<div class="container">
+
+    <ngx-spinner [fullScreen]="false" bdOpacity="0.9" bdColor="#929292b5" size="large" color="#fff" type="ball-beat"></ngx-spinner>
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Today's Stats</h3>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <div class="card db-box" id="question-count">
+                <div class="card-body">
+                    <h1> {{dashboardReport == null ? 0 : dashboardReport.dailyQuestionCount}}
+                        <span class="db-box-icon"><i class="fa fa-check text-right" aria-hidden="true"></i></span>
+                    </h1>
+                    <p>questions answered</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="card db-box" id="ast-task-count">
+                <div class="card-body">
+                    <h1>{{dashboardReport == null ? 0 : dashboardReport.dailyAstrologerWorkCount}}
+                        <span class="db-box-icon"><i class="fa fa-sun" aria-hidden="true"></i></span>
+                    </h1>
+                    <p>answered by astrologer</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-6">
+            <div class="card db-box" id="mod-task-count">
+                <div class="card-body">
+                    <h1>{{dashboardReport == null ? 0 : dashboardReport.dailyModeratorWorkCount}}
+                        <span class="db-box-icon"><i class="fa fa-language" aria-hidden="true"></i></span>
+                    </h1>
+                    <p>translated by moderators</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-lg-3 col-6">
+            <div class="card db-box" id="unclear-question-count">
+                <div class="card-body">
+                    <h1>{{dashboardReport == null ? 0 : dashboardReport.dailyUnclearQuestionCount}}
+                        <span class="db-box-icon"><i class="fa fa-question" aria-hidden="true"></i></span>
+                    </h1>
+                    <p>unclear question(s)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

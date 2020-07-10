@@ -5,6 +5,7 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AdminService } from '../admin.service';
 import { ToastrService } from 'ngx-toastr';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-manage-moderators',
@@ -29,15 +30,19 @@ export class ManageModeratorsComponent implements OnInit {
 
   ngOnInit() {
     this.spinner.show();
+    this.fetchModeratorsList();
+    this.closeModalFunc();
+  }
+
+  fetchModeratorsList() {
     this._moderatorsService.getAllModerators().subscribe(response => {
       this.moderatorsList = response;
-     this.spinner.hide();
-    },
-    error=>{
       this.spinner.hide();
-      console.log(error);
-    });
-    this.closeModalFunc();
+    },
+      error => {
+        this.spinner.hide();
+        console.log(error);
+      });
   }
 
   openModal(template: TemplateRef<any>) {
@@ -46,11 +51,11 @@ export class ManageModeratorsComponent implements OnInit {
   }
 
   closeModalFunc() {
-    this._adminService.addModeratorResponse.subscribe(moderator=>{
-      if (moderator !== null && this.currentlyEditingItem == 'new'){
+    this._adminService.addModeratorResponse.subscribe(moderator => {
+      if (moderator !== null && this.currentlyEditingItem == 'new') {
         this.moderatorsList.push(moderator);
         this.bsModalRef.hide();
-      } else if  (moderator !== null && this.currentlyEditingItem !== 'new'){
+      } else if (moderator !== null && this.currentlyEditingItem !== 'new') {
         const moderatorIndex = this.moderatorsList.indexOf(this.currentlyEditingItem);
         this.moderatorsList.splice(moderatorIndex, 1);
         this.moderatorsList.push(moderator);

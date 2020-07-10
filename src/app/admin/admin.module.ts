@@ -18,6 +18,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthModule } from '../auth/auth.module';
 import { SharedModule } from '../shared/shared.module';
 import { PricingComponent } from './admin-settings/pricing/pricing.component';
+import { DataTablesModule } from 'angular-datatables';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 
 const adminRoutes: Routes = [
   {
@@ -31,6 +33,10 @@ const adminRoutes: Routes = [
         canActivateChild: [AuthGuard],
         children: [
           {
+            path: 'dashboard',
+            component: AdminDashboardComponent
+          },
+          {
             path: 'manage-moderators',
             component: ManageModeratorsComponent
           },
@@ -41,7 +47,12 @@ const adminRoutes: Routes = [
           {
             path: 'settings',
             component: AdminSettingsComponent
-          }
+          },
+          {
+            path: '',
+            pathMatch: 'full',
+            redirectTo: 'dashboard'
+          },
         ]
       }]
   }
@@ -49,7 +60,7 @@ const adminRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [AdminComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent, PricingComponent],
+  declarations: [AdminComponent, AdminDashboardComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent, PricingComponent],
   imports: [
     CommonModule,
     SharedModule,
@@ -58,6 +69,7 @@ const adminRoutes: Routes = [
     // BrowserModule,
     ReactiveFormsModule,
     FormsModule,
+    DataTablesModule,
     MaterialModule,
     AuthModule,
     NgxSpinnerModule

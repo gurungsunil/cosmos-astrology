@@ -18,4 +18,5 @@ form {
 .save-price-button {
     padding: .5rem .75rem;
     margin: 1.7rem 0rem;
+    font-weight: 600;
 }
