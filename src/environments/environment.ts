@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   // baseUrl: 'https://cosmos-api.azurewebsites.net/api'
-  baseUrl: 'http://d72e13dd141c.ngrok.io/api'
+  baseUrl: 'http://localhost:8080/api'
   // baseUrl: 'http://193.37.152.233:8080/api'
   // baseUrl: 'http://192.168.1.105:8081/api'
   // baseUrl: 'http://cosmos.southeastasia.cloudapp.azure.com:8080/api'

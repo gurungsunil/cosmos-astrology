@@ -1,26 +1,134 @@
+.page-top-text h1 {
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: unset;
+}
+
+.page-top-text h2 {
+    text-transform: uppercase;
+    font-size: 1em;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.card {
+    box-shadow: 0px 5px 8px -4px #777;
+    background-color: #000000c4;
+    /* background: linear-gradient(to bottom, #334260 0%, #111111 100%); */
+}
+
+.card-wrap {
+    margin: 0 auto;
+}
+
 .db-box {
     color: white;
-    border-radius: 4px;
+    border-radius: .24rem;
+    box-shadow: 2px 2px 3px 0px #4f4f4f;
+}
+
+
+/* .db-box-dark {
+    background-color: #343a40;
+    background: linear-gradient(to bottom, #c8af8f 0%, #343a40 100%);
+    color: white;
+    padding: 3px 5px;
+} */
+
+.db-box h1 {
+    font-weight: 900;
+    font-size: 3.5em;
+}
+
+.db-box p {
+    color: #cccccc;
 }
 
 .db-box .db-box-icon {
     float: right;
-    opacity: 0.3;
+    opacity: 0.9;
     font-size: 4.2rem;
 }
 
-.db-box#question-count {
-    background: #17a2b8;
+.db-box .db-box-icon .fa,
+.db-box .db-box-icon .fas {
+    color: #f3b24c;
+}
+
+.rev-inc {
+    color: yellowgreen;
+}
+
+.rev-dec {
+    color: tomato;
+}
+
+.revenue-reports {
+    background: #f8f8fa;
+    background: linear-gradient(to bottom, #f8f8fa 28%, #65c38d 100%);
+}
+
+.staff-reports {
+    padding: 5% 7%;
+    background: #65c38d;
+    /* background: linear-gradient(to top, #f3b24c 0%, #65c38d 100%); */
+}
+
+.question-reports {
+    padding: 4% 1%;
+    background: #f3b24c;
+}
+
+#all-year-chart {
+    background: #f8f7fa;
+}
+
+#daily-revenue h1,
+#monthly-revenue h1 {
+    margin-bottom: 14px;
+}
+
+#daily-revenue p,
+#monthly-revenue p {
+    color: #f3b24c;
 }
 
 .db-box#ast-task-count {
-    background-color: #28a745;
+    background-color: #2d5a44;
+    border: none;
 }
 
 .db-box#mod-task-count {
-    background-color: #dc3545;
+    background-color: #43755b;
+    border: none;
 }
 
-.db-box#unclear-question-count {
-    background: #b1a93f;
+.db-box#ast-task-count .fa,
+.db-box#mod-task-count .fa {
+    color: yellowgreen;
+}
+
+.staff-reports .btn {
+    border: none;
+}
+
+.db-box#question-count,
+.db-box#unclear-question-count,
+.db-box#free-question-count {
+    background-color: #111111;
+}
+
+a.btn {
+    margin: 8% 0%;
+}
+
+.mg-bt-small {
+    margin-bottom: 1px;
+}
+
+.muted-header-footer {
+    font-weight: 800;
+    font-size: 1.1em;
+    color: #ccc;
 }

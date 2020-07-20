@@ -14,7 +14,8 @@ import { AdminModule } from './admin/admin.module';
 import { ModeratorsModule } from './moderators/moderators.module';
 import { SharedModule } from './shared/shared.module';
 import { AstrologersModule } from './astrologers/astrologers.module';
-
+import { CountUpModule } from 'ngx-countup';
+import { ChartsModule } from 'ng2-charts';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -29,6 +30,8 @@ export function tokenGetter() {
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    ChartsModule,
+    CountUpModule,
     ToastrModule.forRoot({
       timeOut: 10000,
       positionClass: 'toast-top-left',
@@ -41,7 +44,7 @@ export function tokenGetter() {
           'localhost:8080',
           '193.37.152.233:8080',
           'cosmos.southeastasia.cloudapp.azure.com',
-          'd72e13dd141c.ngrok.io'
+          '58db9ea39574.ngrok.io'
         ],
         blacklistedRoutes: []
       }

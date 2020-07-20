@@ -14,7 +14,7 @@
     /* background: #111111; */
     background: #ffffff;
     /* border: 1px solid whitesmoke; */
-    border-radius: 10px;
+    border-radius: .25rem;
     width: 390px;
     padding: 2em;
     box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
@@ -30,6 +30,19 @@
     color: #ea9e24;
 }
 
+.sign-in-text p {
+    color: #afabab;
+    margin-bottom: 0;
+}
+
+.sign-in-text h2 {
+    margin-top: 0;
+    font-weight: 900;
+    color: #11111187;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
 .form-signin {
     background: #e8f0fe59;
     padding: 6%;
@@ -38,6 +51,10 @@
 
 .form-group {
     margin-bottom: 20px;
+}
+
+.form-group label {
+    color: #afabab;
 }
 
 input {
@@ -58,18 +75,20 @@ input {
 }
 
 button {
-    background: #5ec6b6;
+    background: #565187;
+    background: linear-gradient(to bottom, #75719f 0%, #565187 100%);
     color: white;
     font-size: smaller;
     padding: 1em 3em;
     font-weight: bolder;
-    border: 1px solid #5ec6b6;
+    border: 1px solid #565187;
     cursor: pointer;
+    border-radius: .25rem;
 }
 
 button:hover {
-    background: white;
-    color: #5ec6b6;
+    background: #565187e6;
+    color: #ffffff;
 }
 
 .invalid-user {

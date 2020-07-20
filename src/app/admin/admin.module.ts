@@ -20,6 +20,12 @@ import { SharedModule } from '../shared/shared.module';
 import { PricingComponent } from './admin-settings/pricing/pricing.component';
 import { DataTablesModule } from 'angular-datatables';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { CountUpModule } from 'ngx-countup';
+import { ManageAstrologersMainComponent } from './manage-astrologers/manage-astrologers-main.component';
+import { AstStatsComponent } from './manage-astrologers/ast-stats/ast-stats.component';
+import { ModStatsComponent } from './manage-moderators/mod-stats/mod-stats.component';
+import { ManageModeratorsMainComponent } from './manage-moderators/manage-moderators-main.component';
+import { ChartsModule } from 'ng2-charts';
 
 const adminRoutes: Routes = [
   {
@@ -37,12 +43,34 @@ const adminRoutes: Routes = [
             component: AdminDashboardComponent
           },
           {
-            path: 'manage-moderators',
-            component: ManageModeratorsComponent
+            path: 'manage-moderators-main',
+            component: ManageModeratorsMainComponent,
+            canActivateChild: [AuthGuard],
+             children: [
+               {
+                 path: '',
+                 component: ManageModeratorsComponent
+               }, 
+               {
+                 path: 'stats',
+                 component: ModStatsComponent
+               }
+             ]
           },
           {
-            path: 'manage-astrologers',
-            component: ManageAstrologersComponent
+            path: 'manage-astrologers-main',
+            component: ManageAstrologersMainComponent,
+            canActivateChild: [AuthGuard],
+             children: [
+               {
+                 path: '',
+                 component: ManageAstrologersComponent
+               }, 
+               {
+                 path: 'stats',
+                 component: AstStatsComponent
+               }
+             ]
           },
           {
             path: 'settings',
@@ -60,8 +88,9 @@ const adminRoutes: Routes = [
 
 
 @NgModule({
-  declarations: [AdminComponent, AdminDashboardComponent, ManageModeratorsComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent, PricingComponent],
+  declarations: [AdminComponent, AdminDashboardComponent, ManageModeratorsMainComponent, ManageModeratorsComponent, ManageAstrologersMainComponent, ManageAstrologersComponent, AddEditModeratorComponent, AdminSettingsComponent, AddEditAstrologerComponent, AdminMessagesComponent, PricingComponent, AstStatsComponent, ModStatsComponent],
   imports: [
+    ChartsModule,
     CommonModule,
     SharedModule,
     RouterModule.forChild(adminRoutes),
@@ -72,7 +101,8 @@ const adminRoutes: Routes = [
     DataTablesModule,
     MaterialModule,
     AuthModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    CountUpModule
   ]
 })
 export class AdminModule { }

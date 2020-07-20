@@ -374,17 +374,18 @@ Copyright (c) 2015 Daniel Eden
 .btn,
 .navbar .navbar-nav>a.btn {
     border-width: 2px;
-    font-weight: 400;
     font-size: 0.8571em;
     line-height: 1.35em;
     margin: 5px 1px;
     border: none;
     margin: 10px 1px;
-    border-radius: 1.1875rem;
+    /* border-radius: 1.1875rem; */
     padding: 11px 22px;
     cursor: pointer;
-    background-color: #888;
-    color: #FFFFFF;
+    background: none;
+    color: #463d9c;
+    border: 2px solid #463d9c;
+    font-weight: 900;
 }
 
 .btn:hover,
@@ -419,6 +420,7 @@ Copyright (c) 2015 Daniel Eden
 .navbar .navbar-nav>a.btn:not([data-action]):hover {
     -webkit-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+    background: #6b6797;
 }
 
 .btn.disabled,
@@ -528,6 +530,7 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important;
+    background: #5b578b;
 }
 
 .btn .badge,
@@ -600,8 +603,11 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 }
 
 .btn-primary {
-    background-color: #5ec6b6;
+    background-color: #565187;
+    background: linear-gradient(to bottom, #75719f 0%, #565187 100%);
     color: #FFFFFF;
+    border: 2px solid #463d9c;
+    font-weight: 900;
 }
 
 .btn-primary:hover,
@@ -615,15 +621,17 @@ fieldset[disabled] .navbar .navbar-nav>a.btn.active {
 .show>.btn-primary.dropdown-toggle,
 .show>.btn-primary.dropdown-toggle:focus,
 .show>.btn-primary.dropdown-toggle:hover {
-    background-color: #42AB9E;
+    background-color: #7e78bb;
     color: #FFFFFF;
     -webkit-box-shadow: none;
     box-shadow: none;
+    border-color: #7e78bb;
 }
 
 .btn-primary:not([data-action]):hover {
     -webkit-box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
     box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+    border-color: #7e78bb;
 }
 
 .btn-primary.disabled,
@@ -1349,7 +1357,7 @@ fieldset[disabled] .btn-link.active {
 }
 
 .form-control:focus {
-    border: 1px solid #5ec6b6;
+    border: 1px solid #655f92;
     -webkit-box-shadow: none;
     box-shadow: none;
     outline: 0 !important;
@@ -1799,7 +1807,7 @@ a:focus {
 
 h1,
 .h1 {
-    font-size: 3.5em;
+    /* font-size: 3.5em; */
     line-height: 1.15;
     margin-bottom: 30px;
 }
@@ -1897,7 +1905,14 @@ p.description {
 .text-primary,
 a.text-primary:focus,
 a.text-primary:hover {
-    color: #9A9A9A !important;
+    color: #e8f0fe !important;
+    background: #585388;
+    font-size: 0.7em;
+}
+
+.table .text-primary {
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
 }
 
 .text-info,
@@ -1982,7 +1997,7 @@ body {
     font-family: "Montserrat", "Helvetica Neue", Arial, sans-serif;
     -moz-osx-font-smoothing: grayscale;
     -webkit-font-smoothing: antialiased;
-    background: #e8f0fe;
+    background: #f8f8fa;
 }
 
 .main {
@@ -2202,7 +2217,8 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar a:not(.btn):not(.dropdown-item) {
-    color: #FFFFFF;
+    color: #ccc;
+    font-size: 0.8em;
 }
 
 .navbar a.dropdown-item {
@@ -2336,10 +2352,13 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 
 .navbar .navbar-nav .nav-link {
     text-transform: uppercase;
-    font-size: 0.7142em;
     padding: 0.5rem 0.7rem;
     line-height: 1.625rem;
     margin-right: 3px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    font-size: 1em;
+    color: #ccc;
 }
 
 .navbar .navbar-nav .nav-link i.fa+p,
@@ -2417,7 +2436,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar.navbar-transparent {
-    background-color: #111111 !important;
+    background-color: #343a40 !important;
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #FFFFFF;
@@ -3564,7 +3583,7 @@ Created using IcoMoon - icomoon.io
 .table {
     table-layout: fixed;
     background-color: white;
-    border: 1px solid #e9ecef;
+    border: 3px solid #47419c;
 }
 
 table.dataTable {
@@ -3577,7 +3596,7 @@ table.dataTable thead td {
 }
 
 table.dataTable.no-footer {
-    border-bottom: 1px solid #e9ecef !important;
+    border-bottom: 3px solid #47419c !important;
 }
 
 .table>thead>tr>th {
@@ -3798,14 +3817,15 @@ table.dataTable.no-footer {
 .sidebar .nav li>a,
 .off-canvas-sidebar .nav li>a {
     margin: 10px 15px 0;
-    border-radius: 30px;
-    color: #FFFFFF;
+    border-radius: .25rem;
+    color: #b3b3b3;
     display: block;
     text-decoration: none;
     position: relative;
     text-transform: uppercase;
     cursor: pointer;
     font-size: 0.7142em;
+    font-weight: 900;
     padding: 10px 8px;
     line-height: 1.625rem;
 }
@@ -3832,6 +3852,7 @@ table.dataTable.no-footer {
 .sidebar .nav li.active>a,
 .off-canvas-sidebar .nav li.active>a {
     background-color: #4f4f4f;
+    color: #FFFFFF;
     -webkit-box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1);
 }
@@ -3844,6 +3865,7 @@ table.dataTable.no-footer {
     display: block;
     height: auto;
     white-space: nowrap;
+    letter-spacing: 0.11em;
 }
 
 .sidebar .nav i,
@@ -4162,6 +4184,19 @@ table.dataTable.no-footer {
     box-shadow: 0 1px 15px 1px rgba(39, 39, 39, 0.1); */
 }
 
+.table-list .card {
+    background: none;
+}
+
+.table-list .card .card-header {
+    text-align: center;
+}
+
+.table-list .card-header h1 {
+    font-weight: 900;
+    margin-bottom: 1em;
+}
+
 .card .card-body {
     padding: 15px 15px 10px 15px;
 }
@@ -4240,6 +4275,13 @@ table.dataTable.no-footer {
     margin-bottom: 5px;
     color: #9A9A9A;
     font-weight: 600;
+}
+
+.card .table label {
+    color: #9A9A9A;
+    font-weight: 500;
+    font-size: 1.3em;
+    padding-bottom: 3em;
 }
 
 .card .card-footer {
@@ -5418,3 +5460,57 @@ table.dataTable.no-footer {
 
 
 /* CUSTOM SCROLLBAR END  */
+
+
+/* INLINE DATE RANGE  */
+
+.inline-date-range {
+    padding: 1% 12%;
+    margin: 2% 0%;
+}
+
+.inline-date-range label {
+    font-size: medium;
+    font-weight: 500;
+    padding: 10px 0px;
+}
+
+.inline-date-range input[type="date"] {
+    font-size: medium;
+    font-weight: 500;
+    border-radius: .25rem;
+}
+
+
+/* INLINE DATE RANGE END  */
+
+
+/* NO DATA IN TABLE  */
+
+.table-responsive .no-data {
+    background: none;
+    text-align: center;
+    /* box-shadow: 5px 8px 26px 5px rgba(0, 0, 0, 0.17);
+    border: 2px solid #EB5160; */
+    border-radius: .25rem;
+    padding: 4% 1% 1% 1%;
+    /* margin-top: 3%; */
+}
+
+.table-responsive .no-data h1 {
+    font-weight: 100;
+    letter-spacing: 1px;
+}
+
+.table-responsive .no-data h1 span {
+    color: #EB5160;
+}
+
+.table-responsive .no-data .fa-frown {
+    color: #635d90;
+    font-weight: 600;
+    font-size: xxx-large;
+}
+
+
+/* NO DATA IN TABLE END  */

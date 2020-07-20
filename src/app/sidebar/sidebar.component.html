@@ -4,7 +4,7 @@
     -->
     <div class="logo">
         <a class="simple-text logo-normal text-center">
-            <img src="./assets/img/online-astro-logo.png"> Online Astro
+            <img src="./assets/img/online-astro-logo.png"> COSMOS
         </a>
     </div>
     <div class="sidebar-wrapper">
@@ -15,14 +15,14 @@
                     <p>Homepage</p>
                 </a>
             </li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['./manage-astrologers']">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+                <a [routerLink]="['./manage-astrologers-main']">
                     <i class="now-ui-icons design_app"></i>
                     <p>Astrologers</p>
                 </a>
             </li>
-            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <a [routerLink]="['./manage-moderators']">
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: false }">
+                <a [routerLink]="['./manage-moderators-main']">
                     <i class="now-ui-icons education_atom"></i>
                     <p>Moderators</p>
                 </a>
