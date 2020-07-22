@@ -16,151 +16,154 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="moderatorsTaskModel!==null">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header text-center">
-                                <h4 class="card-title">
-                                    History
-                                </h4>
-                            </div>
-                            <div class="card-body chat-box-history-container ">
-                                <div *ngFor="let questionAnswerHistoryOne of moderatorsTaskModel.questionAnswerHistoryList; index as i">
-                                    <div class="row chat-box-user-wrapper">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="chat-box-user" cdkDrag>
-                                                <p class="chat-text">{{questionAnswerHistoryOne.engQuestion}}
-                                                </p>
-                                                <p>
-                                                    <span class="chat-box-details">{{questionAnswerHistoryOne.createdAt | date}} &nbsp;</span>
-                                                    <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'clear'"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
-                                                    <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'Unclear'"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></p>
+
+        <ng-container *ngIf="moderatorsTaskModel!==null">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <h4 class="card-title">
+                                        <span style="color: #f3b982;">Chat </span> History
+                                    </h4>
+                                </div>
+                                <div class="card-body chat-box-history-container ">
+                                    <div *ngFor="let questionAnswerHistoryOne of moderatorsTaskModel.questionAnswerHistoryList; index as i">
+                                        <div class="row chat-box-user-wrapper">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="chat-box-user" cdkDrag>
+                                                    <p class="chat-text">{{questionAnswerHistoryOne.engQuestion}}
+                                                    </p>
+                                                    <p>
+                                                        <span class="chat-box-details">{{questionAnswerHistoryOne.createdAt | date}} &nbsp;</span>
+                                                        <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'clear'"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                                                        <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'Unclear'"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span></p>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- <div class="row">
+                                        <!-- <div class="row">
                                         <div class="col-md-12 text-left">
                                             <a class="see-translation"><i class="fa fa-eye"></i></a>
                                         </div>
                                     </div> -->
-                                    <div class="row chat-box-user-reply-wrapper" [hidden]="!questionAnswerHistoryOne.englishAnswer">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="chat-box-user-reply" cdkDrag>
-                                                <p class="chat-text">{{questionAnswerHistoryOne.englishAnswer?.engReply}}</p>
-                                                <!-- <p class="chat-box-details">hhjvjhvjhv</p> -->
+                                        <div class="row chat-box-user-reply-wrapper" [hidden]="!questionAnswerHistoryOne.englishAnswer">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="chat-box-user-reply" cdkDrag>
+                                                    <p class="chat-text">{{questionAnswerHistoryOne.englishAnswer?.engReply}}</p>
+                                                    <!-- <p class="chat-box-details">hhjvjhvjhv</p> -->
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- <div class="row">
+                                        <!-- <div class="row">
                                         <div class="col-md-12 text-right">
                                             <a class="see-translation"><i class="fa fa-eye"></i></a>
                                         </div>
                                     </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="card no-margin-bottom-res">
-                                    <div class="card-header text-center">
-                                        <h4 class="card-title">
-                                            {{moderatorsTaskModel.userDetails.firstName}}&nbsp;{{moderatorsTaskModel.userDetails.lastName}}
-                                        </h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row user-details">
-                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                                <div>
-                                                    <p>
-                                                        <span class="user-details-icon"><i class="fa fa-envelope-open"
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card no-margin-bottom-res">
+                                        <div class="card-header text-center">
+                                            <h4 class="card-title">
+                                                <span style="color: #f3b982;"> {{moderatorsTaskModel.userDetails.firstName}}</span>&nbsp;{{moderatorsTaskModel.userDetails.lastName}}
+                                            </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row user-details">
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                    <div>
+                                                        <p>
+                                                            <span class="user-details-icon"><i class="fa fa-envelope-open"
                                                                         aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Email:</span> {{moderatorsTaskModel.userDetails.email}}
-                                                    </p>
+                                                            <span class="user-details-title">Email:</span> {{moderatorsTaskModel.userDetails.email}}
+                                                        </p>
 
-                                                    <p>
-                                                        <span class="user-details-icon"><i class="fa fa-phone"
+                                                        <p>
+                                                            <span class="user-details-icon"><i class="fa fa-phone"
                                                                         aria-hidden="true"></i></span>
-                                                        <span class="user-details-title"> Phone:</span> {{moderatorsTaskModel.userDetails.phoneNumber}}
-                                                    </p>
+                                                            <span class="user-details-title"> Phone:</span> {{moderatorsTaskModel.userDetails.phoneNumber}}
+                                                        </p>
 
-                                                    <p><span class="user-details-icon"><i class="fa fa-mars-stroke" aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Gender:</span> {{moderatorsTaskModel.userDetails.gender}}
-                                                    </p>
+                                                        <p><span class="user-details-icon"><i class="fa fa-mars-stroke" aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Gender:</span> {{moderatorsTaskModel.userDetails.gender}}
+                                                        </p>
 
-                                                    <p><span class="user-details-icon"><i class="fa fa-location-arrow"
+                                                        <p><span class="user-details-icon"><i class="fa fa-location-arrow"
                                                                         aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Address:</span> {{moderatorsTaskModel.userDetails.city}},{{moderatorsTaskModel.userDetails.state}},{{moderatorsTaskModel.userDetails.country}}
-                                                    </p>
+                                                            <span class="user-details-title">Address:</span> {{moderatorsTaskModel.userDetails.city}},{{moderatorsTaskModel.userDetails.state}},{{moderatorsTaskModel.userDetails.country}}
+                                                        </p>
 
-                                                    <p><span class="user-details-icon"><i class="fa fa-calendar-plus"
+                                                        <p><span class="user-details-icon"><i class="fa fa-calendar-plus"
                                                                         aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Date of birth:</span> {{moderatorsTaskModel.userDetails.dateOfBirth | date : medium}}
-                                                    </p>
+                                                            <span class="user-details-title">Date of birth:</span> {{moderatorsTaskModel.userDetails.dateOfBirth | date : medium}}
+                                                        </p>
 
-                                                    <p><span class="user-details-icon"><i class="fa fa-clock"
+                                                        <p><span class="user-details-icon"><i class="fa fa-clock"
                                                                         aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Time of birth:</span> {{moderatorsTaskModel.userDetails.birthTime}} <span class="user-details-icon"> Accurate time:
+                                                            <span class="user-details-title">Time of birth:</span> {{moderatorsTaskModel.userDetails.birthTime}} <span class="user-details-icon"> Accurate time:
                                                                     {{moderatorsTaskModel.userDetails.accurateTime}}</span></p>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                                                <img *ngIf="moderatorsTaskModel.userDetails.profileImageUrl !== null" [src]="moderatorsTaskModel.userDetails.profileImageUrl" />
-                                                <img *ngIf="moderatorsTaskModel.userDetails.profileImageUrl == null" src="./assets/img/user-logo.png" />
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                                                    <img *ngIf="moderatorsTaskModel.userDetails.profileImageUrl !== null" [src]="moderatorsTaskModel.userDetails.profileImageUrl" />
+                                                    <img *ngIf="moderatorsTaskModel.userDetails.profileImageUrl == null" src="./assets/img/user-logo.png" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                                                <h4 class="card-title text-center" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">
-                                                    <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Question in Nepali</p>
-                                                </h4>
-                                                <h4 class="card-title text-center" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">
-                                                    <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Question in English</p>
-                                                </h4>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                                                <button class="btn btn-neutral" (click)="markThisQuestionAsUnclear()" [hidden]="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Mark unclear</button>
-                                            </div>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                                <span class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">{{moderatorsTaskModel.currentJob.nepaliAnswer.answer}}</span>
-
-                                                <span class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">{{moderatorsTaskModel.currentJob.englishQuestion.engQuestion}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-
-                                        <div [hidden]="taskObject.questionUnclear">
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card qa-wrapper">
+                                        <div class="card-header">
                                             <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                    <textarea class="answer" [disabled]="this.taskObject.questionUnclear" [(ngModel)]="this.taskObject.translation" #taskObjectTranslation="ngModel"></textarea>
-                                                    <button class="btn btn-primary answer-submit-button " [disabled]="!validForTranslationSubmit" (click)="submitThisQuestion()"><i class="fa fa-paper-plane"></i>&nbsp;Submit</button>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                                                    <h4 class="card-title text-center" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">
+                                                        <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Question in Nepali</p>
+                                                    </h4>
+                                                    <h4 class="card-title text-center" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">
+                                                        <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Question in English</p>
+                                                    </h4>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
+                                                    <button class="btn btn-secondary" (click)="markThisQuestionAsUnclear()" [hidden]="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Mark unclear</button>
                                                 </div>
                                             </div>
-                                        </div>
-
-                                        <div [hidden]="!taskObject.questionUnclear">
-                                            <strong>Give a small description that will facilitate the user in making the question
-                                                            clearer.</strong><br>
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                                    <textarea class="answer" [(ngModel)]="this.taskObject.descriptionForUnclear" #taskObjectDescriptionForUnclear="ngModel" placeholder="The question is too vague to answer. Please be a little more specific about it so we can properly answer your queries."></textarea>
-                                                    <button class="btn btn-primary answer-submit-button" (click)="submitUnclearQuestionWithDescription()"><i class="fa fa-paper-plane"></i>&nbsp;Send to
+                                                    <span class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">{{moderatorsTaskModel.currentJob.nepaliAnswer.answer}}</span>
+
+                                                    <span class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">{{moderatorsTaskModel.currentJob.englishQuestion.engQuestion}}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="card-body">
+
+                                            <div [hidden]="taskObject.questionUnclear">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <textarea class="answer" [disabled]="this.taskObject.questionUnclear" [(ngModel)]="this.taskObject.translation" #taskObjectTranslation="ngModel"></textarea>
+                                                        <button class="btn btn-primary answer-submit-button " [disabled]="!validForTranslationSubmit" (click)="submitThisQuestion()"><i class="fa fa-paper-plane"></i>&nbsp;Submit</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div [hidden]="!taskObject.questionUnclear">
+                                                <strong>Give a small description that will facilitate the user in making the question
+                                                            clearer.</strong><br>
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+                                                        <textarea class="answer" [(ngModel)]="this.taskObject.descriptionForUnclear" #taskObjectDescriptionForUnclear="ngModel" placeholder="The question is too vague to answer. Please be a little more specific about it so we can properly answer your queries."></textarea>
+                                                        <button class="btn btn-primary answer-submit-button" (click)="submitUnclearQuestionWithDescription()"><i class="fa fa-paper-plane"></i>&nbsp;Send to
                                                                     user</button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -171,7 +174,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+
     </div>
 </div>
 

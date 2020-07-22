@@ -51,7 +51,14 @@
 </div>
 
 <ng-template #addModalForm>
-    <app-add-edit-astrologer [currentlyEditingItem]="currentlyEditingItem"></app-add-edit-astrologer>
+    <div class="modal-body">
+
+        <h5 class="title"> {{currentlyEditingItem === 'new' ? 'Add': 'Edit'}} <span style="color: #47419c;">astrologer</span>
+            <span class="modal-close-btn" (click)=" this.bsModalRef.hide();"><i class="fa fa-times" aria-hidden="true"></i></span>
+        </h5>
+
+        <app-add-edit-astrologer [currentlyEditingItem]="currentlyEditingItem"></app-add-edit-astrologer>
+    </div>
 </ng-template>
 
 <ng-template #viewAstrologerModal>

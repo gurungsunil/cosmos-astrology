@@ -7,6 +7,8 @@
     padding: 15px;
     min-height: 100vh;
     width: 100%;
+    animation: pulse 5s infinite;
+    background: linear-gradient(45deg, rgb(133, 28, 39) 0%, rgb(133, 28, 39) 1%, rgb(191, 40, 36) 1%, rgb(191, 40, 36) 15%, rgb(76, 15, 42) 15%, rgb(76, 15, 42) 38%, rgb(162, 34, 38) 38%, rgb(162, 34, 38) 55%, rgb(220, 46, 35) 55%, rgb(220, 46, 35) 62%, rgb(105, 21, 41) 62%, rgb(105, 21, 41) 63%, rgb(47, 9, 44) 63%, rgb(47, 9, 44) 69%, rgb(18, 3, 45) 69%, rgb(18, 3, 45) 100%);
 }
 
 .login-form-wrapper {
@@ -17,7 +19,8 @@
     border-radius: .25rem;
     width: 390px;
     padding: 2em;
-    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+    background: #ffffffd1;
+    box-shadow: 0px 0px 26px 0px rgb(19, 14, 45);
 }
 
 .logo-wrapper img {
@@ -38,13 +41,13 @@
 .sign-in-text h2 {
     margin-top: 0;
     font-weight: 900;
-    color: #11111187;
+    color: #524b7f;
     text-transform: uppercase;
     letter-spacing: 3px;
 }
 
 .form-signin {
-    background: #e8f0fe59;
+    background: #ebdee5;
     padding: 6%;
     border-radius: 5px;
 }

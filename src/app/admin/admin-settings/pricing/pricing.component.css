@@ -1,15 +1,17 @@
 .card {
-    background-color: #f4fbfa;
+    background: #f8f8fa;
 }
 
 .form-inline .form-group {
     padding-right: 2%;
 }
 
-.form-control {
+
+/* .form-control {
     background: white;
     width: auto;
-}
+    margin: 0 auto;
+} */
 
 form {
     margin-bottom: 4%;
@@ -19,4 +21,12 @@ form {
     padding: .5rem .75rem;
     margin: 1.7rem 0rem;
     font-weight: 600;
+}
+
+#previous-pricing {
+    padding-top: 1%;
+}
+
+.table-responsive {
+    padding-top: 3%;
 }

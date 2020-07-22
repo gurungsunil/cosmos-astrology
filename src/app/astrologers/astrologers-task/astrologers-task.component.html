@@ -16,108 +16,109 @@
                 </div>
             </div>
         </div>
-        <div class="row" *ngIf="astrologersTaskModel!==null">
-            <div class="col-md-12">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="card">
-                            <div class="card-header text-center">
-                                <h4 class="card-title">
-                                    History
-                                </h4>
-                            </div>
-                            <div class="card-body chat-box-history-container ">
-                                <div *ngFor="let questionAnswerHistoryOne of astrologersTaskModel.questionerDetails.previousQueries; index as i">
-                                    <div class="row chat-box-user-wrapper">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="chat-box-user" cdkDrag>
-                                                <p>{{questionAnswerHistoryOne.question}}</p>
-                                                <!-- <p class="chat-box-details">{{questionAnswerHistoryOne.createdAt}}</p> -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row chat-box-user-reply-wrapper">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="chat-box-user-reply" cdkDrag>
-                                                <p>{{questionAnswerHistoryOne.answer}}</p>
-                                                <!-- <p class="chat-box-details">hhjvjhvjhv</p> -->
-                                            </div>
-                                        </div>
-                                    </div>
+        <ng-container *ngIf="astrologersTaskModel!==null">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <h4 class="card-title">
+                                        History
+                                    </h4>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header text-center">
-                                        <h4 class="card-title">
-                                            {{astrologersTaskModel.questionerDetails.user.firstName}}&nbsp;{{astrologersTaskModel.questionerDetails.user.lastName}}
-                                        </h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row user-details">
-                                            <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-                                                <div>
-                                                    <p>
-                                                        <span class="user-details-icon"><i class="fa fa-envelope-open"
-                                                                                    aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Email:</span> {{astrologersTaskModel.questionerDetails.user.email}}
-                                                    </p>
-
-                                                    <p>
-                                                        <span class="user-details-icon"><i class="fa fa-phone"
-                                                                                    aria-hidden="true"></i></span>
-                                                        <span class="user-details-title"> Phone:</span> {{astrologersTaskModel.questionerDetails.user.phoneNumber}}
-                                                    </p>
-
-                                                    <p><span class="user-details-icon"><i class="fa fa-mars-stroke" aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Gender:</span> {{astrologersTaskModel.questionerDetails.user.gender}}
-                                                    </p>
-
-                                                    <p><span class="user-details-icon"><i class="fa fa-location-arrow"
-                                                                                    aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Address:</span> {{astrologersTaskModel.questionerDetails.user.city}},{{astrologersTaskModel.questionerDetails.user.state}},{{astrologersTaskModel.questionerDetails.user.country}}
-                                                    </p>
-
-                                                    <p><span class="user-details-icon"><i class="fa fa-calendar-plus"
-                                                                                    aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Date of birth:</span> {{astrologersTaskModel.questionerDetails.user.dateOfBirth}}
-                                                    </p>
-
-                                                    <p><span class="user-details-icon"><i class="fa fa-clock"
-                                                                                    aria-hidden="true"></i></span>
-                                                        <span class="user-details-title">Time of birth:</span> {{astrologersTaskModel.questionerDetails.user.birthTime}} <span class="user-details-icon"> Accurate time:
-                                                                                {{astrologersTaskModel.questionerDetails.user.accurateTime}}</span></p>
+                                <div class="card-body chat-box-history-container ">
+                                    <div *ngFor="let questionAnswerHistoryOne of astrologersTaskModel.questionerDetails.previousQueries; index as i">
+                                        <div class="row chat-box-user-wrapper">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="chat-box-user" cdkDrag>
+                                                    <p>{{questionAnswerHistoryOne.question}}</p>
+                                                    <!-- <p class="chat-box-details">{{questionAnswerHistoryOne.createdAt}}</p> -->
                                                 </div>
                                             </div>
-                                            <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
-                                                <img *ngIf="astrologersTaskModel.questionerDetails.user.profileImageUrl !== null" [src]="astrologersTaskModel.questionerDetails.user.profileImageUrl" />
-                                                <img *ngIf="astrologersTaskModel.questionerDetails.user.profileImageUrl == null" src="./assets/img/user-logo.png" />
+                                        </div>
+                                        <div class="row chat-box-user-reply-wrapper">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="chat-box-user-reply" cdkDrag>
+                                                    <p>{{questionAnswerHistoryOne.answer}}</p>
+                                                    <!-- <p class="chat-box-details">hhjvjhvjhv</p> -->
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <hr>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="card-header">
-                                        <h4 class="card-title"> Q: &nbsp;{{astrologersTaskModel.questionerDetails.question}} </h4>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <textarea class="answer" [(ngModel)]="this.taskObject.answer" #taskObjectAnswer="ngModel"></textarea>
-                                                <button [disabled]="this.taskObject.answer == '' || this.taskObject.answer == null" class="btn btn-primary answer-submit-button " (click)="submitThisQuestion()"><i class="fa fa-paper-plane"></i>&nbsp;Submit</button>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="card">
+                                        <div class="card-header text-center">
+                                            <h4 class="card-title">
+                                                {{astrologersTaskModel.questionerDetails.user.firstName}}&nbsp;{{astrologersTaskModel.questionerDetails.user.lastName}}
+                                            </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row user-details">
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                    <div>
+                                                        <p>
+                                                            <span class="user-details-icon"><i class="fa fa-envelope-open"
+                                                                                    aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Email:</span> {{astrologersTaskModel.questionerDetails.user.email}}
+                                                        </p>
+
+                                                        <p>
+                                                            <span class="user-details-icon"><i class="fa fa-phone"
+                                                                                    aria-hidden="true"></i></span>
+                                                            <span class="user-details-title"> Phone:</span> {{astrologersTaskModel.questionerDetails.user.phoneNumber}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-mars-stroke" aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Gender:</span> {{astrologersTaskModel.questionerDetails.user.gender}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-location-arrow"
+                                                                                    aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Address:</span> {{astrologersTaskModel.questionerDetails.user.city}},{{astrologersTaskModel.questionerDetails.user.state}},{{astrologersTaskModel.questionerDetails.user.country}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-calendar-plus"
+                                                                                    aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Date of birth:</span> {{astrologersTaskModel.questionerDetails.user.dateOfBirth}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-clock"
+                                                                                    aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Time of birth:</span> {{astrologersTaskModel.questionerDetails.user.birthTime}} <span class="user-details-icon"> Accurate time:
+                                                                                {{astrologersTaskModel.questionerDetails.user.accurateTime}}</span></p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                                                    <img *ngIf="astrologersTaskModel.questionerDetails.user.profileImageUrl !== null" [src]="astrologersTaskModel.questionerDetails.user.profileImageUrl" />
+                                                    <img *ngIf="astrologersTaskModel.questionerDetails.user.profileImageUrl == null" src="./assets/img/user-logo.png" />
+                                                </div>
                                             </div>
                                         </div>
-                                        <hr>
-                                        <!-- <div [hidden]="!taskObject.questionUnclear">
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card qa-wrapper">
+                                        <div class="card-header">
+                                            <h4 class="card-title"> Q: &nbsp;{{astrologersTaskModel.questionerDetails.question}} </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <textarea class="answer" [(ngModel)]="this.taskObject.answer" #taskObjectAnswer="ngModel"></textarea>
+                                                    <button [disabled]="this.taskObject.answer == '' || this.taskObject.answer == null" class="btn btn-primary answer-submit-button " (click)="submitThisQuestion()"><i class="fa fa-paper-plane"></i>&nbsp;Submit</button>
+                                                </div>
+                                            </div>
+                                            <hr>
+                                            <!-- <div [hidden]="!taskObject.questionUnclear">
                                                 <strong>Give a small description that will facilitate the user in making the question
                                                         clearer.</strong><br>
                                                 <textarea class="moderator-answer" [(ngModel)]="this.taskObject.descriptionForUnclear" #taskObjectDescriptionForUnclear="ngModel" placeholder="The question is too vague to answer. Please be a little more specific about it so we can properly answer your queries."></textarea>
@@ -128,8 +129,8 @@
                                                     </div>
                                                 </div>
                                             </div> -->
-                                    </div>
-                                    <!-- <div class="card-footer" [hidden]="true">
+                                        </div>
+                                        <!-- <div class="card-footer" [hidden]="true">
                                             <div class="row text-center" [hidden]="taskObject.questionUnclear">
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><button class="btn btn-secondary" (click)="skipThisQuestion(astrologersTaskModel.engQuesId)">Skip</button></div>
                                                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"><button class="btn btn-primary" (click)="submitThisQuestion(astrologersTaskModel)">Submit</button></div>
@@ -137,13 +138,15 @@
                                             </div>
             
                                         </div> -->
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </ng-container>
+
     </div>
 </div>
 

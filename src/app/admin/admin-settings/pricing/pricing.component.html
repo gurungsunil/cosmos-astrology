@@ -17,53 +17,59 @@
                         <ngx-spinner [fullScreen]="false" bdOpacity="1" bdColor="none" size="large" color="#ffffff" type="ball-atom">
                         </ngx-spinner>
                         <div class="card-header">
-                            <h4 class="card-title"> Set new price</h4>
+                            <h4 class="card-title text-center"> <span style="color: #47419c">Set </span>new price</h4>
                         </div>
                         <div class="card-body">
-                            <div class="container">
+                            <div id="new-price">
                                 <form #questionPriceForm="ngForm" (ngSubmit)="saveQuestionPrice(questionPriceForm)" novalidate>
                                     <div class="row">
-                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                        <div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+                                            <!-- <label>Lorem ipsum</label>
+                                            <input class="form-control"> -->
+                                        </div>
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 text-center">
                                             <label for="questionPrice">Question Price:</label>
                                             <input type="number" class="form-control" ngModel #questionPrice="ngModel" required name="questionPrice">
                                         </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 text-center">
                                             <label for="discountInPercentage">Discount(%):</label>
                                             <input type="number" class="form-control" ngModel #discountInPercentage="ngModel" name="discountInPercentage">
                                         </div>
-                                        <div class="col-lg-3 col-md-3 col-sm-4 col-xs-12 ">
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-12 text-center">
                                             <button class="btn btn-primary save-price-button" type="submit" [disabled]="!questionPriceForm.valid">Edit & save</button>
                                         </div>
                                     </div>
                                 </form>
                             </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <h4 class="card-title"> Previous pricing</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <div *ngIf="this.questionPriceHistory.length == 0">No prices have been set as of yet.</div>
-                                <table datatable class="table" *ngIf="this.questionPriceHistory.length > 0">
-                                    <thead class="text-primary">
-                                        <tr>
-                                            <th>Question Price</th>
-                                            <th>Discount (%)</th>
-                                            <th>Created at</th>
-                                            <th>Updated at</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr *ngFor="let questionPriceHistoryOne of this.questionPriceHistory">
-                                            <td>{{questionPriceHistoryOne.questionPrice}}</td>
-                                            <td>{{questionPriceHistoryOne.discountInPercentage}}</td>
-                                            <td>{{questionPriceHistoryOne.createdAt | date:'medium'}}</td>
-                                            <td>{{questionPriceHistoryOne.updatedAt | date:'medium'}}</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+
+                            <hr>
+
+                            <div id="previous-pricing">
+                                <h4 class="card-title text-center"> <span style="color: #47419c">Previous</span> pricing</h4>
+                                <div class="table-responsive">
+                                    <div *ngIf="this.questionPriceHistory.length == 0">No prices have been set as of yet.</div>
+                                    <table datatable class="table" *ngIf="this.questionPriceHistory.length > 0">
+                                        <thead class="text-primary">
+                                            <tr>
+                                                <th>Question Price</th>
+                                                <th>Discount (%)</th>
+                                                <th>Created at</th>
+                                                <th>Updated at</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let questionPriceHistoryOne of this.questionPriceHistory">
+                                                <td>{{questionPriceHistoryOne.questionPrice}}</td>
+                                                <td>{{questionPriceHistoryOne.discountInPercentage}}</td>
+                                                <td>{{questionPriceHistoryOne.createdAt | date:'medium'}}</td>
+                                                <td>{{questionPriceHistoryOne.updatedAt | date:'medium'}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>

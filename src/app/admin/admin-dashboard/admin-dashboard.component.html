@@ -1,10 +1,9 @@
 <div class="container">
-
     <ngx-spinner [fullScreen]="false" bdOpacity="0.9" bdColor="#929292b5" size="large" color="#fff" type="ball-beat"></ngx-spinner>
     <div class="row page-top-text">
         <div class="col-12 text-right">
-            <h2 class="mg-bt-small">Today's Stats</h2>
-            <h2 class="mg-bt-small"> <span style="color: #f3b24c;">{{today | date:'fullDate'}}</span></h2>
+            <h2 class="mg-bt-small"><span style="color: #cccccc">Today's Stats</span></h2>
+            <h2 class="mg-bt-small"> {{today | date:'fullDate'}}</h2>
         </div>
     </div>
 
@@ -20,7 +19,7 @@
             <div class="row">
                 <div class="col-lg-9 col-md-9 col-sm-6 col-xs-6">
                     <div class="text-center">
-                        <h1 style="font-weight: 100; text-transform: uppercase;">All Year Revenue Chart</h1>
+                        <h1 style="font-weight: 100; text-transform: uppercase;">All Year Revenue Chart </h1>
                     </div>
                     <div class="card" id="all-year-chart">
                         <div class="card-body">
