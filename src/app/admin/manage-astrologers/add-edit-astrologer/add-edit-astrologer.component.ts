@@ -15,6 +15,8 @@ export class AddEditAstrologerComponent implements OnInit {
   @Input() currentlyEditingItem;
 
   public reactiveForm: FormGroup;
+  invalid: boolean = false;
+  invalidMessage: string; 
 
   constructor(private _fb: FormBuilder, 
     private _astrologersService: AstrologersService,
@@ -72,6 +74,8 @@ export class AddEditAstrologerComponent implements OnInit {
       this.spinner.hide();
     },
     error=>{
+      this.invalid = true;
+      this.invalidMessage = error;
       this.spinner.hide();
     });
   }
@@ -86,6 +90,9 @@ export class AddEditAstrologerComponent implements OnInit {
     }
     ,
     error=>{
+      this.invalid = true;
+      console.log(error);
+      this.invalidMessage = error;
       this.spinner.hide();
     });
   }

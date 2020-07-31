@@ -5406,7 +5406,7 @@ table.dataTable.no-footer {
 
 .question-for-reply-or-translation {
     font-weight: 800;
-    color: #f8b135;
+    color: #2e2a68;
     font-size: larger;
 }
 
@@ -5569,3 +5569,43 @@ table.dataTable.no-footer {
 
 
 /* NO DATA IN TABLE END  */
+
+
+/* INVALID DATA DIV  */
+
+.invalid {
+    background: #f9dbdf;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px 18px 10px 18px;
+    font-size: 15px;
+    line-height: 1.2;
+    color: darkred;
+}
+
+.invalid .form-control {
+    color: darkred;
+    border: none;
+}
+
+label.error-in-this {
+    color: #ff0000;
+}
+
+input.error-in-this {
+    background-color: #e61f1f2e;
+    border: 1px solid #ff0000;
+}
+
+
+/* END INVALID DATA DIV  */
+
+.cl-green,
+.cl-green .fa {
+    color: #93ff43 !important;
+}
+
+.cl-red,
+.cl-red .fa {
+    color: #ea5a5a !important;
+}

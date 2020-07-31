@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { AuthModule } from './auth/auth.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { AstrologersModule } from './astrologers/astrologers.module';
 import { CountUpModule } from 'ngx-countup';
 import { ChartsModule } from 'ng2-charts';
+import { ErrorInterceptor } from './auth/error.interceptor';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -42,9 +43,7 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
           'localhost:8080',
-          '193.37.152.233:8080',
-          'cosmos.southeastasia.cloudapp.azure.com',
-          '58db9ea39574.ngrok.io'
+          '144.91.121.115:8080'
         ],
         blacklistedRoutes: []
       }
@@ -59,7 +58,8 @@ export function tokenGetter() {
     AstrologersModule
     // END OF CUSTOM MODULES 
   ],
-  providers: [AppService],
+  providers: [AppService,
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

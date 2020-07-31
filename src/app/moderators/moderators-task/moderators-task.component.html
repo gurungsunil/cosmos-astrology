@@ -105,8 +105,12 @@
 
                                                         <p><span class="user-details-icon"><i class="fa fa-clock"
                                                                         aria-hidden="true"></i></span>
-                                                            <span class="user-details-title">Time of birth:</span> {{moderatorsTaskModel.userDetails.birthTime}} <span class="user-details-icon"> Accurate time:
-                                                                    {{moderatorsTaskModel.userDetails.accurateTime}}</span></p>
+                                                            <span class="user-details-title">Time of birth:</span> {{moderatorsTaskModel.userDetails.birthTime}}
+                                                            <span class="user-details-icon" [ngClass]="moderatorsTaskModel.userDetails.accurateTime == true? 'cl-green':'cl-red'"> 
+                                                                <i class="fa fa-check" *ngIf="moderatorsTaskModel.userDetails.accurateTime" aria-hidden="true"></i>
+                                                                <i class="fa fa-times" *ngIf="!moderatorsTaskModel.userDetails.accurateTime" aria-hidden="true"></i>
+                                                                {{moderatorsTaskModel.userDetails.accurateTime==true?'Accurate time':'Not accurate time'}}</span>
+                                                        </p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">

@@ -41,8 +41,9 @@ export class AppComponent {
     // this._appService.reloginOverlay$.subscribe(reloginOverlay => {
     //   this.reloginOverlay = reloginOverlay;
     // });
-
-    this.userRole = this._authService.currentUser.auth;
+    if ((this._authService.getToken()) !== null){
+      this.userRole = this._authService.currentUser.auth;
+    }
   }
 
   selectNavbarFunc() {

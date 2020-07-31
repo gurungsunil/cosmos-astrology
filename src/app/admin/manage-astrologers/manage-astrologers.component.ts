@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { AstrologersService } from 'src/app/astrologers/astrologers.service';
@@ -11,9 +11,10 @@ import { ToastrService } from 'ngx-toastr';
   templateUrl: './manage-astrologers.component.html',
   styleUrls: ['./manage-astrologers.component.css']
 })
-export class ManageAstrologersComponent implements OnInit {
+export class ManageAstrologersComponent implements OnInit, OnDestroy {
 
   contentForm: FormGroup;
+  addEditAstSubscriber;
   currentlyEditingItem = null;
   bsModalRef: BsModalRef;
   public astrologersList = [];
@@ -46,7 +47,7 @@ export class ManageAstrologersComponent implements OnInit {
   }
 
   closeModalFunc() {
-    this._adminService.addAstrologerResponse.subscribe(astrologer=>{
+    this.addEditAstSubscriber = this._adminService.addAstrologerResponse.subscribe(astrologer=>{
       if (astrologer !== null && this.currentlyEditingItem == 'new'){
         this.astrologersList.push(astrologer);
         this.bsModalRef.hide();
@@ -88,6 +89,10 @@ export class ManageAstrologersComponent implements OnInit {
     } else {
       this.bsModalRef.hide();
     }
+  }
+
+  ngOnDestroy() {
+    this.addEditAstSubscriber.unsubscribe();
   }
 
 }

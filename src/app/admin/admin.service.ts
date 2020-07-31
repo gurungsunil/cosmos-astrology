@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, forkJoin } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject, Observable, forkJoin, throwError } from 'rxjs';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AdminMessage } from './admin-settings/admin-messages/admin-messages.model';
 import { QuestionPrice } from './admin-settings/pricing/pricing.model';
 import { DatePipe } from '@angular/common';
 import { MonthlyRevenueReportModel } from './admin-dashboard/dashboard-report.model';
+import { retry, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AdminService {
   private MOD_ANSWERS_ALL = `${this.ROOT_URL}/admin/modAnswers/all`;
   private DASHBOARD_REPORT = `${this.ROOT_URL}/admin/dashboard`;
   private MONTHLY_REVENUE_REPORT = `${this.ROOT_URL}/admin/monthly-revenue-report?year=`;
- 
+
 
   private AST_WORK_REPORT = `${this.ROOT_URL}/admin/astrologers-work-report?`;
   private MOD_WORK_REPORT = `${this.ROOT_URL}/admin/moderators-work-report?`;
@@ -74,7 +75,7 @@ export class AdminService {
 
   //DASHBOARD START 
 
-  getDashboardReport() : Observable<any> {
+  getDashboardReport(): Observable<any> {
     return this.http.get<any>(
       this.DASHBOARD_REPORT
     );
@@ -83,7 +84,7 @@ export class AdminService {
   getMonthlyRevenueReport(): Observable<MonthlyRevenueReportModel[]> {
     let date = new Date();
     let currentYear = date.getFullYear();
-    return this.http.get<MonthlyRevenueReportModel[]>(this.MONTHLY_REVENUE_REPORT+currentYear)
+    return this.http.get<MonthlyRevenueReportModel[]>(this.MONTHLY_REVENUE_REPORT + currentYear)
   }
 
   getModAnswersAll(): Observable<any> {
@@ -98,26 +99,38 @@ export class AdminService {
     const fromDateStandard = this.toStandardDate(fromDate);
     const toDateStandard = this.toStandardDate(toDate);
     return this.http.get<any>(
-      this.AST_WORK_REPORT + 'fromDate='+ fromDateStandard+ '&toDate='+ toDateStandard
-    );
+      this.AST_WORK_REPORT + 'fromDate=' + fromDateStandard + '&toDate=' + toDateStandard
+    ).pipe(retry(2), catchError(this.handleError));
   }
 
-    //ASTROLOGERS WORK REPORT END
+  //ASTROLOGERS WORK REPORT END
 
-    // MODERATORS WORK REPORT 
-    getModeratorsWorkReport(fromDate, toDate): Observable<any> {
-      const fromDateStandard = this.toStandardDate(fromDate);
-      const toDateStandard = this.toStandardDate(toDate);
-      return this.http.get<any>(
-        this.MOD_WORK_REPORT + 'fromDate='+ fromDateStandard+ '&toDate='+ toDateStandard
-      );
-    }
-    // MODERATORS WORK REPORT END 
+  // MODERATORS WORK REPORT 
+  getModeratorsWorkReport(fromDate, toDate): Observable<any> {
+    const fromDateStandard = this.toStandardDate(fromDate);
+    const toDateStandard = this.toStandardDate(toDate);
+    return this.http.get<any>(
+      this.MOD_WORK_REPORT + 'fromDate=' + fromDateStandard + '&toDate=' + toDateStandard
+    ).pipe(retry(2), catchError(this.handleError));
+  }
+  // MODERATORS WORK REPORT END 
 
-    toStandardDate(date: Date) {
-      const format = 'yyyy/MM/dd';
-      let pipe = new DatePipe('en-US');
-     return pipe.transform(date, format);
+  toStandardDate(date: Date) {
+    const format = 'yyyy/MM/dd';
+    let pipe = new DatePipe('en-US');
+    return pipe.transform(date, format);
+  }
+
+  handleError(error: HttpErrorResponse) {
+    if (error.error instanceof ErrorEvent) {
+      console.error('An error occurred:', error.error.message);
+    } else {
+      console.error(
+        `Backend returned code ${error.status}, `);
     }
+    return throwError(
+      'Something bad happened; please try again later.');
+  };
+
 
 }

@@ -90,8 +90,11 @@
 
                                                         <p><span class="user-details-icon"><i class="fa fa-clock"
                                                                                     aria-hidden="true"></i></span>
-                                                            <span class="user-details-title">Time of birth:</span> {{astrologersTaskModel.questionerDetails.user.birthTime}} <span class="user-details-icon"> Accurate time:
-                                                                                {{astrologersTaskModel.questionerDetails.user.accurateTime}}</span></p>
+                                                            <span class="user-details-title">Time of birth:</span> {{astrologersTaskModel.questionerDetails.user.birthTime}}
+                                                            <span class="user-details-icon" [ngClass]="astrologersTaskModel.questionerDetails.user.accurateTime == true? 'cl-green':'cl-red'"> 
+                                                                <i class="fa fa-check" *ngIf="astrologersTaskModel.questionerDetails.user.accurateTime" aria-hidden="true"></i>
+                                                                <i class="fa fa-times" *ngIf="!astrologersTaskModel.questionerDetails.user.accurateTime" aria-hidden="true"></i>
+                                                                {{astrologersTaskModel.questionerDetails.user.accurateTime==true?'Accurate time':'Not accurate time'}}</span></p>
                                                     </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
@@ -108,7 +111,7 @@
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                     <div class="card qa-wrapper">
                                         <div class="card-header">
-                                            <h4 class="card-title"> Q: &nbsp;{{astrologersTaskModel.questionerDetails.question}} </h4>
+                                            <h4 class="card-title question-for-reply-or-translation"> Q: &nbsp;{{astrologersTaskModel.questionerDetails.question}} </h4>
                                         </div>
                                         <div class="card-body">
                                             <div class="row">

@@ -93,16 +93,3 @@ button:hover {
     background: #565187e6;
     color: #ffffff;
 }
-
-.invalid-user {
-    background: #f9dbdf;
-    border-radius: 4px;
-    margin-bottom: 10px;
-    padding: 10px 18px 10px 18px;
-    font-size: 15px;
-    line-height: 1.2;
-}
-
-.invalid-user .form-control {
-    color: darkred;
-}

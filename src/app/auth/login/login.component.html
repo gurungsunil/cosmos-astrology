@@ -24,7 +24,7 @@
 
         <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
 
-            <div class="form-group" class="invalid-user" [hidden]="!this.invalidLogin">
+            <div class="form-group" class="invalid" [hidden]="!this.invalidLogin">
                 <small class="form-control">Invalid username/ password</small>
             </div>
 

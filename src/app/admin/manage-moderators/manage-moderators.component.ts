@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, OnDestroy } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ModeratorsService } from 'src/app/moderators/moderators.service';
 import { FormGroup, FormBuilder } from '@angular/forms';
@@ -12,9 +12,10 @@ import { Subject } from 'rxjs';
   templateUrl: './manage-moderators.component.html',
   styleUrls: ['./manage-moderators.component.css']
 })
-export class ManageModeratorsComponent implements OnInit {
+export class ManageModeratorsComponent implements OnInit, OnDestroy {
 
   contentForm: FormGroup;
+  addEditModSubscriber;
   currentlyEditingItem = null;
   currentlyDeletingItem = null;
   bsModalRef: BsModalRef;
@@ -41,7 +42,6 @@ export class ManageModeratorsComponent implements OnInit {
     },
       error => {
         this.spinner.hide();
-        console.log(error);
       });
   }
 
@@ -51,7 +51,7 @@ export class ManageModeratorsComponent implements OnInit {
   }
 
   closeModalFunc() {
-    this._adminService.addModeratorResponse.subscribe(moderator => {
+    this.addEditModSubscriber = this._adminService.addModeratorResponse.subscribe(moderator => {
       if (moderator !== null && this.currentlyEditingItem == 'new') {
         this.moderatorsList.push(moderator);
         this.bsModalRef.hide();
@@ -93,5 +93,9 @@ export class ManageModeratorsComponent implements OnInit {
     } else {
       this.bsModalRef.hide();
     }
+  }
+
+  ngOnDestroy() {
+    this.addEditModSubscriber.unsubscribe();
   }
 }

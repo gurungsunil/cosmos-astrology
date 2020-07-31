@@ -4,6 +4,9 @@
             <ngx-spinner [fullScreen]="false" bdOpacity="0.9" bdColor="#929292b5" size="large" color="#fff" type="ball-beat"></ngx-spinner>
             <div class="card-body">
                 <form [formGroup]="reactiveForm">
+                    <div class="row form-group" class="invalid" [hidden]="!this.invalid">
+                        <small class="form-control">{{this.invalidMessage}}</small>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
@@ -21,8 +24,8 @@
                     <div class="row">
                         <div class="col-md-4 pr-1" [hidden]="currentlyEditingItem !== 'new'">
                             <div class="form-group">
-                                <label for="exampleInputEmail1">Email address</label>
-                                <input type="email" class="form-control" placeholder="Email" formControlName="email">
+                                <label for="exampleInputEmail1" [ngClass]="invalidMessage == 'Astrologer with this email exists!'? 'error-in-this' : null">Email address</label>
+                                <input type="email" class="form-control" [ngClass]="invalidMessage == 'Astrologer with this email exists!'? 'error-in-this' : null" placeholder="Email" formControlName="email">
                             </div>
                         </div>
                         <div class="col-md-4 px-1" [hidden]="currentlyEditingItem !== 'new'">
