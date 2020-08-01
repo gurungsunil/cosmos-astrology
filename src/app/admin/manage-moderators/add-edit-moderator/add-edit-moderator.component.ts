@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModeratorsService } from '../../../moderators/moderators.service';
 import { ModeratorModel } from 'src/app/moderators/moderator.model';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -13,7 +13,7 @@ import { AdminService } from '../../admin.service';
 export class AddEditModeratorComponent implements OnInit {
 
   @Input() currentlyEditingItem;
-
+  public mouseOnSubmit: boolean = false;
   public reactiveForm: FormGroup;
   invalid: boolean = false;
   invalidMessage: string; 
@@ -47,16 +47,24 @@ export class AddEditModeratorComponent implements OnInit {
   initializeForm() {
     this.reactiveForm = this._fb.group({
       userId: [null],
-      firstName: [''],
-      lastName: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: [''],
       password:[''],
-      phoneNumber: [''],
-      gender: [''],
-      city: [''],
-      state: [''],
-      country: ['']
+      phoneNumber: ['', Validators.required],
+      gender: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required]
     });
+
+    if (this.currentlyEditingItem == 'new') {
+      this.reactiveForm.controls['email'].setValidators([Validators.required]);   
+      this.reactiveForm.controls['password'].setValidators([Validators.required]);              
+    } else {
+      this.reactiveForm.controls['email'].disable();
+      this.reactiveForm.controls['password'].disable();
+    }
   }
 
   saveOrUpdateForm(reactiveForm) {

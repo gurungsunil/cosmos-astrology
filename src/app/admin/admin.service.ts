@@ -34,17 +34,30 @@ export class AdminService {
 
   // MESSAGE START 
 
-  getMessage(messageType): Observable<AdminMessage> {
-    return this.http.get<AdminMessage>(
+  getMessage(messageType): Observable<AdminMessage[]> {
+    return this.http.get<AdminMessage[]>(
       this.ADMIN_MESSAGES + '?type=' + messageType
     );
   }
 
-  saveOrUpdateMessage(adminMessage: AdminMessage): Observable<AdminMessage> {
+  saveMessage(adminMessage: AdminMessage): Observable<AdminMessage> {
     return this.http.post<AdminMessage>(
       this.ADMIN_MESSAGES,
       adminMessage
     );
+  }
+
+  updateMessage(adminMessage: AdminMessage): Observable<AdminMessage> {
+    return this.http.put<AdminMessage>(
+      this.ADMIN_MESSAGES + '/' + adminMessage.messageId,
+      adminMessage
+    );
+  }
+
+  deleteMessage(adminMessage:AdminMessage) :Observable<any> {
+    return this.http.delete<AdminMessage>(
+      this.ADMIN_MESSAGES + '/' + adminMessage.messageId
+    )
   }
 
   public getAllAdminMessages(): Observable<any[]> {

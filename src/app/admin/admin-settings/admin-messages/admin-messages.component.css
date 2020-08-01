@@ -2,12 +2,16 @@
     box-shadow: 0px 10px 16px -2px #cccccc42;
 }
 
+/deep/ .modal-content {
+    background: #f8f8fa;
+}
+
 .mat-expansion-panel-header-title {
     font-weight: 600;
 }
 
 textarea {
-    width: 65%;
+    width: 90%;
     border-radius: 6px;
     min-height: 10em;
     overflow: hidden;
@@ -15,4 +19,15 @@ textarea {
     resize: none;
     padding: 1em;
     box-sizing: border-box;
+    margin-bottom: 1em;
+}
+
+.answer {
+    height: unset;
+    font-size: unset;
+    font-weight: unset;
+}
+
+.mg-tb-btn {
+    margin: 15% 0%;
 }

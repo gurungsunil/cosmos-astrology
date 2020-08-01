@@ -7,37 +7,40 @@
                     <div class="row form-group" class="invalid" [hidden]="!this.invalid">
                         <small class="form-control">{{this.invalidMessage}}</small>
                     </div>
+                    <div class="row form-group" class="invalid" [ngStyle]="{'opacity':(this.reactiveForm.invalid && mouseOnSubmit)?'1':'0'}">
+                        <small class="form-control">Incomplete form cannot be saved</small>
+                    </div>
                     <div class="row">
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label>First Name</label>
-                                <input type="text" class="form-control" placeholder="First Name" formControlName="firstName">
+                                <input type="text" class="form-control" [ngClass]="(this.reactiveForm.get('firstName').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="First Name" formControlName="firstName">
                             </div>
                         </div>
                         <div class="col-md-6 pl-1">
                             <div class="form-group">
                                 <label>Last Name</label>
-                                <input type="text" class="form-control" placeholder="Last Name" formControlName="lastName">
+                                <input type="text" class="form-control" [ngClass]="(this.reactiveForm.get('lastName').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="Last Name" formControlName="lastName">
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 pr-1" [hidden]="currentlyEditingItem !== 'new'">
+                        <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label for="exampleInputEmail1" [ngClass]="invalidMessage == 'Moderator with this email exists!'? 'error-in-this' : null">Email address</label>
-                                <input type="email" class="form-control" [ngClass]="invalidMessage == 'Moderator with this email exists!'? 'error-in-this' : null" placeholder="Email" formControlName="email">
+                                <input type="email" class="form-control" [ngClass]="((invalidMessage == 'Moderator with this email exists!') ||(this.reactiveForm.get('email').invalid && mouseOnSubmit)) ? 'error-in-this' : null" placeholder="Email" formControlName="email">
                             </div>
                         </div>
                         <div class="col-md-4 px-1" [hidden]="currentlyEditingItem !== 'new'">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Password</label>
-                                <input type="email" class="form-control" placeholder="Password" formControlName="password">
+                                <input type="email" class="form-control" [ngClass]="(this.reactiveForm.get('password').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="Password" formControlName="password">
                             </div>
                         </div>
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Phone number</label>
-                                <input type="email" class="form-control" placeholder="Phone number" formControlName="phoneNumber">
+                                <input type="email" class="form-control" [ngClass]="(this.reactiveForm.get('phoneNumber').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="Phone number" formControlName="phoneNumber">
                             </div>
                         </div>
                     </div>
@@ -45,7 +48,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="gender">Gender</label>
-                                <select id="gender" class="form-control" formControlName="gender">
+                                <select id="gender" class="form-control" formControlName="gender" [ngClass]="(this.reactiveForm.get('gender').invalid && mouseOnSubmit)? 'error-in-this': null">
                                   <option selected value="null" [disabled]="true">Choose...</option>
                                   <option value="male">Male</option>
                                   <option value="female">Female</option>
@@ -58,27 +61,28 @@
                         <div class="col-md-4 pr-1">
                             <div class="form-group">
                                 <label>City</label>
-                                <input type="text" class="form-control" placeholder="City" formControlName="city">
+                                <input type="text" class="form-control" [ngClass]="(this.reactiveForm.get('city').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="City" formControlName="city">
                             </div>
                         </div>
                         <div class="col-md-4 px-1">
                             <div class="form-group">
                                 <label>State</label>
-                                <input type="text" class="form-control" placeholder="State" formControlName="state">
+                                <input type="text" class="form-control" [ngClass]="(this.reactiveForm.get('state').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="State" formControlName="state">
                             </div>
                         </div>
                         <div class="col-md-4 pl-1">
                             <div class="form-group">
                                 <label>Country</label>
-                                <input type="text" class="form-control" placeholder="Country" formControlName="country">
+                                <input type="text" class="form-control" [ngClass]="(this.reactiveForm.get('country').invalid && mouseOnSubmit)? 'error-in-this': null" placeholder="Country" formControlName="country">
                             </div>
                         </div>
                     </div>
                     <div class="row text-center">
-                        <div class="col-md-12">
-                            <button class="btn btn-primary" (click)="saveOrUpdateForm(reactiveForm)">Save & close</button>
+                        <div class="col-md-12" (mouseenter)="mouseOnSubmit = true" (mouseleave)="mouseOnSubmit = false">
+                            <button class="btn btn-primary" (click)="saveOrUpdateForm(reactiveForm)" [disabled]=" !this.reactiveForm.valid ">Save & close</button>
                         </div>
                     </div>
+                    <br>
                 </form>
             </div>
         </div>

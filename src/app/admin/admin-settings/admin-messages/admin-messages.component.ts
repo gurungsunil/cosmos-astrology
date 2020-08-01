@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { AdminMessage, DEFAULT_ADMIN_MESSAGE } from './admin-messages.model';
 import { AdminService } from '../../admin.service';
 import { ToastrService } from 'ngx-toastr';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-admin-messages',
@@ -10,43 +12,153 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdminMessagesComponent implements OnInit {
 
-  welcomeMessage : AdminMessage = DEFAULT_ADMIN_MESSAGE;
-  systemMessage : AdminMessage = DEFAULT_ADMIN_MESSAGE;
+  welcomeMessage: AdminMessage = DEFAULT_ADMIN_MESSAGE;
+  previousWelcomeMessages: Array<AdminMessage>;
+  systemMessage: AdminMessage = DEFAULT_ADMIN_MESSAGE;
+  previousSystemMessages: Array<AdminMessage>;
+  previousMessagesList: Array<AdminMessage>;
+  bsModalRef: BsModalRef;
+  public currentlyEditingItem = null;
+  public currentlyDeletingItem = null;
 
-  constructor(private _adminService: AdminService, 
-    private _toastr: ToastrService) { }
+  constructor(
+    private modalService: BsModalService,
+    private _adminService: AdminService,
+    private _toastr: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     this.getAllAdminMessages();
   }
 
   getAllAdminMessages() {
-    this._adminService.getAllAdminMessages().subscribe(responseList=>{
-      this.welcomeMessage = responseList[0];
-      this.systemMessage = responseList[1];
-    },error => {
-      
+    this.spinner.show();
+    this._adminService.getAllAdminMessages().subscribe(responseList => {
+      this.previousWelcomeMessages = responseList[0];
+      this.previousSystemMessages = responseList[1];
+      this.spinner.hide();
+    }, error => {
+      this.spinner.hide();
     });
   }
 
-  saveWelcomeMessage() {
+  saveOrUpdateWelcomeMessage() {
     this.welcomeMessage.type = 'welcome';
-    this._adminService.saveOrUpdateMessage(this.welcomeMessage).subscribe(response=>{
-      this._toastr.success("Successfully saved welcome message.");
-    },
-    error=>{
-      this._toastr.error("Failed to save welcome message.");
-    });
+    if (this.currentlyEditingItem == null) {
+      this.saveWelcomeMessage();
+    } else {
+      this.updateWelcomeMessage();
+    }
   }
-  
-  saveSystemMessage() {
-    this.systemMessage.type = 'system';
-    this._adminService.saveOrUpdateMessage(this.systemMessage).subscribe(response=>{
-      this._toastr.success("Successfully saved system message.");
+
+  saveWelcomeMessage() {
+    this._adminService.saveMessage(this.welcomeMessage).subscribe(response => {
+      this._toastr.success("Successfully saved welcome message.");
+      this.previousWelcomeMessages.push(response);
+      this.currentlyEditingItem = null;
+      DEFAULT_ADMIN_MESSAGE.text = '';
     },
-    error=>{
-      this._toastr.error("Failed to save system message.");
-    });
+      error => {
+        this._toastr.error("Failed to save welcome message.");
+      });
+  }
+
+  updateWelcomeMessage() {
+    this._adminService.updateMessage(this.welcomeMessage).subscribe(response => {
+      this._toastr.success("Successfully updated welcome message.");
+      this.currentlyEditingItem = null;
+      this.welcomeMessage = DEFAULT_ADMIN_MESSAGE;
+      console.log(response);
+      this.previousWelcomeMessages.splice(this.previousWelcomeMessages.indexOf(this.currentlyEditingItem), 1,response)
+    },
+      error => {
+        this._toastr.error("Failed to update welcome message.");
+      });
+  }
+
+  saveOrUpdateSystemMessage() {
+    this.systemMessage.type = 'system';
+    if (this.currentlyEditingItem == null) {
+      this.saveSystemMessage();
+    } else {
+      this.updateSystemMessage();
+    }
+  }
+
+  saveSystemMessage() {
+    this._adminService.saveMessage(this.systemMessage).subscribe(response => {
+      this._toastr.success("Successfully saved system message.");
+      this.previousSystemMessages.push(response);
+      this.currentlyEditingItem = null;
+      DEFAULT_ADMIN_MESSAGE.text = '';
+    },
+      error => {
+        this._toastr.error("Failed to save system message.");
+      });
+  }
+
+  updateSystemMessage() {
+    this._adminService.updateMessage(this.systemMessage).subscribe(response => {
+      this._toastr.success("Successfully updated system message.");
+      this.currentlyEditingItem = null;
+      this.systemMessage = DEFAULT_ADMIN_MESSAGE;
+      console.log(response);
+      this.previousWelcomeMessages.splice(this.previousSystemMessages.indexOf(this.currentlyEditingItem), 1,response)
+    },
+      error => {
+        this._toastr.error("Failed to update system message.");
+      });
+  }
+
+  openModal(template: TemplateRef<any>, messageType: string) {
+    this.bsModalRef = this.modalService.show(template, { class: 'modal-md' });
+    if (messageType == 'welcome') {
+      this.previousMessagesList = this.previousWelcomeMessages;
+    } else if (messageType == 'system') {
+      this.previousMessagesList = this.previousSystemMessages;
+    }
+    this.currentlyEditingItem = null;
+    this.currentlyDeletingItem = null;
+  }
+
+  editThisMessage(message: AdminMessage) {
+    this.currentlyEditingItem = message;
+    this.bsModalRef.hide();
+    if (message.type == 'welcome') {
+      this.welcomeMessage = message;
+    } else {
+      this.systemMessage = message;
+    }
+  }
+
+  deleteThisMessage(message: AdminMessage) {
+    this.currentlyDeletingItem = message;
+  }
+
+  confirmDelete(confirm: boolean) {
+    if (confirm) {
+      this.spinner.show();
+      this._adminService.deleteMessage(this.currentlyDeletingItem).subscribe(response => {
+        this.spinner.hide();
+        this._toastr.success("Successfully deleted message");
+        let deletedMessageIndex = this.previousMessagesList.indexOf(this.currentlyDeletingItem);
+        this.previousMessagesList.splice(deletedMessageIndex, 1);
+        this.currentlyDeletingItem = null;
+      },
+        error => { 
+          this.spinner.hide();
+          if (error == 'OK') {
+            this._toastr.success("Successfully deleted message");
+            let deletedMessageIndex = this.previousMessagesList.indexOf(this.currentlyDeletingItem);
+            this.previousMessagesList.splice(deletedMessageIndex, 1);
+            this.currentlyDeletingItem = null;
+          } else {
+            this._toastr.error("Failed to delete");
+          }
+        });
+    } else {
+      this.currentlyDeletingItem = null;
+    }
   }
 
 }

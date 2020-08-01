@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AstrologersService } from 'src/app/astrologers/astrologers.service';
 import { AdminService } from '../../admin.service';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -15,6 +15,7 @@ export class AddEditAstrologerComponent implements OnInit {
   @Input() currentlyEditingItem;
 
   public reactiveForm: FormGroup;
+  public mouseOnSubmit: boolean = false;
   invalid: boolean = false;
   invalidMessage: string; 
 
@@ -46,16 +47,24 @@ export class AddEditAstrologerComponent implements OnInit {
   initializeForm() {
     this.reactiveForm = this._fb.group({
       userId: [null],
-      firstName: [''],
-      lastName: [''],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
       email: [''],
       password:[''],
-      phoneNumber: [''],
-      gender: [''],
-      city: [''],
-      state: [''],
-      country: ['']
+      phoneNumber: ['', Validators.required],
+      gender: ['', Validators.required],
+      city: ['', Validators.required],
+      state: ['', Validators.required],
+      country: ['', Validators.required]
     });
+
+    if (this.currentlyEditingItem == 'new') {
+      this.reactiveForm.controls['email'].setValidators([Validators.required]);   
+      this.reactiveForm.controls['password'].setValidators([Validators.required]);              
+    } else {
+      this.reactiveForm.controls['email'].disable();
+      this.reactiveForm.controls['password'].disable();
+    }
   }
 
   saveOrUpdateForm(reactiveForm) {
