@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ModeratorsComponent } from './moderators.component';
-import { RoleGuard } from '../auth/role-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from '../shared/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,7 +18,7 @@ const moderatorsRoutes: Routes = [
   {
     path: "moderators",
     component: ModeratorsComponent,
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard],
     data: { role: 'ROLE_MODERATOR' },
     children: [
       {

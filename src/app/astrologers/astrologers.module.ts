@@ -9,7 +9,6 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { MaterialModule } from '../shared/material.module';
 import { AuthModule } from '../auth/auth.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
-import { RoleGuard } from '../auth/role-guard.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { AstrologersTaskComponent } from './astrologers-task/astrologers-task.component';
 import { AstProfileComponent } from './ast-profile/ast-profile.component';
@@ -18,7 +17,7 @@ const astrologersRoutes: Routes = [
   {
     path: "astrologers",
     component: AstrologersComponent,
-    canActivate: [RoleGuard],
+    canActivate: [AuthGuard],
     data: { role: 'ROLE_ASTROLOGER' },
     children: [
       {

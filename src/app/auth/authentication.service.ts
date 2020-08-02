@@ -16,6 +16,8 @@ export class AuthenticationService {
   private AUTH_URL = `${this.BASE_URL}/signin`;
   private USER_EMAIL = '';
 
+  isLogin = false;
+    
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -43,19 +45,17 @@ export class AuthenticationService {
   }
 
   isLoggedIn() {
-    this.appService.setReloginOverlay(false);
 
-    if (this.getToken() === null) {
+    if (this.getToken() == null) {
       return false;
     }
 
     const date = this.getTokenExpirationDate(this.getToken());
-    if (date === null) {
+    if (date == null) {
       return false;
     }
 
     if (date.valueOf() < new Date().valueOf()) {
-      this.appService.setReloginOverlay(true);
       return 'token-expired';
     }
 
@@ -98,5 +98,9 @@ export class AuthenticationService {
       ).sub;
       this.USER_EMAIL = email;
     }
+  }
+
+  getRole() {
+    return this.currentUser.auth;
   }
 }
