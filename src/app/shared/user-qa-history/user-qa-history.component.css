@@ -1,0 +1,23 @@
+/* .container {
+    background: linear-gradient(to right, #0c2646 0%, #204065 60%, #2a5788 100%);
+} */
+
+.card {
+    background: transparent;
+    color: #9E9E9E;
+    font-size: 12px;
+    border-radius: .24rem;
+    /* border: 1px solid white; */
+}
+
+.card .card-footer .btn {
+    font-weight: 600;
+    font-size: 1em;
+    width: 70%;
+    margin: 5px 1px;
+}
+
+.mg-tb-1 {
+    margin-bottom: 1em;
+    margin-top: 1em;
+}

@@ -13,6 +13,7 @@ import { AuthModule } from '../auth/auth.module';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { UserQaHistoryComponent } from '../shared/user-qa-history/user-qa-history.component';
 
 const moderatorsRoutes: Routes = [
   {
@@ -35,7 +36,12 @@ const moderatorsRoutes: Routes = [
             redirectTo: 'moderators-task'
           }
         ]
-      }]
+      },
+      {
+        path: "user-qa-history/:userId",
+        canLoad: [AuthGuard],
+        component: UserQaHistoryComponent
+    }],
   }
 ];
 

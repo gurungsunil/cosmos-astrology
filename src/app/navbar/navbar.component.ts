@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from 'src/app/auth/authentication.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,8 @@ export class NavbarComponent implements OnInit {
   currentUser;
 
   constructor(private authService: AuthenticationService,
-    private router: Router) { }
+    private router: Router,
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     this.currentUser = this.authService.currentUser;
@@ -26,6 +28,14 @@ export class NavbarComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
+  }
+
+  searchUserQaHistory(userIdForm: NgForm) {
+    let parent;
+    this.route.url.subscribe((url) => {
+       parent = url[0].path;
+    })
+    this.router.navigate([parent.toString()+ '/user-qa-history/'+ (userIdForm.value).userId]);
   }
 
 }

@@ -1,0 +1,146 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-12 text-left">
+            <a [routerLink]="['../../']">Go back</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <ngx-spinner [fullScreen]="false" bdOpacity="1" bdColor="none" size="large" color="#ffffff" type="ball-atom">
+        </ngx-spinner>
+        <div class="row text-center" [hidden]="userQaHistory!==null">
+            <div class="col-md-12">
+                <div class="no-task-assigned-div">
+                    <h3 [hidden]="this.taskError==null">{{this.taskError}}</h3>
+                </div>
+            </div>
+        </div>
+
+        <ng-container *ngIf="userQaHistory!==null">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                            <div class="card">
+                                <div class="card-header text-center">
+                                    <h4 class="card-title">
+                                        <span style="color: #f3b982;">Chat </span> History
+                                    </h4>
+                                </div>
+                                <div class="card-body chat-box-history-container ">
+                                    <div *ngFor="let questionAnswerHistoryOne of userQaHistory.questionAnswerHistoryList; index as i">
+                                        <div class="row chat-box-user-wrapper">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="chat-box-user">
+                                                    <p class="chat-text">{{questionAnswerHistoryOne.engQuestion}}
+                                                    </p>
+                                                    <p>
+                                                        <span class="chat-box-details">{{questionAnswerHistoryOne.createdAt | date}} &nbsp;</span>
+                                                        <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'Clear'"><i class="fa fa-thumbs-up" aria-hidden="true"></i></span>
+                                                        <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'Unclear'"><i class="fa fa-thumbs-down" aria-hidden="true"></i></span>
+                                                        <span class="chat-box-details padding-none" *ngIf="questionAnswerHistoryOne.status == 'Assigned'"><i class="fa fa-clock" aria-hidden="true"></i></span></p>
+
+                                                    <ng-container *ngIf="questionAnswerHistoryOne.status == 'Clear'">
+                                                        <hr>
+                                                        <p class="chat-text">{{questionAnswerHistoryOne.translatedEngQuestion.translatedQuestion}}
+                                                        </p>
+                                                        <p class="chat-box-details padding-none text-right mg-tb-1">m.&nbsp;{{questionAnswerHistoryOne.translatedEngQuestion.translatedBy}}</p>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                        <div class="col-md-12 text-left">
+                                            <a class="see-translation"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div> -->
+                                        <div class="row chat-box-user-reply-wrapper" [hidden]="!questionAnswerHistoryOne.englishAnswer">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <div class="chat-box-user-reply">
+                                                    <p class="chat-text">{{questionAnswerHistoryOne.englishAnswer?.engReply}}</p>
+                                                    <p class="chat-box-details padding-none text-right mg-tb-1" *ngIf="questionAnswerHistoryOne.status == 'Clear'">m.&nbsp;{{questionAnswerHistoryOne.translatedEngQuestion.translatedBy}}</p>
+
+                                                    <ng-container *ngIf="questionAnswerHistoryOne.status == 'Clear'">
+                                                        <hr>
+                                                        <p class="chat-text">{{questionAnswerHistoryOne.nepaliAnswer?.nepReply}}</p>
+                                                        <p class="chat-box-details padding-none text-right mg-tb-1">a.&nbsp;{{questionAnswerHistoryOne.nepaliAnswer?.repliedBy}}</p>
+                                                    </ng-container>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <a class="see-translation"><i class="fa fa-eye"></i></a>
+                                        </div>
+                                    </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="card no-margin-bottom-res">
+                                        <div class="card-header text-center">
+                                            <h4 class="card-title">
+                                                <span style="color: #f3b982;"> {{userQaHistory.firstName}}</span>&nbsp;{{userQaHistory.lastName}}
+                                            </h4>
+                                        </div>
+                                        <div class="card-body">
+                                            <div class="row user-details">
+                                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+                                                    <div>
+                                                        <p>
+                                                            <span class="user-details-icon"><i class="fa fa-envelope-open"
+                                                                        aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Email:</span> {{userQaHistory.email}}
+                                                        </p>
+
+                                                        <p>
+                                                            <span class="user-details-icon"><i class="fa fa-phone"
+                                                                        aria-hidden="true"></i></span>
+                                                            <span class="user-details-title"> Phone:</span> {{userQaHistory.phoneNumber}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-mars-stroke" aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Gender:</span> {{userQaHistory.gender}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-location-arrow"
+                                                                        aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Address:</span> {{userQaHistory.city}},{{userQaHistory.state}},{{userQaHistory.country}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-calendar-plus"
+                                                                        aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Date of birth:</span> {{userQaHistory.dateOfBirth}}
+                                                        </p>
+
+                                                        <p><span class="user-details-icon"><i class="fa fa-clock"
+                                                                        aria-hidden="true"></i></span>
+                                                            <span class="user-details-title">Time of birth:</span> {{userQaHistory.birthTime}}
+                                                            <!-- <span class="user-details-icon" [ngClass]="userQaHistory.accurateTime == true? 'cl-green':'cl-red'"> 
+                                                                <i class="fa fa-check" *ngIf="userQaHistory.accurateTime" aria-hidden="true"></i>
+                                                                <i class="fa fa-times" *ngIf="!userQaHistory.accurateTime" aria-hidden="true"></i>
+                                                                {{userQaHistory.accurateTime==true?'Accurate time':'Not accurate time'}}</span> -->
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-center">
+                                                    <img *ngIf="userQaHistory.profileImageUrl !== null" [src]="userQaHistory.profileImageUrl" />
+                                                    <img *ngIf="userQaHistory.profileImageUrl == null" src="./assets/img/user-logo.png" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+
+    </div>
+</div>

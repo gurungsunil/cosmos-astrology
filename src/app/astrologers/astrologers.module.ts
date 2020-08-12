@@ -12,6 +12,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { AuthGuard } from '../auth/auth.guard';
 import { AstrologersTaskComponent } from './astrologers-task/astrologers-task.component';
 import { AstProfileComponent } from './ast-profile/ast-profile.component';
+import { UserQaHistoryComponent } from '../shared/user-qa-history/user-qa-history.component';
 
 const astrologersRoutes: Routes = [
   {
@@ -38,6 +39,11 @@ const astrologersRoutes: Routes = [
             component: AstProfileComponent
           }
         ]
+      },
+      {
+        path: "user-qa-history/:userId",
+        canLoad: [AuthGuard],
+        component: UserQaHistoryComponent
       }]
   }
 ];

@@ -8,6 +8,10 @@
     display: none;
 }
 
+.logo-normal img {
+    max-width: 15%;
+}
+
 @media (max-width: 991px) and (min-width: 480px) {
     .mobile-container {
         margin: auto;

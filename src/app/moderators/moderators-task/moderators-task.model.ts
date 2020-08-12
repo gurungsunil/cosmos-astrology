@@ -100,56 +100,56 @@ export interface ModeratorsTaskModel {
     questionAnswerHistoryList: Array<QuestionAnswerHistory>;
 }
 
-export const DEFAULT_MODERATORS_TASK_MODEL : ModeratorsTaskModel= {
-   "currentJob": {
-       "currentJobType": "nepali-answer",
-       "processUrl": null,
-       "englishQuestion": null,
-       "nepaliAnswer": {
-           "createdAt": "2019-11-26T15:54:14.000+0000",
-           "updatedAt": "2019-12-03T15:42:43.000+0000",
-           "id": 131,
-           "nepQuestionId": 130,
-           "userId": 107,
-           "answer": "safal hunxa"
-       }
-   },
-   "userDetails": {
-       "userId": 107,
-       "firstName": "Sijan",
-       "lastName": "Shrestha",
-       "email": "sijanstha123@gmail.com",
-       "phoneNumber": "9842496932",
-       "gender": "male",
-       "city": "ktm",
-       "state": "0",
-       "country": "Nepal",
-       "profileImageUrl": null,
-       "dateOfBirth": "2019-07-8",
-       "birthTime": "15:35",
-       "accurateTime": true
-   },
-   "questionAnswerHistoryList": [
-       {
-           "engQuestion": "When will I meet the true love of my life?",
-           "status": "clear",
-           "createdAt": "2019-11-26 21:26:43.0",
-           "translatedEngQuestion": {
-               "nepQuestionId": 130,
-               "translatedBy": "Voluptatum nulla aut Qui iure facere fugi",
-               "translatedOn": "2019-11-26 21:32:49.0",
-               "translatedQuestion": "mero true love kahile vetxu?"
-           },
-           "nepaliAnswer": {
-               "nepAnswerId": 131,
-               "nepReply": "safal hunxa",
-               "repliedBy": "Autem velit in corpo Qui cillum blanditii",
-               "repliedOn": "2019-11-26 21:39:14.0"
-           },
-           "englishAnswer": null
-       }
-   ]
-};
+// export const DEFAULT_MODERATORS_TASK_MODEL : ModeratorsTaskModel= {
+//    "currentJob": {
+//        "currentJobType": "nepali-answer",
+//        "processUrl": null,
+//        "englishQuestion": null,
+//        "nepaliAnswer": {
+//            "createdAt": "2019-11-26T15:54:14.000+0000",
+//            "updatedAt": "2019-12-03T15:42:43.000+0000",
+//            "id": 131,
+//            "nepQuestionId": 130,
+//            "userId": 107,
+//            "answer": "safal hunxa"
+//        }
+//    },
+//    "userDetails": {
+//        "userId": 107,
+//        "firstName": "Sijan",
+//        "lastName": "Shrestha",
+//        "email": "sijanstha123@gmail.com",
+//        "phoneNumber": "9842496932",
+//        "gender": "male",
+//        "city": "ktm",
+//        "state": "0",
+//        "country": "Nepal",
+//        "profileImageUrl": null,
+//        "dateOfBirth": "2019-07-8",
+//        "birthTime": "15:35",
+//        "accurateTime": true
+//    },
+//    "questionAnswerHistoryList": [
+//        {
+//            "engQuestion": "When will I meet the true love of my life?",
+//            "status": "clear",
+//            "createdAt": "2019-11-26 21:26:43.0",
+//            "translatedEngQuestion": {
+//                "nepQuestionId": 130,
+//                "translatedBy": "Voluptatum nulla aut Qui iure facere fugi",
+//                "translatedOn": "2019-11-26 21:32:49.0",
+//                "translatedQuestion": "mero true love kahile vetxu?"
+//            },
+//            "nepaliAnswer": {
+//                "nepAnswerId": 131,
+//                "nepReply": "safal hunxa",
+//                "repliedBy": "Autem velit in corpo Qui cillum blanditii",
+//                "repliedOn": "2019-11-26 21:39:14.0"
+//            },
+//            "englishAnswer": null
+//        }
+//    ]
+// };
 
  export interface TranslatedNepaliAnswer {
    nepQuestionId: number;

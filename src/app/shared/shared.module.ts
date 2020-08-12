@@ -5,24 +5,32 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { FooterComponent } from '../footer/footer.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { UserQaHistoryComponent } from './user-qa-history/user-qa-history.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: 
   [
     NavbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    UserQaHistoryComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
-    RouterModule
+    RouterModule,
+    NgxSpinnerModule,
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   exports: [
     NavbarComponent,
     SidebarComponent,
-    FooterComponent
+    FooterComponent,
+    UserQaHistoryComponent
   ]
 })
 export class SharedModule { }

@@ -1595,7 +1595,7 @@ fieldset[disabled] .btn-link.active {
 .input-group-addon {
     background-color: #FFFFFF;
     border: 1px solid #E3E3E3;
-    border-radius: 30px;
+    /* border-radius: 30px; */
     color: #555555;
     padding: -0.5rem 0 -0.5rem -0.3rem;
     -webkit-transition: color 0.3s ease-in-out, border-color 0.3s ease-in-out, background-color 0.3s ease-in-out;
@@ -2226,6 +2226,10 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
     text-align: center;
 }
 
+.navbar a.link {
+    cursor: pointer;
+}
+
 .navbar.bg-white .input-group .form-control,
 .navbar.bg-white .input-group.no-border .form-control {
     color: #888;
@@ -2438,7 +2442,7 @@ a[data-toggle="collapse"][aria-expanded="true"] .caret,
 }
 
 .navbar.navbar-transparent {
-    background-color: transparent !important;
+    background-color: #333639 !important;
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #FFFFFF;

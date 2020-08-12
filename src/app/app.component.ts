@@ -15,7 +15,7 @@ export class AppComponent {
   userRole;
 
   _authService: AuthenticationService;
-  selectNavbar = 0;
+  // selectNavbar = 0;
   reloginOverlay = false;
   loading: boolean;
 
@@ -34,29 +34,26 @@ export class AppComponent {
         this.loading = true;
       } else if (event instanceof NavigationEnd) {
         this.loading = false;
-        this.selectNavbarFunc();
+        // this.selectNavbarFunc();
       }
     });
 
-    // this._appService.reloginOverlay$.subscribe(reloginOverlay => {
-    //   this.reloginOverlay = reloginOverlay;
-    // });
     if ((this._authService.getToken()) !== null){
       this.userRole = this._authService.currentUser.auth;
     }
   }
 
-  selectNavbarFunc() {
-    const currentUrl = this._router.url;
-    const temp = currentUrl.split("/");
+  // selectNavbarFunc() {
+  //   const currentUrl = this._router.url;
+  //   const temp = currentUrl.split("/");
 
-    switch (temp[1]) {
-      case "login":
-        this.selectNavbar = 0;
-        break;
+  //   switch (temp[1]) {
+  //     case "login":
+  //       this.selectNavbar = 0;
+  //       break;
 
-      default:
-        this.selectNavbar = 1;
-    }
-  }
+  //     default:
+  //       this.selectNavbar = 1;
+  //   }
+  // }
 }

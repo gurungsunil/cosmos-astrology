@@ -17,6 +17,7 @@ import { AstrologersModule } from './astrologers/astrologers.module';
 import { CountUpModule } from 'ngx-countup';
 import { ChartsModule } from 'ng2-charts';
 import { ErrorInterceptor } from './auth/error.interceptor';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -43,7 +44,8 @@ export function tokenGetter() {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
           'localhost:8080',
-          '144.91.121.115:8080'
+          '144.91.121.115:8080',
+          'api.cosmosastrology.com'
         ],
         blacklistedRoutes: []
       }
@@ -59,7 +61,8 @@ export function tokenGetter() {
     // END OF CUSTOM MODULES 
   ],
   providers: [AppService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },],
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
