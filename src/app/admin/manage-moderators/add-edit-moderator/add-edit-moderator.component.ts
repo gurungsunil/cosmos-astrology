@@ -84,7 +84,7 @@ export class AddEditModeratorComponent implements OnInit {
     },
     error=>{
       this.invalid = true;
-      this.invalidMessage = error;
+      this.invalidMessage = error.message;
       this.spinner.hide();
     });
   }
@@ -100,7 +100,7 @@ export class AddEditModeratorComponent implements OnInit {
     ,
     error=>{
       this.invalid = true;
-      this.invalidMessage = error;
+      this.invalidMessage = error.message;
       this.spinner.hide();
     });
   }

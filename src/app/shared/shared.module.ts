@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { UserQaHistoryComponent } from './user-qa-history/user-qa-history.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 @NgModule({
   declarations: 
@@ -15,7 +16,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
-    UserQaHistoryComponent
+    UserQaHistoryComponent,
+    ForgotPasswordComponent
   ],
   imports: [
     CommonModule,

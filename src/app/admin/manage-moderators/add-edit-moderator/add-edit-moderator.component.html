@@ -5,7 +5,7 @@
             <div class="card-body">
                 <form [formGroup]="reactiveForm">
                     <div class="row form-group" class="invalid" [hidden]="!this.invalid">
-                        <small class="form-control">{{this.invalidMessage}}</small>
+                        <small class="form-control">The user with this email already exists!</small>
                     </div>
                     <div class="row form-group" class="invalid" [ngStyle]="{'opacity':(this.reactiveForm.invalid && mouseOnSubmit)?'1':'0'}">
                         <small class="form-control">Incomplete form cannot be saved</small>

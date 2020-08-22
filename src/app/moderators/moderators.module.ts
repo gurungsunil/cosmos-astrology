@@ -14,6 +14,8 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { SharedModule } from '../shared/shared.module';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { UserQaHistoryComponent } from '../shared/user-qa-history/user-qa-history.component';
+import { AccountModule } from '../shared/account/account.module';
+import { AccountComponent } from '../shared/account/account.component';
 
 const moderatorsRoutes: Routes = [
   {
@@ -41,7 +43,12 @@ const moderatorsRoutes: Routes = [
         path: "user-qa-history/:userId",
         canLoad: [AuthGuard],
         component: UserQaHistoryComponent
-    }],
+    },
+    {
+      path: "account",
+      canLoad: [AuthGuard],
+      component: AccountComponent
+  }],
   }
 ];
 
@@ -58,7 +65,8 @@ const moderatorsRoutes: Routes = [
     FormsModule,
     MaterialModule,
     AuthModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AccountModule
   ]
 })
 export class ModeratorsModule { }

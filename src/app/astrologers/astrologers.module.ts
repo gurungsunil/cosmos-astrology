@@ -13,6 +13,8 @@ import { AuthGuard } from '../auth/auth.guard';
 import { AstrologersTaskComponent } from './astrologers-task/astrologers-task.component';
 import { AstProfileComponent } from './ast-profile/ast-profile.component';
 import { UserQaHistoryComponent } from '../shared/user-qa-history/user-qa-history.component';
+import { AccountComponent } from '../shared/account/account.component';
+import { AccountModule } from '../shared/account/account.module';
 
 const astrologersRoutes: Routes = [
   {
@@ -44,6 +46,11 @@ const astrologersRoutes: Routes = [
         path: "user-qa-history/:userId",
         canLoad: [AuthGuard],
         component: UserQaHistoryComponent
+      },
+      {
+        path: "account",
+        canLoad: [AuthGuard],
+        component: AccountComponent
       }]
   }
 ];
@@ -61,7 +68,8 @@ const astrologersRoutes: Routes = [
     FormsModule,
     MaterialModule,
     AuthModule,
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    AccountModule
   ]
 })
 export class AstrologersModule { }

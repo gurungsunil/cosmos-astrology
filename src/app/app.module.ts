@@ -16,7 +16,6 @@ import { SharedModule } from './shared/shared.module';
 import { AstrologersModule } from './astrologers/astrologers.module';
 import { CountUpModule } from 'ngx-countup';
 import { ChartsModule } from 'ng2-charts';
-import { ErrorInterceptor } from './auth/error.interceptor';
 import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 export function tokenGetter() {
@@ -61,7 +60,6 @@ export function tokenGetter() {
     // END OF CUSTOM MODULES 
   ],
   providers: [AppService,
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     {provide: LocationStrategy, useClass: HashLocationStrategy}],
   bootstrap: [AppComponent]
 })

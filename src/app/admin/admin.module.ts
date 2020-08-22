@@ -23,6 +23,8 @@ import { AstStatsComponent } from './manage-astrologers/ast-stats/ast-stats.comp
 import { ModStatsComponent } from './manage-moderators/mod-stats/mod-stats.component';
 import { ManageModeratorsMainComponent } from './manage-moderators/manage-moderators-main.component';
 import { ChartsModule } from 'ng2-charts';
+import { AccountModule } from '../shared/account/account.module';
+import { AccountComponent } from '../shared/account/account.component';
 
 const adminRoutes: Routes = [
   {
@@ -38,6 +40,10 @@ const adminRoutes: Routes = [
           {
             path: 'dashboard',
             component: AdminDashboardComponent
+          },
+          {
+            path: 'account',
+            component: AccountComponent
           },
           {
             path: 'manage-moderators-main',
@@ -99,7 +105,8 @@ const adminRoutes: Routes = [
     MaterialModule,
     AuthModule,
     NgxSpinnerModule,
-    CountUpModule
+    CountUpModule,
+    AccountModule
   ]
 })
 export class AdminModule { }

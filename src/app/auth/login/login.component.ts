@@ -11,6 +11,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class LoginComponent {
   invalidLogin: boolean = false;
+  invalidMessage: string = '';
 
   constructor(
     private router: Router,
@@ -18,7 +19,8 @@ export class LoginComponent {
     private spinner: NgxSpinnerService
   ) {}
 
-  signIn(credentials) {
+  signIn(credentials, event: Event) {
+    event.preventDefault();
     this.spinner.show();
     const appuser: AppUserModel = {
       email: credentials.email,
@@ -38,7 +40,12 @@ export class LoginComponent {
       err => {
         this.spinner.hide();
         this.invalidLogin = true;
+        this.invalidMessage = err.status;
       }
     );
+  }
+
+  forgotPassword(credentials : AppUserModel) {
+    this.router.navigate(['forgot-password', credentials.email]);
   }
 }

@@ -22,10 +22,13 @@
         </div>
 
 
-        <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value)">
+        <form class="form-signin" #f="ngForm" (ngSubmit)="signIn(f.value, $event)">
 
             <div class="form-group" class="invalid" [hidden]="!this.invalidLogin">
-                <small class="form-control">Invalid username/ password</small>
+                <small class="form-control">
+                    <span *ngIf="this.invalidMessage == '401'">Invalid username/ password</span>
+                    <span *ngIf="this.invalidMessage == '423'">Your account is locked. Please verify your email!</span>
+                </small>
             </div>
 
             <div class="form-group">
@@ -36,6 +39,10 @@
             <div class="form-group">
                 <label for="inputPassword">Password</label>
                 <input type="password" id="inputPassword" name="password" ngModel class="form-control" placeholder="Password" required />
+            </div>
+
+            <div class="form-group text-center">
+                <a href="javascript:;" (click)="forgotPassword(f.value)" id="forgot-password">Forgot Password?</a>
             </div>
 
             <div class="form-group text-center">

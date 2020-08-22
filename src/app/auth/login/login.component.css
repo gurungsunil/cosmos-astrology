@@ -9,6 +9,7 @@
     width: 100%;
     animation: pulse 5s infinite;
     background: linear-gradient(45deg, rgb(133, 28, 39) 0%, rgb(133, 28, 39) 1%, rgb(191, 40, 36) 1%, rgb(191, 40, 36) 15%, rgb(76, 15, 42) 15%, rgb(76, 15, 42) 38%, rgb(162, 34, 38) 38%, rgb(162, 34, 38) 55%, rgb(220, 46, 35) 55%, rgb(220, 46, 35) 62%, rgb(105, 21, 41) 62%, rgb(105, 21, 41) 63%, rgb(47, 9, 44) 63%, rgb(47, 9, 44) 69%, rgb(18, 3, 45) 69%, rgb(18, 3, 45) 100%);
+    transition: opacity 200ms linear;
 }
 
 .login-form-wrapper {
@@ -77,6 +78,16 @@ input {
     border-radius: 4px;
 }
 
+a#forgot-password {
+    color: #b9786e;
+    font-size: 0.88em;
+    font-weight: 400;
+}
+
+a#forgot-password:hover {
+    color: #f96332;
+}
+
 button {
     background: #565187;
     background: linear-gradient(to bottom, #75719f 0%, #565187 100%);
@@ -92,4 +103,15 @@ button {
 button:hover {
     background: #565187e6;
     color: #ffffff;
+}
+
+button:disabled {
+    background: #ccc;
+    color: #140e2d;
+    font-size: smaller;
+    padding: 1em 3em;
+    font-weight: bolder;
+    border: 1px solid #ccc;
+    cursor: not-allowed;
+    border-radius: .25rem;
 }

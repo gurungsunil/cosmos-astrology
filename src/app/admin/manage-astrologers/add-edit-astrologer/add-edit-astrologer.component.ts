@@ -84,7 +84,7 @@ export class AddEditAstrologerComponent implements OnInit {
     },
     error=>{
       this.invalid = true;
-      this.invalidMessage = error;
+      this.invalidMessage = error.message;
       this.spinner.hide();
     });
   }
@@ -101,7 +101,7 @@ export class AddEditAstrologerComponent implements OnInit {
     error=>{
       this.invalid = true;
       console.log(error);
-      this.invalidMessage = error;
+      this.invalidMessage = error.message;
       this.spinner.hide();
     });
   }

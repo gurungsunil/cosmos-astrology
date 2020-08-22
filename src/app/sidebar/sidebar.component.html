@@ -33,6 +33,12 @@
                     <p>Settings</p>
                 </a>
             </li>
+            <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+                <a [routerLink]="['./account']">
+                    <i class="now-ui-icons users_single-02"></i>
+                    <p>Account</p>
+                </a>
+            </li>
         </ul>
     </div>
     <!-- <div class="sidebar-wrapper" *ngIf="userRole==='ROLE_MODERATOR'">
