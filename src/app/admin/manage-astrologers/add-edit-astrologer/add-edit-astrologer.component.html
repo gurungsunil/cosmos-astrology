@@ -77,6 +77,14 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="form-group">
+                          <label>Profile picture</label>
+                          <app-file-upload [currentImage]="reactiveForm.get('profileImageUrl')"></app-file-upload>
+                        </div>
+                      </div>
+                    </div>
                     <div class="row text-center">
                         <div class="col-md-12" (mouseenter)="mouseOnSubmit = true" (mouseleave)="mouseOnSubmit = false">
                             <button class="btn btn-primary" (click)="saveOrUpdateForm(reactiveForm)" [disabled]=" !this.reactiveForm.valid ">Save & close</button>

@@ -1,0 +1,12 @@
+.photo-preview {
+    height: 8em;
+    width: 8em;
+    background: #5f5a8e;
+    overflow: hidden;
+    border: 2px solid #222222;
+    text-align: center;
+}
+
+.photo-preview img {
+    height: 100%;
+}

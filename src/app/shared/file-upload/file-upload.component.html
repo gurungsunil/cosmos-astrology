@@ -1,0 +1,11 @@
+<div class="row">
+  <div class="col-md-4">
+    <div class="photo-preview">
+      <img [src]="currentImage.value">
+    </div>
+  </div>
+  <div class="col-md-8" style="padding: 5% 4%;">
+    <button class="btn btn-secondary" style="width: inherit;">Upload your photo</button>
+    <input #fileInput data-max-size="5048" type="file" (change)="selectFile($event)" accept="image/*" />
+  </div>
+</div>

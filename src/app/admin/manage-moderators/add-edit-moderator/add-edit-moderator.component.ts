@@ -16,9 +16,9 @@ export class AddEditModeratorComponent implements OnInit {
   public mouseOnSubmit: boolean = false;
   public reactiveForm: FormGroup;
   invalid: boolean = false;
-  invalidMessage: string; 
+  invalidMessage: string;
 
-  constructor(private _fb: FormBuilder, 
+  constructor(private _fb: FormBuilder,
     private _moderatorsService: ModeratorsService,
     private _adminService: AdminService,
     private spinner: NgxSpinnerService) { }
@@ -40,7 +40,8 @@ export class AddEditModeratorComponent implements OnInit {
       gender: this.currentlyEditingItem.gender,
       city: this.currentlyEditingItem.city,
       state: this.currentlyEditingItem.state,
-      country: this.currentlyEditingItem.country
+      country: this.currentlyEditingItem.country,
+      profileImageUrl: this.currentlyEditingItem.profileImageUrl
     })
   }
 
@@ -55,12 +56,13 @@ export class AddEditModeratorComponent implements OnInit {
       gender: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      country: ['', Validators.required]
+      country: ['', Validators.required],
+      profileImageUrl: ['']
     });
 
     if (this.currentlyEditingItem == 'new') {
-      this.reactiveForm.controls['email'].setValidators([Validators.required]);   
-      this.reactiveForm.controls['password'].setValidators([Validators.required]);              
+      this.reactiveForm.controls['email'].setValidators([Validators.required]);
+      this.reactiveForm.controls['password'].setValidators([Validators.required]);
     } else {
       this.reactiveForm.controls['email'].disable();
       this.reactiveForm.controls['password'].disable();

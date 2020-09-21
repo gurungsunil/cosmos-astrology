@@ -1,3 +1,4 @@
+import { FileUploadService } from './file-upload/file-upload.service';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NavbarComponent } from '../navbar/navbar.component';
@@ -9,15 +10,17 @@ import { UserQaHistoryComponent } from './user-qa-history/user-qa-history.compon
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
-  declarations: 
+  declarations:
   [
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
     UserQaHistoryComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    FileUploadComponent
   ],
   imports: [
     CommonModule,
@@ -32,7 +35,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
-    UserQaHistoryComponent
+    UserQaHistoryComponent,
+    FileUploadComponent
   ]
 })
 export class SharedModule { }

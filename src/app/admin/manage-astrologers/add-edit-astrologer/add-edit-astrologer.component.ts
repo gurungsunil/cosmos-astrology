@@ -17,9 +17,9 @@ export class AddEditAstrologerComponent implements OnInit {
   public reactiveForm: FormGroup;
   public mouseOnSubmit: boolean = false;
   invalid: boolean = false;
-  invalidMessage: string; 
+  invalidMessage: string;
 
-  constructor(private _fb: FormBuilder, 
+  constructor(private _fb: FormBuilder,
     private _astrologersService: AstrologersService,
     private _adminService: AdminService,
     private spinner: NgxSpinnerService) { }
@@ -41,7 +41,8 @@ export class AddEditAstrologerComponent implements OnInit {
       gender: this.currentlyEditingItem.gender,
       city: this.currentlyEditingItem.city,
       state: this.currentlyEditingItem.state,
-      country: this.currentlyEditingItem.country
+      country: this.currentlyEditingItem.country,
+      profileImageUrl: this.currentlyEditingItem.profileImageUrl
     })
   }
   initializeForm() {
@@ -55,12 +56,13 @@ export class AddEditAstrologerComponent implements OnInit {
       gender: ['', Validators.required],
       city: ['', Validators.required],
       state: ['', Validators.required],
-      country: ['', Validators.required]
+      country: ['', Validators.required],
+      profileImageUrl: ['']
     });
 
     if (this.currentlyEditingItem == 'new') {
-      this.reactiveForm.controls['email'].setValidators([Validators.required]);   
-      this.reactiveForm.controls['password'].setValidators([Validators.required]);              
+      this.reactiveForm.controls['email'].setValidators([Validators.required]);
+      this.reactiveForm.controls['password'].setValidators([Validators.required]);
     } else {
       this.reactiveForm.controls['email'].disable();
       this.reactiveForm.controls['password'].disable();
