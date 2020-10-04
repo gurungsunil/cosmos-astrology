@@ -12,12 +12,12 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class AdminMessagesComponent implements OnInit {
 
-  welcomeMessage: AdminMessage = DEFAULT_ADMIN_MESSAGE;
-  previousWelcomeMessages: Array<AdminMessage>;
-  systemMessage: AdminMessage = DEFAULT_ADMIN_MESSAGE;
-  previousSystemMessages: Array<AdminMessage>;
-  previousMessagesList: Array<AdminMessage>;
-  bsModalRef: BsModalRef;
+  public welcomeMessage: AdminMessage = DEFAULT_ADMIN_MESSAGE;
+  public previousWelcomeMessages: Array<AdminMessage> = [];
+  public systemMessage: AdminMessage = DEFAULT_ADMIN_MESSAGE;
+  public previousSystemMessages: Array<AdminMessage> = [];
+  public previousMessagesList: Array<AdminMessage> = [];
+  public bsModalRef: BsModalRef;
   public currentlyEditingItem = null;
   public currentlyDeletingItem = null;
 
@@ -33,9 +33,9 @@ export class AdminMessagesComponent implements OnInit {
 
   getAllAdminMessages() {
     this.spinner.show();
-    this._adminService.getAllAdminMessages().subscribe(responseList => {
-      this.previousWelcomeMessages = responseList[0];
-      this.previousSystemMessages = responseList[1];
+    this._adminService.getAllAdminMessages().subscribe(([welcomeMessages, systemMessages]) => {
+      this.previousWelcomeMessages = welcomeMessages;
+      this.previousSystemMessages = systemMessages;
       this.spinner.hide();
     }, error => {
       this.spinner.hide();
@@ -112,9 +112,9 @@ export class AdminMessagesComponent implements OnInit {
 
   openModal(template: TemplateRef<any>, messageType: string) {
     this.bsModalRef = this.modalService.show(template, { class: 'modal-md' });
-    if (messageType == 'welcome') {
+    if (messageType === 'welcome') {
       this.previousMessagesList = this.previousWelcomeMessages;
-    } else if (messageType == 'system') {
+    } else if (messageType === 'system') {
       this.previousMessagesList = this.previousSystemMessages;
     }
     this.currentlyEditingItem = null;
@@ -145,16 +145,9 @@ export class AdminMessagesComponent implements OnInit {
         this.previousMessagesList.splice(deletedMessageIndex, 1);
         this.currentlyDeletingItem = null;
       },
-        error => { 
+        error => {
+          this._toastr.error("Failed to delete message");
           this.spinner.hide();
-          if (error == 'OK') {
-            this._toastr.success("Successfully deleted message");
-            let deletedMessageIndex = this.previousMessagesList.indexOf(this.currentlyDeletingItem);
-            this.previousMessagesList.splice(deletedMessageIndex, 1);
-            this.currentlyDeletingItem = null;
-          } else {
-            this._toastr.error("Failed to delete");
-          }
         });
     } else {
       this.currentlyDeletingItem = null;

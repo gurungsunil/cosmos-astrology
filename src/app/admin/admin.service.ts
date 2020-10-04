@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, forkJoin, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, forkJoin, throwError, of } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { AdminMessage } from './admin-settings/admin-messages/admin-messages.model';
 import { QuestionPrice } from './admin-settings/pricing/pricing.model';
-import { DatePipe } from '@angular/common';
+import { DatePipe, JsonPipe } from '@angular/common';
 import { MonthlyRevenueReportModel } from './admin-dashboard/dashboard-report.model';
 import { retry, catchError } from 'rxjs/operators';
 
@@ -32,7 +32,7 @@ export class AdminService {
 
   constructor(private http: HttpClient) { }
 
-  // MESSAGE START 
+  // MESSAGE START
 
   getMessage(messageType): Observable<AdminMessage[]> {
     return this.http.get<AdminMessage[]>(
@@ -54,24 +54,24 @@ export class AdminService {
     );
   }
 
-  deleteMessage(adminMessage:AdminMessage) :Observable<any> {
+  deleteMessage(adminMessage: AdminMessage): Observable<any> {
     return this.http.delete<AdminMessage>(
-      this.ADMIN_MESSAGES + '/' + adminMessage.messageId
-    )
+      `${this.ADMIN_MESSAGES}/${adminMessage.messageId}`
+    ).pipe(message => of (String(message)));
   }
 
   public getAllAdminMessages(): Observable<any[]> {
 
-    let welcomeMessageResponse = this.getMessage('welcome');
-    let systemMessageResponse = this.getMessage('system');
+    const welcomeMessageResponse = this.getMessage('welcome').pipe(catchError(err => of([])));
+    const systemMessageResponse = this.getMessage('system').pipe(catchError(err => of([])));
 
     return forkJoin([welcomeMessageResponse, systemMessageResponse]);
   }
 
-  // MESSAGE END 
+  // MESSAGE END
 
 
-  // PRICING START 
+  // PRICING START
   getQuestionPrice(): Observable<QuestionPrice[]> {
     return this.http.get<QuestionPrice[]>(
       this.QUESTION_PRICE
@@ -84,9 +84,9 @@ export class AdminService {
       questionPriceModel
     );
   }
-  // PRICING END 
+  // PRICING END
 
-  //DASHBOARD START 
+  // DASHBOARD START
 
   getDashboardReport(): Observable<any> {
     return this.http.get<any>(
@@ -95,9 +95,9 @@ export class AdminService {
   }
 
   getMonthlyRevenueReport(): Observable<MonthlyRevenueReportModel[]> {
-    let date = new Date();
-    let currentYear = date.getFullYear();
-    return this.http.get<MonthlyRevenueReportModel[]>(this.MONTHLY_REVENUE_REPORT + currentYear)
+    const date = new Date();
+    const currentYear = date.getFullYear();
+    return this.http.get<MonthlyRevenueReportModel[]>(this.MONTHLY_REVENUE_REPORT + currentYear);
   }
 
   getModAnswersAll(): Observable<any> {
@@ -105,45 +105,45 @@ export class AdminService {
       this.MOD_ANSWERS_ALL
     );
   }
-  //DASHBOARD END
+  // DASHBOARD END
 
-  // ASTROLOGERS WORK REPORT 
+  // ASTROLOGERS WORK REPORT
   getAstrologersWorkReport(fromDate, toDate): Observable<any> {
     const fromDateStandard = this.toStandardDate(fromDate);
     const toDateStandard = this.toStandardDate(toDate);
     return this.http.get<any>(
       this.AST_WORK_REPORT + 'fromDate=' + fromDateStandard + '&toDate=' + toDateStandard
-    ).pipe(retry(2), catchError(this.handleError));
+    ).pipe(retry(2));
   }
 
-  //ASTROLOGERS WORK REPORT END
+  // ASTROLOGERS WORK REPORT END
 
-  // MODERATORS WORK REPORT 
+  // MODERATORS WORK REPORT
   getModeratorsWorkReport(fromDate, toDate): Observable<any> {
     const fromDateStandard = this.toStandardDate(fromDate);
     const toDateStandard = this.toStandardDate(toDate);
     return this.http.get<any>(
       this.MOD_WORK_REPORT + 'fromDate=' + fromDateStandard + '&toDate=' + toDateStandard
-    ).pipe(retry(2), catchError(this.handleError));
+    ).pipe(retry(2));
   }
-  // MODERATORS WORK REPORT END 
+  // MODERATORS WORK REPORT END
 
   toStandardDate(date: Date) {
     const format = 'yyyy/MM/dd';
-    let pipe = new DatePipe('en-US');
+    const pipe = new DatePipe('en-US');
     return pipe.transform(date, format);
   }
 
-  handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      console.error('An error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Backend returned code ${error.status}, `);
-    }
-    return throwError(
-      'Something bad happened; please try again later.');
-  };
+  // handleError(error: HttpErrorResponse) {
+  //   if (error.error instanceof ErrorEvent) {
+  //     console.error('An error occurred:', error.error.message);
+  //   } else {
+  //     console.error(
+  //       `Backend returned code ${error.status}, `);
+  //   }
+  //   return throwError(
+  //     'Something bad happened; please try again later.');
+  // }
 
 
 }
