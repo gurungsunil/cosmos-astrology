@@ -18,9 +18,9 @@ export class ModeratorsTaskComponent implements OnInit {
   taskError = null;
 
   constructor(private _moderatorsService: ModeratorsService,
-    private _toastr: ToastrService,
-    private spinner: NgxSpinnerService,
-    private _authService: AuthenticationService) { }
+              private _toastr: ToastrService,
+              private spinner: NgxSpinnerService,
+              private _authService: AuthenticationService) { }
 
   ngOnInit() {
   }
@@ -33,10 +33,10 @@ export class ModeratorsTaskComponent implements OnInit {
       this.spinner.hide();
     }, error => {
       this.spinner.hide();
-      if (error.status == 404) {
-        this.taskError = "There are no tasks in the system. Please try again later.";
+      if (error.status === 404) {
+        this.taskError = 'There are no tasks in the system. Please try again later.';
       }
-    })
+    });
   }
 
   skipThisQuestion(engQuesId) {
@@ -45,7 +45,7 @@ export class ModeratorsTaskComponent implements OnInit {
       console.log(response);
       this.moderatorsTaskModel = null;
       this.spinner.hide();
-    })
+    });
   }
 
   markThisQuestionAsUnclear() {
@@ -54,18 +54,21 @@ export class ModeratorsTaskComponent implements OnInit {
 
   submitUnclearQuestionWithDescription() {
     this.spinner.show();
-    let questionUnclearModel: QuestionUnclearModel = {
+    const questionUnclearModel: QuestionUnclearModel = {
       engQuestionId: this.moderatorsTaskModel.currentJob.englishQuestion.engQuesId,
       assignedModId: this.moderatorsTaskModel.currentJob.englishQuestion.assignedModId,
       description: this.taskObject.descriptionForUnclear,
       userId: this.moderatorsTaskModel.currentJob.englishQuestion.userId
-    }
+    };
 
     this._moderatorsService.markQuestionAsUnclear(questionUnclearModel).subscribe(response => {
       this.moderatorsTaskModel = null;
       this.taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
       this.spinner.hide();
-      this._toastr.success("The question has been sent back to the user.");
+      this._toastr.success('The question has been sent back to the user.');
+    }, error => {
+      this.spinner.hide();
+      this._toastr.error('Failed to submit!');
     });
   }
 
@@ -75,7 +78,7 @@ export class ModeratorsTaskComponent implements OnInit {
     } else if (this.moderatorsTaskModel.currentJob.currentJobType == 'english-question') {
       this.submitTranslatedEnglishQuestion();
     } else {
-      this._toastr.error("Job type not recognized.")
+      this._toastr.error('Job type not recognized.');
     }
 
   }
@@ -88,17 +91,17 @@ export class ModeratorsTaskComponent implements OnInit {
       userId: this.moderatorsTaskModel.currentJob.nepaliAnswer.userId,
       translatedAns: this.taskObject.translation,
       moderatorId: this._authService.currentUser.appUserId
-    }
+    };
     this._moderatorsService.saveTranslatedNepaliAnswer(translatedNepaliAnswer).subscribe(response => {
       this.spinner.hide();
-      this._toastr.success("Task submitted successfully!");
+      this._toastr.success('Task submitted successfully!');
       this.moderatorsTaskModel = null;
       this.taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
     },
       error => {
         this.spinner.hide();
-        this._toastr.error("Failed to submit task!")
-      })
+        this._toastr.error('Failed to submit task!');
+      });
   }
 
   submitTranslatedEnglishQuestion() {
@@ -108,17 +111,17 @@ export class ModeratorsTaskComponent implements OnInit {
       engQsnId: this.moderatorsTaskModel.currentJob.englishQuestion.engQuesId,
       convertedQsn: this.taskObject.translation,
       userId: this.moderatorsTaskModel.currentJob.englishQuestion.userId
-    }
+    };
     this._moderatorsService.saveTranslatedEnglishQuestion(translatedEnglishQuestion).subscribe(response => {
       this.spinner.hide();
-      this._toastr.success("Task submitted successfully!");
+      this._toastr.success('Task submitted successfully!');
       this.moderatorsTaskModel = null;
       this.taskObject = { questionUnclear: false, descriptionForUnclear: '', translation: '' };
     },
       error => {
         this.spinner.hide();
-        this._toastr.error("Failed to submit task!")
-      })
+        this._toastr.error('Failed to submit task!');
+      });
   }
 
   get validForTranslationSubmit() {

@@ -18,86 +18,85 @@
 
 
 export interface QuestionUnclearModel {
-    id?: number;
-	engQuestionId: number;
-	description: string;
-	assignedModId: number;
-	userId: number;
-	messageId?: string;
-	sentStatus?: boolean;
-	failureMsg?: string;
+  id?: number;
+  engQuestionId: number;
+  description: string;
+  assignedModId: number;
+  userId: number;
+  messageId?: string;
+  sentStatus?: boolean;
+  failureMsg?: string;
 }
 
 export interface TranslatedQuestionRequest {
-    engQsnId: number;
-	convertedQsn: string;
-	userId: number;
+  engQsnId: number;
+  convertedQsn: string;
+  userId: number;
 }
 
 export interface CurrentJob {
-    currentJobType:string;
-    processUrl:string;
-    englishQuestion?: {
-      createdAt:string;
-      updatedAt:string;
-      engQuesId: number;
-      engQuestion: string;
-      userId: number;
-      assignedModId:number;
-      markQuestionUnclear: boolean;
-      paid: boolean;
-      prevEngQuesId: number;
-    };
-    nepaliAnswer?:{ 
-       createdAt:string;
-       updatedAt:string;
-       id: number;
-       nepQuestionId:number;
-       userId:number
-       answer:string;
-    }
-};
-
-export interface UserDetails { 
+  currentJobType: string;
+  processUrl: string;
+  englishQuestion?: {
+    createdAt: string;
+    updatedAt: string;
+    engQuesId: number;
+    engQuestion: string;
     userId: number;
-    firstName:string;
-    lastName:string;
-    email:string;
-    phoneNumber:string;
-    gender:string;
-    city:string;
-    state:string;
-    country:string;
-    profileImageUrl:string;
-    dateOfBirth:string;
-    birthTime:string;
-    accurateTime:boolean;
- }
+    assignedModId: number;
+    markQuestionUnclear: boolean;
+    paid: boolean;
+    prevEngQuesId: number;
+  };
+  nepaliAnswer?: {
+    createdAt: string;
+    updatedAt: string;
+    id: number;
+    nepQuestionId: number;
+    userId: number
+    answer: string;
+  };
+}
 
- export interface QuestionAnswerHistory 
-    { 
-        engQuestion:string;
-        status:string;
-        createdAt:string;
-        translatedEngQuestion:{ 
-           translatedOn: string;
-           translatedBy:string;
-           nepQuestionId:number;
-           translatedQuestion: string;
-        },
-        nepaliAnswer:{ 
-           nepReply:string;
-           repliedBy:string;
-           repliedOn:string;
-           nepAnswerId:number;
-        },
-        englishAnswer:string;
-     }
+export interface UserDetails {
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  phoneNumber: string;
+  gender: string;
+  city: string;
+  state: string;
+  country: string;
+  profileImageUrl: string;
+  dateOfBirth: string;
+  birthTime: string;
+  accurateTime: boolean;
+}
+
+export interface QuestionAnswerHistory {
+  engQuestion: string;
+  status: string;
+  createdAt: string;
+  translatedEngQuestion: {
+    translatedOn: string;
+    translatedBy: string;
+    nepQuestionId: number;
+    translatedQuestion: string;
+  };
+  nepaliAnswer: {
+    nepReply: string;
+    repliedBy: string;
+    repliedOn: string;
+    nepAnswerId: number;
+  };
+  englishAnswer: string;
+}
 
 export interface ModeratorsTaskModel {
-    currentJob: CurrentJob;
-    userDetails: UserDetails;
-    questionAnswerHistoryList: Array<QuestionAnswerHistory>;
+  currentJob: CurrentJob;
+  userDetails: UserDetails;
+  questionAnswerHistoryList: Array<QuestionAnswerHistory>;
 }
 
 // export const DEFAULT_MODERATORS_TASK_MODEL : ModeratorsTaskModel= {
@@ -151,16 +150,16 @@ export interface ModeratorsTaskModel {
 //    ]
 // };
 
- export interface TranslatedNepaliAnswer {
-   nepQuestionId: number;
-   userId: number;
-   // answer: string;
-   translatedAns: string;
-   moderatorId: number;
+export interface TranslatedNepaliAnswer {
+  nepQuestionId: number;
+  userId: number;
+  // answer: string;
+  translatedAns: string;
+  moderatorId: number;
 }
 
 export interface TranslatedEnglishQuestion {
-   engQsnId: number;
-   convertedQsn: string;
-   userId: number;
+  engQsnId: number;
+  convertedQsn: string;
+  userId: number;
 }

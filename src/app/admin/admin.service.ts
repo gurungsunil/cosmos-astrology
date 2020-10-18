@@ -57,7 +57,7 @@ export class AdminService {
   deleteMessage(adminMessage: AdminMessage): Observable<any> {
     return this.http.delete<AdminMessage>(
       `${this.ADMIN_MESSAGES}/${adminMessage.messageId}`
-    ).pipe(message => of (String(message)));
+    );
   }
 
   public getAllAdminMessages(): Observable<any[]> {

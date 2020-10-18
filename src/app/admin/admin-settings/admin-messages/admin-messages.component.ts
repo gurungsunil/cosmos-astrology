@@ -68,7 +68,6 @@ export class AdminMessagesComponent implements OnInit {
       this._toastr.success("Successfully updated welcome message.");
       this.currentlyEditingItem = null;
       this.welcomeMessage = DEFAULT_ADMIN_MESSAGE;
-      console.log(response);
       this.previousWelcomeMessages.splice(this.previousWelcomeMessages.indexOf(this.currentlyEditingItem), 1,response)
     },
       error => {
@@ -102,7 +101,6 @@ export class AdminMessagesComponent implements OnInit {
       this._toastr.success("Successfully updated system message.");
       this.currentlyEditingItem = null;
       this.systemMessage = DEFAULT_ADMIN_MESSAGE;
-      console.log(response);
       this.previousWelcomeMessages.splice(this.previousSystemMessages.indexOf(this.currentlyEditingItem), 1,response)
     },
       error => {

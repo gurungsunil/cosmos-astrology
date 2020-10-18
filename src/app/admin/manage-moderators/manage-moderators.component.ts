@@ -52,16 +52,20 @@ export class ManageModeratorsComponent implements OnInit, OnDestroy {
 
   closeModalFunc() {
     this.addEditModSubscriber = this._adminService.addModeratorResponse.subscribe(moderator => {
-      if (moderator !== null && this.currentlyEditingItem == 'new') {
+      if (moderator !== null && this.currentlyEditingItem === 'new') {
         this.moderatorsList.push(moderator);
-        this.bsModalRef.hide();
+        if (this.bsModalRef) {
+          this.bsModalRef.hide();
+        }
       } else if (moderator !== null && this.currentlyEditingItem !== 'new') {
         const moderatorIndex = this.moderatorsList.indexOf(this.currentlyEditingItem);
         this.moderatorsList.splice(moderatorIndex, 1);
         this.moderatorsList.push(moderator);
-        this.bsModalRef.hide();
+        if (this.bsModalRef) {
+          this.bsModalRef.hide();
+        }
       }
-    })
+    });
   }
 
   viewModerator(moderator, viewModeratorModal: TemplateRef<any>) {
