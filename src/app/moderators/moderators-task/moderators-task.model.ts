@@ -90,7 +90,11 @@ export interface QuestionAnswerHistory {
     repliedOn: string;
     nepAnswerId: number;
   };
-  englishAnswer: string;
+  englishAnswer?: {
+    engReply?: string;
+    translatedBy?: string;
+    translatedOn?: string;
+  };
 }
 
 export interface ModeratorsTaskModel {

@@ -35,7 +35,7 @@ export class AdminDashboardComponent implements OnInit {
       }
     },
     scales: {
-      yAxes: [ 
+      yAxes: [
         {
           scaleLabel: {
             display:true,
@@ -44,7 +44,7 @@ export class AdminDashboardComponent implements OnInit {
           }
         }
       ],
-      xAxes: [ 
+      xAxes: [
         {
           scaleLabel: {
             display:true,
@@ -108,9 +108,9 @@ export class AdminDashboardComponent implements OnInit {
     });
 
     this.barChartData = [
-      { 
+      {
         data: monthlyRevenueReportFinal,
-        label: 'Monthly Revenue', 
+        label: 'Monthly Revenue',
         backgroundColor: '#f3b24c',
         borderColor:'#111111' ,
         borderWidth: 1,
@@ -134,6 +134,7 @@ export class AdminDashboardComponent implements OnInit {
     } else {
       this.revenueDiff = 0;
     }
+    this.revenueDiff = +this.revenueDiff.toFixed(2);
   }
 
 }

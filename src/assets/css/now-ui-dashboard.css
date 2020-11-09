@@ -5412,6 +5412,9 @@ table.dataTable.no-footer {
     font-weight: 800;
     color: #2e2a68;
     font-size: larger;
+    max-height: 7em;
+    overflow-y: scroll;
+    margin-bottom: 0;
 }
 
 .answer {

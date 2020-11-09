@@ -78,7 +78,7 @@
                                             <div class="row user-details">
                                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
                                                     <div>
-                                                        <p>
+                                                        <!-- <p>
                                                             <span class="user-details-icon"><i class="fa fa-envelope-open"
                                                                         aria-hidden="true"></i></span>
                                                             <span class="user-details-title">Email:</span> {{moderatorsTaskModel.userDetails.email}}
@@ -88,7 +88,7 @@
                                                             <span class="user-details-icon"><i class="fa fa-phone"
                                                                         aria-hidden="true"></i></span>
                                                             <span class="user-details-title"> Phone:</span> {{moderatorsTaskModel.userDetails.phoneNumber}}
-                                                        </p>
+                                                        </p> -->
 
                                                         <p><span class="user-details-icon"><i class="fa fa-mars-stroke" aria-hidden="true"></i></span>
                                                             <span class="user-details-title">Gender:</span> {{moderatorsTaskModel.userDetails.gender}}
@@ -107,7 +107,7 @@
                                                         <p><span class="user-details-icon"><i class="fa fa-clock"
                                                                         aria-hidden="true"></i></span>
                                                             <span class="user-details-title">Time of birth:</span> {{moderatorsTaskModel.userDetails.birthTime}}
-                                                            <span class="user-details-icon" [ngClass]="moderatorsTaskModel.userDetails.accurateTime == true? 'cl-green':'cl-red'"> 
+                                                            <span class="user-details-icon" [ngClass]="moderatorsTaskModel.userDetails.accurateTime == true? 'cl-green':'cl-red'">
                                                                 <i class="fa fa-check" *ngIf="moderatorsTaskModel.userDetails.accurateTime" aria-hidden="true"></i>
                                                                 <i class="fa fa-times" *ngIf="!moderatorsTaskModel.userDetails.accurateTime" aria-hidden="true"></i>
                                                                 {{moderatorsTaskModel.userDetails.accurateTime==true?'Accurate time':'Not accurate time'}}</span>
@@ -131,21 +131,21 @@
                                             <div class="row">
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
                                                     <h4 class="card-title text-center" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">
-                                                        <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Reply for Nepali</p>
+                                                        <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Translate to English</p>
                                                     </h4>
                                                     <h4 class="card-title text-center" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">
-                                                        <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Question in English</p>
+                                                        <p class="qa-icons"> <i class="fa fa-question-circle" aria-hidden="true"></i>&nbsp; Translate to Nepali</p>
                                                     </h4>
                                                 </div>
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 text-right">
-                                                    <button class="btn btn-secondary" (click)="markThisQuestionAsUnclear()" [hidden]="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Mark unclear</button>
+                                                    <button class="btn btn-secondary" (click)="markThisQuestionAsUnclear()" [hidden]="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'"><i class="fa fa-exclamation-triangle" aria-hidden="true"></i>&nbsp;Mark {{this.taskObject.questionUnclear ? 'clear': 'unclear'}}</button>
                                                 </div>
                                             </div>
                                             <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-                                                    <span class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">{{moderatorsTaskModel.currentJob.nepaliAnswer.answer}}</span>
+                                                    <p class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'nepali-answer'">{{moderatorsTaskModel.currentJob.nepaliAnswer.answer}}</p>
 
-                                                    <span class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">{{moderatorsTaskModel.currentJob.englishQuestion.engQuestion}}</span>
+                                                    <p class="question-for-reply-or-translation" *ngIf="moderatorsTaskModel.currentJob.currentJobType == 'english-question'">{{moderatorsTaskModel.currentJob.englishQuestion.engQuestion}}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -154,7 +154,7 @@
                                             <div [hidden]="taskObject.questionUnclear">
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <textarea class="answer" [disabled]="this.taskObject.questionUnclear" [(ngModel)]="this.taskObject.translation" #taskObjectTranslation="ngModel"></textarea>
+                                                        <textarea class="answer" [(ngModel)]="this.taskObject.translation" #taskObjectTranslation="ngModel"></textarea>
                                                         <button class="btn btn-primary answer-submit-button " [disabled]="!validForTranslationSubmit" (click)="submitThisQuestion()"><i class="fa fa-paper-plane"></i>&nbsp;Submit</button>
                                                     </div>
                                                 </div>

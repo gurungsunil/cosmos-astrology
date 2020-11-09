@@ -1,3 +1,4 @@
+import { TruncateTextPipe } from './../../shared/pipes/truncate-string.pipe';
 import { Component, OnInit, ɵCompiler_compileModuleSync__POST_R3__ } from '@angular/core';
 import { ModeratorsTaskModel, QuestionUnclearModel, TranslatedQuestionRequest, TranslatedNepaliAnswer, TranslatedEnglishQuestion } from './moderators-task.model';
 import { ModeratorsService } from '../moderators.service';
@@ -37,7 +38,7 @@ export class ModeratorsTaskComponent implements OnInit {
         this.taskError = 'There are no tasks in the system. Please try again later.';
       }
     });
-  }
+   }
 
   skipThisQuestion(engQuesId) {
     this.spinner.show();
@@ -49,7 +50,7 @@ export class ModeratorsTaskComponent implements OnInit {
   }
 
   markThisQuestionAsUnclear() {
-    this.taskObject.questionUnclear = true;
+    this.taskObject.questionUnclear = !this.taskObject.questionUnclear;
   }
 
   submitUnclearQuestionWithDescription() {

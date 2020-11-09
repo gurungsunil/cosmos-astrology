@@ -11,6 +11,7 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { TruncateTextPipe } from './pipes/truncate-string.pipe';
 
 @NgModule({
   declarations:
@@ -20,7 +21,8 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     FooterComponent,
     UserQaHistoryComponent,
     ForgotPasswordComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    TruncateTextPipe
   ],
   imports: [
     CommonModule,
@@ -29,14 +31,14 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     NgxSpinnerModule,
     ReactiveFormsModule,
     FormsModule
-
   ],
   exports: [
     NavbarComponent,
     SidebarComponent,
     FooterComponent,
     UserQaHistoryComponent,
-    FileUploadComponent
+    FileUploadComponent,
+    TruncateTextPipe
   ]
 })
 export class SharedModule { }
