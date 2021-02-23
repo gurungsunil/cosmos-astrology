@@ -35,7 +35,7 @@ export class PricingComponent implements OnInit {
 
   saveQuestionPrice(questionPriceForm: NgForm) {
     this.spinner.show();
-   this._adminService.saveQuestionPrice(questionPriceForm.value).subscribe(response => {
+   var res=this._adminService.saveQuestionPrice(questionPriceForm.value).subscribe(response => {
     this.toastr.success("New question price has been set");
     this.spinner.hide();
     // TO DO: REMOVE THIS ONCE ALL THE PRICES COME 
@@ -46,6 +46,7 @@ export class PricingComponent implements OnInit {
     this.toastr.error("Failed to set question price");
     this.spinner.hide();
    })
+   console.log(res);
   }
 
 }

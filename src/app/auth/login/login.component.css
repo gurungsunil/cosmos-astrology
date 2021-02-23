@@ -25,8 +25,9 @@
 }
 
 .logo-wrapper img {
-    max-width: 30%;
+    max-width: 109px;
     margin: 0 auto;
+    max-height: 109px;    
 }
 
 .logo-wrapper h1 {

@@ -42,9 +42,8 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: [
-          'localhost:8080',
-          '144.91.121.115:8080',
-          'api.cosmosastrology.com'
+          'system.cosmosastrology.com',
+          '192.168.1.99:8082',
         ],
         blacklistedRoutes: []
       }

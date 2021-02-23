@@ -101,6 +101,7 @@ export class AuthenticationService {
   }
 
   getRole() {
+    console.log(this.currentUser);
     return this.currentUser.auth;
   }
 }
